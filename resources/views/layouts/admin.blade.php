@@ -120,15 +120,17 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">Categories <span class="badge badge-secondary">New</span></a>
-                                <!-- <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>UI Elements</a>
-                                <div id="submenu-2" class="collapse submenu" style="">
+                                <a class="nav-link" href="" data-toggle="collapse" aria-expanded="false" data-target="#category" aria-controls="category">Category</a>
+                                <div id="category" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="pages/cards.html">Cards <span class="badge badge-secondary">New</span></a>
+                                            <a class="nav-link" href="{{route('categories.index')}}">Category list</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{route('categories.create')}}">Category add new</a>
                                         </li>
                                     </ul>
-                                </div> -->
+                                </div>
                             </li>
                         </ul>
                     </div>
