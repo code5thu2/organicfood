@@ -224,6 +224,7 @@
     <!-- morris js -->
     <script src="{{url('public/backend/assets')}}/vendor/charts/morris-bundle/raphael.min.js"></script>
     <script src="{{url('public/backend/assets')}}/vendor/charts/morris-bundle/morris.js"></script>
+    <script src="{{url('public/backend/tinymce')}}/slug.js"></script>
 </body>
 
 </html>
