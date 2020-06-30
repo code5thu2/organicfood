@@ -15,7 +15,7 @@ class Category extends Model
         $file->move(public_path('upload'), $image_name);
         return  $image_name;
     }
-    public function childs()
+    public function childCat()
     {
         return $this->hasMany(Category::class, 'parent_id', 'id');
     }

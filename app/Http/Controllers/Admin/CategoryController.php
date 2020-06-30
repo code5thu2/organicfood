@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\categoryAddRequest;
+use App\Http\Requests\categoryEditRequest;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -38,7 +40,7 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request, Category $category)
+    public function store(categoryAddRequest $request, Category $category)
     {
         $file_name = $category->upload();
         $slug = Str::slug($request->name, '-');
@@ -68,13 +70,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $child = [];
-        foreach ($category->childs() as $model) {
-            $child = $model->id;
-        }
-        dd($child);
-        // $parent = Category::whereNotIn('id', [$category->id])->orderBy('name', 'ASC')->get();
-        // return view('admin.categories.edit', compact('category', 'parent'));
+        $parent = Category::whereNotIn('id', [$category->id])->orderBy('name', 'ASC')->get();
+        return view('admin.categories.edit', compact('category', 'parent'));
     }
 
     /**
@@ -84,9 +81,18 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(categoryEditRequest $request, Category $category)
     {
-        //
+        if ($request->hasFile('upload')) {
+            $file_name = $category->upload();
+            $request->merge(['image' => $file_name]);
+        }
+        $slug = Str::slug($request->name, '-');
+        $request->merge(['slug' => $slug]);
+        if ($category->update($request->all())) {
+            return Redirect()->route('categories.index')->with('yes', 'Update category successfully');
+        }
+        return  redirect()->back()->with('no', 'Update category failed');
     }
 
     /**
