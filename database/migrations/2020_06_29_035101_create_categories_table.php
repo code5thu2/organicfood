@@ -24,6 +24,7 @@ class CreateCategoriesTable extends Migration
             $table->integer('prioty')->nullable();
             $table->integer('parent_id')->default(0);
             $table->unsignedInteger('status')->default(0);
+            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
     }

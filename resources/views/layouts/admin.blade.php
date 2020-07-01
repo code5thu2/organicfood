@@ -145,22 +145,13 @@
         <!-- ============================================================== -->
         <div class="dashboard-wrapper" style="min-height:none">
             <div class="dashboard-ecommerce">
-                <div class="container-fluid dashboard-content ">
+                <div class="container dashboard-content ">
                     <!-- ============================================================== -->
                     <!-- pageheader  -->
                     <!-- ============================================================== -->
-                    <div class="row" style="position:relative;margin:0 auto;">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="margin:0 auto;">
                             <div class="page-header">
-                                @if(Session::has('yes'))
-                                <div class="alert alert-success alert-dismissible fade show" style="position:absolute; width:100%;" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                        <span class="sr-only">Close</span>
-                                    </button>
-                                    <strong>Success!</strong> {{Session::get('yes')}}
-                                </div>
-                                @endif
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
@@ -169,21 +160,31 @@
                                         </ol>
                                     </nav>
                                 </div>
+                                @if(Session::has('yes'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                    <strong>Success!</strong> {{Session::get('yes')}}
+                                </div>
+                                @endif
                             </div>
+                        </div>
+                        <div class="container">
+                            @yield('main')
                         </div>
                     </div>
                     <!-- ============================================================== -->
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
-                    <div class="container mt-2" style="position:relative;">
-                        @yield('main')
-                    </div>
+
                 </div>
             </div>
             <!-- ============================================================== -->
             <!-- footer -->
             <!-- ============================================================== -->
-            <div class="footer" style="position:relative;">
+            <div class="footer" style="position:absolute; bottom:0;">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">

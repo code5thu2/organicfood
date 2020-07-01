@@ -42,9 +42,12 @@ class CategoryController extends Controller
      */
     public function store(categoryAddRequest $request, Category $category)
     {
-        $file_name = $category->upload();
-        $slug = Str::slug($request->name, '-');
-        $request->merge(['image' => $file_name, 'slug' => $slug]);
+        if ($request->hasFile('upload')) {
+            $file_name = uploadImg('upload');
+            $request->merge(['image' => $file_name]);
+        }
+        $slug =  slugName('name');
+        $request->merge(['slug' => $slug]);
         if (Category::create($request->all())) {
             return redirect()->route('categories.index')->with('yes', 'Add new category successfully');
         }
@@ -84,10 +87,10 @@ class CategoryController extends Controller
     public function update(categoryEditRequest $request, Category $category)
     {
         if ($request->hasFile('upload')) {
-            $file_name = $category->upload();
+            $file_name = uploadImg('upload');
             $request->merge(['image' => $file_name]);
         }
-        $slug = Str::slug($request->name, '-');
+        $slug =  slugName('name');
         $request->merge(['slug' => $slug]);
         if ($category->update($request->all())) {
             return Redirect()->route('categories.index')->with('yes', 'Update category successfully');
@@ -103,6 +106,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        if ($category->delete()) {
+            return Redirect()->back()->with('yes', 'Successfully deleted the category');
+        }
+        return Redirect()->back()->with('no', 'Cannot delete this category');
     }
 }
