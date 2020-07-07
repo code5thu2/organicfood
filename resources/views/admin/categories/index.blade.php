@@ -23,13 +23,15 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Parent category</th>
+                    <th>Create date</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <?php tableCategory($category) ?>
+                <?php
+                // dd($category);
+                tableCategory($category) ?>
                 <!-- @foreach($category as $model)
                 <tr>
                     <td scope="row">{{$model->id}}</td>
@@ -64,24 +66,20 @@
 </div>
 @stop()
 <?php
+
 function tableCategory($category, $parent_id = 0, $char = '')
 {
     foreach ($category as $key => $item) {
 
-        if ($item->parent_id == $parent_id) {
-            $statusColor = $item->status == 1 ? 'text-success' : 'text-danger';
-            $status = $item->status == 1 ? 'Enable' : 'Disable';
-            if ($item->parent_id != 0) {
-                $parentName = $item->parentCat->name;
-            }
-            $parent = $item->$parent_id == 0 ? 'parent' : $parentName;
-            echo '<tr>';
-            echo ' <td scope="row">' . $item->id . '</td>';
-            echo ' <td>' . $char . $item->name . '</td>';
-            echo ' <td>' . $parent . '</td>';
-            echo '  <td class="' . $statusColor . '">' . $status . '</td>';
-            echo ' <td>';
-            echo '
+        $statusColor = $item->status == 1 ? 'text-success' : 'text-danger';
+        $status = $item->status == 1 ? 'Enable' : 'Disable';
+        echo '<tr>';
+        echo ' <td scope="row">' . $item->id . '</td>';
+        echo ' <td>' . $char . $item->name . '</td>';
+        echo ' <td>' . date_format($item->created_at, 'd-m-Y') . '</td>';
+        echo '  <td class="' . $statusColor . '">' . $status . '</td>';
+        echo ' <td>';
+        echo '
                     <div class="dropdown">
                         <a href="#" class=" card-drop" data-toggle="dropdown" aria-expanded="true">
                             <i class="fas fa-info-circle"></i>
@@ -90,16 +88,18 @@ function tableCategory($category, $parent_id = 0, $char = '')
                             <a href="' . route('categories.edit', $item->id) . '" class="dropdown-item">Edit category</a>
                             <form action="' . route('categories.destroy', $item->id) . '" method="post">
                                 <input type="hidden" name="_method" value="DELETE">
-                               ' . csrf_field() . '
+                            ' . csrf_field() . '
                                 <button type="submit" class="dropdown-item" onclick="return confirm(\'Bạn có chắc chắn muốn xóa danh mục này\')">Delete</button>
                             </form>
                         </div>
                     </div>';
-            echo '</td>';
-            echo '</tr>';
-            unset($category[$key]);
-            tableCategory($category, $item->id, $char . ' -- ');
+        echo '</td>';
+        echo '</tr>';
+        if ($item->childCat->count()) {
+            tableCategory($item->childCat, $item->id, $char . ' -- ');
         }
+        //tableCategory($category, $item->id, $char . ' -- ');
+
     }
 }
 ?>

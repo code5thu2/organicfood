@@ -19,7 +19,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::paginate(5);
+        $category = Category::orderBy('id')->where('parent_id', 0)->paginate(1);
         return view('admin.categories.index', compact('category'));
     }
 
@@ -42,6 +42,7 @@ class CategoryController extends Controller
      */
     public function store(categoryAddRequest $request, Category $category)
     {
+        // thay doi
         if ($request->hasFile('upload')) {
             $file_name = uploadImg('upload');
             $request->merge(['image' => $file_name]);
