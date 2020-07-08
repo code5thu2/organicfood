@@ -23,4 +23,20 @@ return [
             ]
         ]
     ],
+    [
+        'id' => 'supplier',
+        'name' => 'Supplier',
+        'icon' => 'fas fa-handshake',
+        'route' => 'suppliers.index',
+        'items' => [
+            [
+                'name' => 'Supplier list',
+                'route' => 'suppliers.index'
+            ],
+            [
+                'name' => 'Supplier add new',
+                'route' => 'suppliers.create'
+            ]
+        ]
+    ],
 ];

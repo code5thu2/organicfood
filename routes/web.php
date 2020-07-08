@@ -17,5 +17,6 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin'], function () {
     Route::get('', 'AdminController@index')->name('admin.index');
     route::resources([
         'categories' => 'CategoryController',
+        'suppliers' => 'SupplierController',
     ]);
 });
