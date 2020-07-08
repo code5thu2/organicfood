@@ -39,4 +39,20 @@ return [
             ]
         ]
     ],
+    [
+        'id' => 'unit',
+        'name' => 'Unit',
+        'icon' => 'fas fa-handshake',
+        'route' => 'units.index',
+        'items' => [
+            [
+                'name' => 'Unit list',
+                'route' => 'units.index'
+            ],
+            [
+                'name' => 'Unit add new',
+                'route' => 'units.create'
+            ]
+        ]
+    ],
 ];
