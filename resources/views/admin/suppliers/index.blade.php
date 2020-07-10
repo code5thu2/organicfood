@@ -19,11 +19,10 @@
             </div>
         </div>
         <table class="table table-bordered table-hover">
-            <thead class=" thead-light">
+            <thead class=" thead-light ">
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Create date</th>
+                    <th>Supplier</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -32,8 +31,14 @@
                 @foreach($supplier as $model)
                 <tr>
                     <td scope="row">{{$model->id}}</td>
-                    <td>{{$model->name}}</td>
-                    <td>{{$model->parent_id == 0 ? 'Parent' : $model->parentCat->name}}</td>
+                   
+         <td>
+        <div class="media">
+        <img src="{{url('uploads')}}/{{$model->image}}" alt="" width="50px">
+        <div class="media-body ml-2">     
+        <h3>{{$model->name}}</h3><small>{{$model->created_at}}</small>
+        </div>
+        </td>
                     <td class="{{$model->status == 1 ? 'text-success' : 'text-danger'}}">{{$model->status == 1 ? 'Enable' : 'Disable'}}</td>
                     <td>
                         <div class="dropdown">

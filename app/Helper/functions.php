@@ -7,7 +7,7 @@ if (!function_exists('uploadImg')) {
         $image_name = $info['filename'];
         $image_ex = $info['extension'];
         $full_name = time() . '-' . Str::slug($image_name) . '.' . $image_ex;
-        request()->$field_name->move(public_path('uploads'), $full_name);
+        request()->$field_name->move('uploads', $full_name);
         return $full_name;
     }
 }

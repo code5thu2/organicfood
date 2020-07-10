@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use App\Http\Requests\supplierAddRequest;
+use App\Http\Requests\supplierEditRequest;
 
 class SupplierController extends Controller
 {
@@ -26,7 +28,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.suppliers.create');
     }
 
     /**
@@ -35,9 +37,17 @@ class SupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(supplierAddRequest $request)
     {
-        //
+        // thay doi
+        if ($request->hasFile('upload')) {
+            $file_name = uploadImg('upload');
+            $request->merge(['image' => $file_name]);
+        }
+        if (Supplier::create($request->all())) {
+            return redirect()->route('suppliers.index')->with('yes', 'Add new supplier successfully');
+        }
+        return redirect()->back()->with('no', 'Adding new supplier failed');
     }
 
     /**
@@ -59,7 +69,9 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+
+        return view('admin.suppliers.edit',compact('supplier'));
+
     }
 
     /**
@@ -69,9 +81,17 @@ class SupplierController extends Controller
      * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update(supplierEditRequest $request, Supplier $supplier)
     {
-        //
+
+        if($request->hasFile('upload')){
+            $file_name = uploadImg('upload');
+            $request->merge(['image' => $file_name]);
+        }
+        if ($supplier->update($request->all())){
+            return redirect()->route('suppliers.index')->with('yes', 'Update supplier successfully');
+        }
+        return redirect()->back()->with('no', 'Update supplier fail');
     }
 
     /**
@@ -82,6 +102,9 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        //
+        if ($supplier->delete()){
+        return redirect()->back()->with('yes','Successfully deleted the supplier');
+        }
+      return redirect()->back()->with('no','cannot deleted the supplier');
     }
-}
+ }
