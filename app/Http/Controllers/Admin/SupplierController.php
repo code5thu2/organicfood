@@ -89,9 +89,9 @@ class SupplierController extends Controller
             $request->merge(['image' => $file_name]);
         }
         if ($supplier->update($request->all())){
-            return redirect()->route('suppliers.index')->with('yes', 'Update supplier successfully');
+            return redirect()->route('suppliers.index')->with('yes','Update supplier successfully');
         }
-        return redirect()->back()->with('no', 'Update supplier fail');
+        return redirect()->back()->with('no','Update supplier failed');
     }
 
     /**

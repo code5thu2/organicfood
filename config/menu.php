@@ -40,19 +40,15 @@ return [
         ]
     ],
     [
-        'id' => 'unit',
-        'name' => 'Unit',
-        'icon' => 'fas fa-handshake',
-        'route' => 'units.index',
+        'id' => 'config',
+        'name' => 'Config',
+        'icon' => 'fas fa-weight',
+        'route' => '',
         'items' => [
             [
-                'name' => 'Unit list',
+                'name' => 'Unit management',
                 'route' => 'units.index'
             ],
-            [
-                'name' => 'Unit add new',
-                'route' => 'units.create'
-            ]
         ]
     ],
 ];
