@@ -18,5 +18,6 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin'], function () {
     route::resources([
         'categories' => 'CategoryController',
         'suppliers' => 'SupplierController',
+        'products' => 'ProductController',
     ]);
 });

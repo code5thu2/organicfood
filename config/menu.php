@@ -40,6 +40,22 @@ return [
         ]
     ],
     [
+        'id' => 'product',
+        'name' => 'Product',
+        'icon' => 'far fa-lemon',
+        'route' => 'products.index',
+        'items' => [
+            [
+                'name' => 'Product list',
+                'route' => 'products.index'
+            ],
+            [
+                'name' => 'Product add new',
+                'route' => 'products.create'
+            ]
+        ]
+    ],
+    [
         'id' => 'unit',
         'name' => 'Unit',
         'icon' => 'fas fa-handshake',
