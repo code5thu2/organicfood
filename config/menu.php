@@ -51,4 +51,32 @@ return [
             ],
         ]
     ],
+     [
+        'id' => 'banner',
+        'name' => 'Banner',
+        'icon' => 'far fa-image',
+        'route' => 'banners.index',
+        'items' => [
+            [
+                'name' => 'Banner list',
+                'route' => 'banners.index'
+            ],
+            [
+                'name' => 'Banner add new',
+                'route' => 'banners.create'
+            ]
+        ]
+    ],
+    [
+        'id' => 'faq',
+        'name' => 'Faq',
+        'icon' => 'fas fa-question',
+        'route' => '',
+        'items' => [
+            [
+                'name' => 'Faq list',
+                'route' => 'faqs.index'
+            ],
+        ]
+    ],
 ];

@@ -19,6 +19,8 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin'], function () {
         'categories' => 'CategoryController',
         'suppliers' => 'SupplierController',
          'units' => 'UnitController',
+         'banners' => 'BannerController',
+         'faqs' => 'FaqController',
         
     ]);
 });
