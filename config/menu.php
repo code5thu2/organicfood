@@ -71,4 +71,16 @@ return [
             ]
         ]
     ],
+    [
+        'id' => 'filemanager',
+        'name' => 'File manager',
+        'icon' => 'fas fa-handshake',
+        'route' => 'images.index',
+        'items' => [
+            [
+                'name' => 'Image list',
+                'route' => 'images.index'
+            ],
+        ]
+    ],
 ];
