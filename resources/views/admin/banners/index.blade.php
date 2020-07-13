@@ -31,14 +31,14 @@
                 @foreach($banner as $model)
                 <tr>
                     <td scope="row">{{$model->id}}</td>
-                   
-         <td>
-        <div class="media">
-        <img src="{{url('uploads')}}/{{$model->image}}" alt="" width="50px">
-        <div class="media-body ml-2">     
-        <h3>{{$model->name}}</h3><small>{{$model->created_at}}</small>
-        </div>
-        </td>
+
+                    <td>
+                        <div class="media">
+                            <img src="{{url('uploads')}}/{{$model->image}}" alt="" width="50px">
+                            <div class="media-body ml-2">
+                                <h3>{{$model->name}}</h3><small>{{$model->created_at}}</small>
+                            </div>
+                    </td>
                     <td class="{{$model->status == 1 ? 'text-success' : 'text-danger'}}">{{$model->status == 1 ? 'Enable' : 'Disable'}}</td>
                     <td>
                         <div class="dropdown">
@@ -59,7 +59,7 @@
                 @endforeach
             </tbody>
         </table>
-      
+
     </div>
 </div>
 @stop()

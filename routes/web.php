@@ -18,9 +18,9 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin'], function () {
     route::resources([
         'categories' => 'CategoryController',
         'suppliers' => 'SupplierController',
-         'units' => 'UnitController',
-         'banners' => 'BannerController',
-         'faqs' => 'FaqController',
+        'units' => 'UnitController',
+        'banners' => 'BannerController',
+        'faqs' => 'FaqController',
         'products' => 'ProductController',
         'images' => 'ImageController',
     ]);
