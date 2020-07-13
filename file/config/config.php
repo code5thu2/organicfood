@@ -31,7 +31,7 @@ setlocale(LC_CTYPE, 'en_US'); //correct transliteration
 |
 */
 
-define('USE_ACCESS_KEYS', false); // TRUE or FALSE
+define('USE_ACCESS_KEYS', TRUE); // TRUE or FALSE
 
 /*
 |--------------------------------------------------------------------------
@@ -76,7 +76,7 @@ $config = array(
     | with start and final /
     |
     */
-    'upload_dir' => '/uploads/',
+    'upload_dir' => '/organicfood/uploads/',
     /*
     |--------------------------------------------------------------------------
     | relative path from filemanager folder to upload folder
@@ -187,7 +187,7 @@ $config = array(
     |
     */
 
-    'access_keys' => array(),
+    'access_keys' => array('iwGeh4J5XFdIc4MVpG5M20BFejSGEw3bJeqpi3Vgm8w'),
 
     //--------------------------------------------------------------------------------------------------------
     // YOU CAN COPY AND CHANGE THESE VARIABLES INTO FOLDERS config.php FILES TO CUSTOMIZE EACH FOLDER OPTIONS

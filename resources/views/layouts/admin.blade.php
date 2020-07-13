@@ -15,6 +15,14 @@
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/fonts/flag-icon-css/flag-icon.min.css">
+    <script>
+        var base_url = function() {
+            return "{{url('')}}";
+        }
+        var akey = function() {
+            return "iwGeh4J5XFdIc4MVpG5M20BFejSGEw3bJeqpi3Vgm8w";
+        }
+    </script>
     <title> @yield('title')</title>
 </head>
 
@@ -181,7 +189,7 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <!-- jquery 3.3.1 -->
-    <script src="{{url('public/backend/assets')}}/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="{{url('public')}}/backend/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
     <!-- bootstap bundle js -->
     <script src="{{url('public/backend/assets')}}/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <!-- slimscroll js -->
@@ -195,7 +203,7 @@
     <!-- morris js -->
     <script src="{{url('public/backend/assets')}}/vendor/charts/morris-bundle/raphael.min.js"></script>
     <script src="{{url('public/backend/assets')}}/vendor/charts/morris-bundle/morris.js"></script>
-    <script src="{{url('public/backend/tinymce')}}/slug.js"></script>
+    @yield('js')
 </body>
 
 </html>

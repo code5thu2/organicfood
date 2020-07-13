@@ -17,7 +17,7 @@ class CreateSuppliersTable extends Migration
             $table->increments('id');
             $table->string('name', 255);
             $table->string('image');
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
