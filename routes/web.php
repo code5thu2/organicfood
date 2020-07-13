@@ -18,14 +18,10 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin'], function () {
     route::resources([
         'categories' => 'CategoryController',
         'suppliers' => 'SupplierController',
-<<<<<<< HEAD
          'units' => 'UnitController',
          'banners' => 'BannerController',
          'faqs' => 'FaqController',
-        
-=======
         'products' => 'ProductController',
         'images' => 'ImageController',
->>>>>>> c4d071b94c27a9a87c67d786aebc032889729680
     ]);
 });
