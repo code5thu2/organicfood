@@ -8,6 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/bootstrap/css/bootstrap.min.css">
     <link href="{{url('public/backend/assets')}}/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link href="{{url('public/backend/assets')}}/vendor/fonts/montserrat/style.css" rel="stylesheet">
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/libs/css/style.css">
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/charts/chartist-bundle/chartist.css">
@@ -15,6 +16,36 @@
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/fonts/flag-icon-css/flag-icon.min.css">
+    <style>
+        body {
+            font-family: "montserratRegular";
+            font-weight: 700;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "montserratMedium";
+            font-weight: 600;
+        }
+
+        .table thead th,
+        .table th {
+            font-family: "montserratMedium";
+            font-weight: 700;
+        }
+
+        tr.group:hover {
+            font-family: "montserratMedium";
+        }
+
+        .ribbons {
+            font-family: "montserratMedium";
+        }
+    </style>
     <script>
         var base_url = function() {
             return "{{url('')}}";
