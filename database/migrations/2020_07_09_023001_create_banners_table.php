@@ -14,7 +14,14 @@ class CreateBannersTable extends Migration
     public function up()
     {
         Schema::create('banners', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('name');
+            $table->string('image');
+            $table->string('link');
+            $table->tinyInteger('prioty');
+            $table->tinyInteger('position');
+            $table->string('descript');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }
