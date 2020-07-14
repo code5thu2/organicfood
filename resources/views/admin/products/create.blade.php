@@ -39,9 +39,9 @@
             <div class="form-group">
                 <label for="">Other image</label>
                 <div class="input-group mb-3">
-                    <input type="text" name="other_image" class="form-control" id="other_image">
+                    <input type="hidden" name="other_image" class="form-control" id="other_image">
                     <div class="input-group-append">
-                        <button type="button" data-toggle="modal" data-target="#modelId" class="btn btn-primary">Go!</button>
+                        <button type="button" data-toggle="modal" data-target="#modelId" class="btn btn-outline-primary"><i class="fas fa-plus"></i></button>
                     </div>
                 </div>
                 @error('other_upload')
@@ -114,6 +114,7 @@
     </form>
 </div>
 @stop()
+
 @section('js')
 <script src="{{url('public')}}/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="{{url('public')}}/tinymce/config.js" referrerpolicy="origin"></script>
@@ -133,7 +134,8 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
+
+<script>
     $('#modelId').on('hide.bs.modal', function() {
         var _img = $('input#other_image').val();
         var img_list = $.parseJSON(_img);
@@ -147,6 +149,7 @@
     });
 </script>
 @stop()
+
 <?php
 function showCategory($category, $parent_id = 0, $char = '')
 {

@@ -1,4 +1,7 @@
 <?php
+
+use App\Models\Product;
+use App\Models\Image;
 // Tạo hàm upload ảnh và thay đổi tên ảnh
 if (!function_exists('uploadImg')) {
     function uploadImg($field_name)
@@ -15,5 +18,35 @@ if (!function_exists('slugName')) {
     function slugName($field_name)
     {
         return $slug = Str::slug(request()->$field_name);
+    }
+}
+if (!function_exists('addProduct')) {
+    function addProduct()
+    {
+        $product_id = Product::create(
+            [
+                'name' => request()->name,
+                'price' => request()->price,
+                'sale' => request()->sale,
+                'description' => request()->description,
+                'category_id' => request()->category_id,
+                'supplier_id' => request()->supplier_id,
+                'unit_id' => request()->unit_id,
+                'status' => request()->status,
+                'content' => request()->content,
+                'slug' => request()->slug,
+                'image' => request()->image,
+            ]
+        );
+        $photos = json_decode(request()->other_image, true);
+        foreach ($photos as $photo) {
+            $image_name = str_replace(url('uploads') . '/', '', $photo);
+            Image::create([
+                'product_id' => $product_id->id,
+                'name' => $image_name,
+                'prioty' => 1,
+                'status' => 1,
+            ]);
+        }
     }
 }

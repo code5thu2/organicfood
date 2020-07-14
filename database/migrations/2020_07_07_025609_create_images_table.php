@@ -17,7 +17,7 @@ class CreateImagesTable extends Migration
             $table->increments('id');
             $table->string('name', 255);
             $table->tinyInteger('prioty')->nullable();
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(1);
             $table->unsignedInteger('product_id');
             $table->timestamps();
             $table->foreign('product_id')->references('id')->on('products');

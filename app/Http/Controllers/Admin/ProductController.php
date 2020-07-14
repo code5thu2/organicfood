@@ -11,6 +11,7 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB as FacadesDB;
+use DB;
 
 class ProductController extends Controller
 {
@@ -46,51 +47,19 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
         $slug =  slugName('name');
         $request->merge(['slug' => $slug]);
+        DB::beginTransaction();
         if ($request->hasFile('upload')) {
             $file_name = uploadImg('upload');
             $request->merge(['image' => $file_name]);
         }
-        $product_id = Product::create(
-            [
-                'name' => $request->name,
-                'price' => $request->price,
-                'sale' => $request->sale,
-                'description' => $request->description,
-                'category_id' => $request->category_id,
-                'supplier_id' => $request->supplier_id,
-                'unit_id' => $request->unit_id,
-                'status' => $request->status,
-                'content' => $request->content,
-                'slug' => $request->slug,
-                'image' => $request->image,
-            ]
-        );
-        // $addImage = DB::table('images')->insert(
-        //     [
-        //         'name' => $request->other_image,
-        //         'prioty' => 1,
-        //         'status' => 1,
-        //         'product_id' => $product_id->id
-        //     ]
-        // );
-        $photos = json_decode($request->other_image, true);
-        // // dd($photos);
-        foreach ($photos as $photo) {
-            $image_name = str_replace(url('uploads') . '/', '', $photo);
-            // $file_infor = pathinfo($photo);
-            // $image_name = $file_infor['filename'];
-            // $image_ex = $file_infor['extension'];
-            // $full_name = time() . '-' . Str::slug($image_name) . '.' . $image_ex;
-            // $filename = $photo->move('uploads', $full_name);
-            Image::create([
-                'product_id' => $product_id->id,
-                'name' => $image_name,
-                'prioty' => 1,
-                'status' => 1,
-            ]);
+        if (addProduct()) {
+            DB::commit();
+            return redirect()->route('products.index')->with('yes', 'Tạo mới sản phẩm thành công');
+        } elseif (!addProduct()) {
+            DB::rollback();
+            return redirect()->back()->with('no', 'Có lỗi xảy ra khi tải ảnh sản phẩm');
         }
     }
 

@@ -27,6 +27,7 @@
 </head>
 
 <body>
+
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
@@ -145,6 +146,15 @@
                                     <strong>Success!</strong> {{Session::get('yes')}}
                                 </div>
                                 @endif
+                                @if(Session::has('no'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        <span class="sr-only">Close</span>
+                                    </button>
+                                    <strong>False!</strong> {{Session::get('no')}}
+                                </div>
+                                @endif
                             </div>
                         </div>
                         <div class="container">
@@ -189,7 +199,7 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <!-- jquery 3.3.1 -->
-    <script src="{{url('public')}}/backend/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- bootstap bundle js -->
     <script src="{{url('public/backend/assets')}}/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <!-- slimscroll js -->
