@@ -39,7 +39,7 @@
             <div class="form-group">
                 <label for="">Other image</label>
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="other_image">
+                    <input type="text" name="other_image" class="form-control" id="other_image">
                     <div class="input-group-append">
                         <button type="button" data-toggle="modal" data-target="#modelId" class="btn btn-primary">Go!</button>
                     </div>
@@ -98,7 +98,7 @@
         </div>
     </div>
     <div class="col-md-12">
-        <div class="card-deck" id="img_list">
+        <div class="card-deck" id="img_show_list">
         </div>
     </div>
     <div class="col-md-12">
@@ -128,12 +128,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <iframe src="{{url('file')}}/dialog.php?akey=iwGeh4J5XFdIc4MVpG5M20BFejSGEw3bJeqpi3Vgm8w&field_id=other_image" width="100%" height="400px" style="border: 0;overflow-y:auto;background:none;" frameborder="0"></iframe>
+                <iframe src="{{url('file')}}/dialog.php?akey=iwGeh4J5XFdIc4MVpG5M20BFejSGEw3bJeqpi3Vgm8w&field_id=other_image" width="100%" height="400px" style="border: 0;overflow-y:auto;" frameborder="0"></iframe>
             </div>
         </div>
     </div>
 </div>
-<script>
+<script type="text/javascript">
     $('#modelId').on('hide.bs.modal', function() {
         var _img = $('input#other_image').val();
         var img_list = $.parseJSON(_img);
@@ -143,7 +143,7 @@
             _html += '<img class="card-img-top img-fluid" src="' + img_list[i] + '" alt="">';
             _html += '</div>';
         }
-        $('#img_list').html(_html);
+        $('#img_show_list').html(_html);
     });
 </script>
 @stop()
