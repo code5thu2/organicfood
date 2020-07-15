@@ -30,31 +30,7 @@
             </thead>
             <tbody>
                 <?php
-                // dd($category);
                 tableCategory($category) ?>
-                <!-- @foreach($category as $model)
-                <tr>
-                    <td scope="row">{{$model->id}}</td>
-                    <td>{{$model->name}}</td>
-                    <td>{{$model->parent_id == 0 ? 'Parent' : $model->parentCat->name}}</td>
-                    <td class="{{$model->status == 1 ? 'text-success' : 'text-danger'}}">{{$model->status == 1 ? 'Enable' : 'Disable'}}</td>
-                    <td>
-                        <div class="dropdown">
-                            <a href="#" class=" card-drop" data-toggle="dropdown" aria-expanded="true">
-                                <i class="fas fa-info-circle"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="{{route('categories.edit',$model->id)}}" class="dropdown-item">Edit category</a>
-                                <form action="{{route('categories.destroy',$model->id)}}" method="post">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="dropdown-item" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này')">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                @endforeach -->
             </tbody>
         </table>
         <div class="row justify-content-end">

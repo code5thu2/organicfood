@@ -10,12 +10,13 @@
     <link href="{{url('public/backend/assets')}}/vendor/fonts/circular-std/style.css" rel="stylesheet">
     <link href="{{url('public/backend/assets')}}/vendor/fonts/montserrat/style.css" rel="stylesheet">
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/libs/css/style.css">
-    <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/fonts/fontawesome/css/fontawesome-all.css">
-    <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/charts/chartist-bundle/chartist.css">
+    <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/fonts/fontawesome/css/all.css">
+    <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/bootstrap4-toggle/css/bootstrap4-toggle.min.css">
+    <!-- <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/charts/chartist-bundle/chartist.css">
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/charts/morris-bundle/morris.css">
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/charts/c3charts/c3.css">
-    <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/fonts/flag-icon-css/flag-icon.min.css">
+    <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/fonts/flag-icon-css/flag-icon.min.css"> -->
     <style>
         body {
             font-family: "montserratRegular";
@@ -87,10 +88,11 @@
                                 </div>
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="">
-
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
-                                <form id="logout-form" action="" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
                             </div>
@@ -132,7 +134,7 @@
                                     <ul class="nav flex-column">
                                         @foreach($m['items'] as $mc)
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{{Route::has($mc['route']) ? route($mc['route']) : '#'}}">{{$mc['name']}}</a>
+                                            <a class="nav-link" href="{{Route::has($mc['route']) ? route($mc['route']) : '#'}}"><i class="{{$mc['icon']}}"></i>{{$mc['name']}}</a>
                                         </li>
                                         @endforeach
                                     </ul>
@@ -195,7 +197,6 @@
                     <!-- ============================================================== -->
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
-
                 </div>
             </div>
             <!-- ============================================================== -->
@@ -233,17 +234,18 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- bootstap bundle js -->
     <script src="{{url('public/backend/assets')}}/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="{{url('public/backend/assets')}}/vendor/bootstrap4-toggle/js/bootstrap4-toggle.min.js"></script>
     <!-- slimscroll js -->
-    <script src="{{url('public/backend/assets')}}/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <!-- <script src="{{url('public/backend/assets')}}/vendor/slimscroll/jquery.slimscroll.js"></script> -->
     <!-- main js -->
     <script src="{{url('public/backend/assets')}}/libs/js/main-js.js"></script>
     <!-- chart chartist js -->
-    <script src="{{url('public/backend/assets')}}/vendor/charts/chartist-bundle/chartist.min.js"></script>
+    <!-- <script src="{{url('public/backend/assets')}}/vendor/charts/chartist-bundle/chartist.min.js"></script> -->
     <!-- sparkline js -->
-    <script src="{{url('public/backend/assets')}}/vendor/charts/sparkline/jquery.sparkline.js"></script>
+    <!-- <script src="{{url('public/backend/assets')}}/vendor/charts/sparkline/jquery.sparkline.js"></script> -->
     <!-- morris js -->
-    <script src="{{url('public/backend/assets')}}/vendor/charts/morris-bundle/raphael.min.js"></script>
-    <script src="{{url('public/backend/assets')}}/vendor/charts/morris-bundle/morris.js"></script>
+    <!-- <script src="{{url('public/backend/assets')}}/vendor/charts/morris-bundle/raphael.min.js"></script> -->
+    <!-- <script src="{{url('public/backend/assets')}}/vendor/charts/morris-bundle/morris.js"></script> -->
     @yield('js')
 </body>
 

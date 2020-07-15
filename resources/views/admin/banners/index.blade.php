@@ -46,11 +46,11 @@
                                 <i class="fas fa-info-circle"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="{{route('suppliers.edit',$model->id)}}" class="dropdown-item">Edit banner</a>
-                                <form action="{{route('suppliers.destroy',$model->id)}}" method="post">
+                                <a href="{{route('banners.edit',$model->id)}}" class="dropdown-item">Edit banner</a>
+                                <form action="{{route('banners.destroy',$model->id)}}" method="post">
                                     @method('DELETE')
                                     @csrf
-                                    <button type="submit" class="dropdown-item" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này')">Delete</button>
+                                    <button type="submit" class="dropdown-item" onclick="return confirm('Bạn có chắc chắn muốn xóa banner này')">Delete</button>
                                 </form>
                             </div>
                         </div>

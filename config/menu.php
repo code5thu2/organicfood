@@ -15,10 +15,12 @@ return [
         'items' => [
             [
                 'name' => 'Category list',
+                'icon' => '',
                 'route' => 'categories.index'
             ],
             [
                 'name' => 'Category add new',
+                'icon' => '',
                 'route' => 'categories.create'
             ]
         ]
@@ -31,10 +33,12 @@ return [
         'items' => [
             [
                 'name' => 'Supplier list',
+                'icon' => '',
                 'route' => 'suppliers.index'
             ],
             [
                 'name' => 'Supplier add new',
+                'icon' => '',
                 'route' => 'suppliers.create'
             ]
         ]
@@ -42,15 +46,17 @@ return [
     [
         'id' => 'product',
         'name' => 'Product',
-        'icon' => 'far fa-lemon',
+        'icon' => 'fas fa-carrot',
         'route' => 'products.index',
         'items' => [
             [
                 'name' => 'Product list',
+                'icon' => '',
                 'route' => 'products.index'
             ],
             [
                 'name' => 'Product add new',
+                'icon' => '',
                 'route' => 'products.create'
             ]
         ]
@@ -63,11 +69,26 @@ return [
         'items' => [
             [
                 'name' => 'Image',
+                'icon' => '',
                 'route' => 'images.index'
             ],
             [
                 'name' => 'Banner list',
+                'icon' => '',
                 'route' => 'banners.index'
+            ],
+        ]
+    ],
+    [
+        'id' => 'usermanager',
+        'name' => 'User manager',
+        'icon' => 'fas fa-user-cog',
+        'route' => '',
+        'items' => [
+            [
+                'name' => 'Role manager',
+                'icon' => '',
+                'route' => 'roles.index'
             ],
         ]
     ],
@@ -79,6 +100,7 @@ return [
         'items' => [
             [
                 'name' => 'Unit',
+                'icon' => 'fas fa-weight-hanging',
                 'route' => 'units.index'
             ],
         ]

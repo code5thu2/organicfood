@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function hasPermission($route)
+    {
+        $routes = $this->routes();
+        return in_array($route, $routes) ? true : false;
+    }
+    //test phan quyen
+    public function routes()
+    {
+        return ['categories.index', 'admin.index'];
+    }
 }

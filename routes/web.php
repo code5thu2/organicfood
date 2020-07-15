@@ -13,7 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-route::group(['prefix' => 'admin', 'namespace' => 'admin'], function () {
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], function () {
     Route::get('', 'AdminController@index')->name('admin.index');
     route::resources([
         'categories' => 'CategoryController',
@@ -23,5 +27,6 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin'], function () {
         'faqs' => 'FaqController',
         'products' => 'ProductController',
         'images' => 'ImageController',
+        'roles' => 'RoleController',
     ]);
 });
