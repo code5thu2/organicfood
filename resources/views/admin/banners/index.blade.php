@@ -5,7 +5,7 @@
     <div class="col-12 table-responsive p-3 bg-white">
         <div class="row pb-2">
             <div class="col-8">
-                <a href="{{route('banners.create')}}" class="btn btn-outline-primary float-left"><i class="fas fa-plus"></i> ADD NEW</a>
+                <a href="{{route('admin.banners.create')}}" class="btn btn-outline-primary float-left"><i class="fas fa-plus"></i> ADD NEW</a>
             </div>
             <div class="col-4">
                 <div class="form-group">
@@ -46,8 +46,8 @@
                                 <i class="fas fa-info-circle"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="{{route('banners.edit',$model->id)}}" class="dropdown-item">Edit banner</a>
-                                <form action="{{route('banners.destroy',$model->id)}}" method="post">
+                                <a href="{{route('admin.banners.edit',$model->id)}}" class="dropdown-item">Edit banner</a>
+                                <form action="{{route('admin.banners.destroy',$model->id)}}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="dropdown-item" onclick="return confirm('Bạn có chắc chắn muốn xóa banner này')">Delete</button>

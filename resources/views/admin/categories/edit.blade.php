@@ -5,7 +5,7 @@
     <div class="col-md-6">
         <div class="bg-white p-4">
             <h4>Category add new</h4>
-            <form action="{{route('categories.update',$category->id)}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('admin.categories.update',$category->id)}}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <input type="hidden" name="id" value="{{$category->id}}">

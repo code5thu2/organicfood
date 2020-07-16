@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,17 +15,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], function () {
-    Route::get('', 'AdminController@index')->name('admin.index');
+    Route::get('', 'AdminController@index')->name('index');
     route::resources([
         'categories' => 'CategoryController',
         'suppliers' => 'SupplierController',
         'units' => 'UnitController',
         'banners' => 'BannerController',
-        'faqs' => 'FaqController',
+        // 'faqs' => 'FaqController',
         'products' => 'ProductController',
         'images' => 'ImageController',
         'roles' => 'RoleController',

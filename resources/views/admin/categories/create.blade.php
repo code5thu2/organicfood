@@ -6,7 +6,7 @@
         <h4>Category add new</h4>
     </div>
     <div class="col-md-6">
-        <form action="{{route('categories.store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.categories.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="">Category name</label>

@@ -6,7 +6,7 @@
         <div class="text-center">
             <h4>Unit add new</h4>
         </div>
-        <form action="{{route('units.store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.units.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="">Unit name</label>
@@ -38,8 +38,8 @@
                                 <i class="fas fa-info-circle"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="{{route('units.edit',$model->id)}}" class="dropdown-item">Edit unit</a>
-                                <form action="{{route('units.destroy',$model->id)}}" method="post">
+                                <a href="{{route('admin.units.edit',$model->id)}}" class="dropdown-item">Edit unit</a>
+                                <form action="{{route('admin.units.destroy',$model->id)}}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="dropdown-item" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này')">Delete</button>

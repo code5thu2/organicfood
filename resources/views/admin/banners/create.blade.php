@@ -7,7 +7,7 @@
         <div class="text-center">
             <h4>Banner add new</h4>
         </div>
-        <form action="{{route('banners.store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.banners.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="">Banner name</label>

@@ -45,7 +45,7 @@ class SupplierController extends Controller
             $request->merge(['image' => $file_name]);
         }
         if (Supplier::create($request->all())) {
-            return redirect()->route('suppliers.index')->with('yes', 'Add new supplier successfully');
+            return redirect()->route('admin.suppliers.index')->with('yes', 'Add new supplier successfully');
         }
         return redirect()->back()->with('no', 'Adding new supplier failed');
     }
@@ -70,8 +70,7 @@ class SupplierController extends Controller
     public function edit(Supplier $supplier)
     {
 
-        return view('admin.suppliers.edit',compact('supplier'));
-
+        return view('admin.suppliers.edit', compact('supplier'));
     }
 
     /**
@@ -84,14 +83,14 @@ class SupplierController extends Controller
     public function update(supplierEditRequest $request, Supplier $supplier)
     {
 
-        if($request->hasFile('upload')){
+        if ($request->hasFile('upload')) {
             $file_name = uploadImg('upload');
             $request->merge(['image' => $file_name]);
         }
-        if ($supplier->update($request->all())){
-            return redirect()->route('suppliers.index')->with('yes','Update supplier successfully');
+        if ($supplier->update($request->all())) {
+            return redirect()->route('admin.suppliers.index')->with('yes', 'Update supplier successfully');
         }
-        return redirect()->back()->with('no','Update supplier failed');
+        return redirect()->back()->with('no', 'Update supplier failed');
     }
 
     /**
@@ -102,9 +101,9 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        if ($supplier->delete()){
-        return redirect()->back()->with('yes','Successfully deleted the supplier');
+        if ($supplier->delete()) {
+            return redirect()->back()->with('yes', 'Successfully deleted the supplier');
         }
-      return redirect()->back()->with('no','cannot deleted the supplier');
+        return redirect()->back()->with('no', 'cannot deleted the supplier');
     }
- }
+}

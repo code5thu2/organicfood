@@ -50,7 +50,7 @@ class CategoryController extends Controller
         $slug =  slugName('name');
         $request->merge(['slug' => $slug]);
         if (Category::create($request->all())) {
-            return redirect()->route('categories.index')->with('yes', 'Add new category successfully');
+            return redirect()->route('admin.categories.index')->with('yes', 'Add new category successfully');
         }
         return redirect()->back()->with('no', 'Adding new category failed');
     }
@@ -94,7 +94,7 @@ class CategoryController extends Controller
         $slug =  slugName('name');
         $request->merge(['slug' => $slug]);
         if ($category->update($request->all())) {
-            return Redirect()->route('categories.index')->with('yes', 'Update category successfully');
+            return Redirect()->route('admin.categories.index')->with('yes', 'Update category successfully');
         }
         return  redirect()->back()->with('no', 'Update category failed');
     }

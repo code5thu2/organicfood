@@ -32,7 +32,6 @@ class RoleController extends Controller
         foreach ($all as $r) {
             array_push($routes, $r->getName());
         }
-        dd($routes);
         return view('admin.roles.create', compact('routes'));
     }
 
@@ -44,7 +43,14 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $routes = json_encode($request->route);
+        Role::create(
+            [
+                'name' => $request->name,
+                'name' => $routes,
+            ]
+        );
+        return redirect()->route('admin.roles.index')->with('yes', 'Thêm vị trí thành công');
     }
 
     /**

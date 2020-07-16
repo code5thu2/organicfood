@@ -6,7 +6,7 @@
         <h4>Product add new</h4>
     </div>
     <div class="col-md-6">
-        <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.products.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="">Product name</label>

@@ -11,17 +11,17 @@ return [
         'id' => 'category',
         'name' => 'Category',
         'icon' => 'fas fa-table',
-        'route' => 'categories.index',
+        'route' => 'admin.categories.index',
         'items' => [
             [
                 'name' => 'Category list',
                 'icon' => '',
-                'route' => 'categories.index'
+                'route' => 'admin.categories.index'
             ],
             [
                 'name' => 'Category add new',
                 'icon' => '',
-                'route' => 'categories.create'
+                'route' => 'admin.categories.create'
             ]
         ]
     ],
@@ -29,17 +29,17 @@ return [
         'id' => 'supplier',
         'name' => 'Supplier',
         'icon' => 'fas fa-handshake',
-        'route' => 'suppliers.index',
+        'route' => 'admin.suppliers.index',
         'items' => [
             [
                 'name' => 'Supplier list',
                 'icon' => '',
-                'route' => 'suppliers.index'
+                'route' => 'admin.suppliers.index'
             ],
             [
                 'name' => 'Supplier add new',
                 'icon' => '',
-                'route' => 'suppliers.create'
+                'route' => 'admin.suppliers.create'
             ]
         ]
     ],
@@ -47,17 +47,17 @@ return [
         'id' => 'product',
         'name' => 'Product',
         'icon' => 'fas fa-carrot',
-        'route' => 'products.index',
+        'route' => 'admin.products.index',
         'items' => [
             [
                 'name' => 'Product list',
                 'icon' => '',
-                'route' => 'products.index'
+                'route' => 'admin.products.index'
             ],
             [
                 'name' => 'Product add new',
                 'icon' => '',
-                'route' => 'products.create'
+                'route' => 'admin.products.create'
             ]
         ]
     ],
@@ -70,12 +70,12 @@ return [
             [
                 'name' => 'Image',
                 'icon' => '',
-                'route' => 'images.index'
+                'route' => 'admin.images.index'
             ],
             [
                 'name' => 'Banner list',
                 'icon' => '',
-                'route' => 'banners.index'
+                'route' => 'admin.banners.index'
             ],
         ]
     ],
@@ -88,7 +88,7 @@ return [
             [
                 'name' => 'Role manager',
                 'icon' => '',
-                'route' => 'roles.index'
+                'route' => 'admin.roles.index'
             ],
         ]
     ],
@@ -101,7 +101,7 @@ return [
             [
                 'name' => 'Unit',
                 'icon' => 'fas fa-weight-hanging',
-                'route' => 'units.index'
+                'route' => 'admin.units.index'
             ],
         ]
     ],

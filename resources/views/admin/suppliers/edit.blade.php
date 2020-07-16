@@ -2,12 +2,12 @@
 @section('title','Supplier update')
 @section('main')
 
-<div class="row justify-content-center">      
+<div class="row justify-content-center">
     <div class="col-md-6  bg-white p-4">
         <div class="text-center">
             <h4>Supplier update</h4>
         </div>
-        <form action="{{route('suppliers.update',$supplier->id)}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.suppliers.update',$supplier->id)}}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <input type="hidden" name="id" value="{{$supplier->id}}">
@@ -29,13 +29,13 @@
             <div class="form-group">
                 <label for="">Supplier image</label>
                 <input type="file" class="form-control-file  @error('upload') is-invalid @enderror" name="upload" placeholder="">
-                 <img src="{{url('uploads')}}/{{$supplier->image}}" alt="" width="100px">
+                <img src="{{url('uploads')}}/{{$supplier->image}}" alt="" width="100px">
                 @error('upload')
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
-                <button type="submit" class="btn btn-primary btn-block">Update</button>
+            <button type="submit" class="btn btn-primary btn-block">Update</button>
         </form>
     </div>
-   </div>
+</div>
 @stop()

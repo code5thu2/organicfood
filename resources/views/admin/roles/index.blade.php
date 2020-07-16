@@ -5,7 +5,7 @@
     <div class="col-12 table-responsive p-3 bg-white">
         <div class="row pb-2">
             <div class="col-8">
-                <a href="{{route('roles.create')}}" class="btn btn-outline-primary float-left"><i class="fas fa-plus"></i> ADD NEW</a>
+                <a href="{{route('admin.roles.create')}}" class="btn btn-outline-primary float-left"><i class="fas fa-plus"></i> ADD NEW</a>
             </div>
         </div>
         <table class="table table-bordered table-hover text-center">
@@ -29,8 +29,8 @@
                                 <i class="fas fa-info-circle"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="{{route('roles.edit',$model->id)}}" class="dropdown-item">Edit role</a>
-                                <form action="{{route('roles.destroy',$model->id)}}" method="post">
+                                <a href="{{route('admin.roles.edit',$model->id)}}" class="dropdown-item">Edit role</a>
+                                <form action="{{route('admin.roles.destroy',$model->id)}}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="dropdown-item" onclick="return confirm('Bạn có chắc chắn muốn xóa role này')">Delete</button>

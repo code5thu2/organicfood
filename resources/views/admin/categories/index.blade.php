@@ -5,7 +5,7 @@
     <div class="col-12 table-responsive p-3 bg-white">
         <div class="row pb-2">
             <div class="col-8">
-                <a href="{{route('categories.create')}}" class="btn btn-outline-primary float-left"><i class="fas fa-plus"></i> ADD NEW</a>
+                <a href="{{route('admin.categories.create')}}" class="btn btn-outline-primary float-left"><i class="fas fa-plus"></i> ADD NEW</a>
             </div>
             <div class="col-4">
                 <div class="form-group">
@@ -61,8 +61,8 @@ function tableCategory($category, $parent_id = 0, $char = '')
                             <i class="fas fa-info-circle"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="' . route('categories.edit', $item->id) . '" class="dropdown-item">Edit category</a>
-                            <form action="' . route('categories.destroy', $item->id) . '" method="post">
+                            <a href="' . route('admin.categories.edit', $item->id) . '" class="dropdown-item">Edit category</a>
+                            <form action="' . route('admin.categories.destroy', $item->id) . '" method="post">
                                 <input type="hidden" name="_method" value="DELETE">
                             ' . csrf_field() . '
                                 <button type="submit" class="dropdown-item" onclick="return confirm(\'Bạn có chắc chắn muốn xóa danh mục này\')">Delete</button>

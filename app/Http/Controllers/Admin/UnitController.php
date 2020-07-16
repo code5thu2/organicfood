@@ -17,7 +17,7 @@ class UnitController extends Controller
     public function index()
     {
         $unit = Unit::all();
-       return view('admin.units.index',compact('unit'));
+        return view('admin.units.index', compact('unit'));
     }
 
     /**
@@ -38,10 +38,10 @@ class UnitController extends Controller
      */
     public function store(unitRequest $request)
     {
-        if(Unit::create($request->all())){
-            return redirect()->route('units.index')->with('yes','Add new unit successfully');
+        if (Unit::create($request->all())) {
+            return redirect()->route('admin.units.index')->with('yes', 'Add new unit successfully');
         }
-            return redirect()->back()->with('no','Add new failed');
+        return redirect()->back()->with('no', 'Add new failed');
     }
     /**
      * Display the specified resource.
@@ -62,7 +62,7 @@ class UnitController extends Controller
      */
     public function edit(Unit $unit)
     {
-        return view('admin.units.edit',compact('unit'));
+        return view('admin.units.edit', compact('unit'));
     }
 
     /**
@@ -74,10 +74,10 @@ class UnitController extends Controller
      */
     public function update(unitRequest $request, Unit $unit)
     {
-          if($unit->update($request->all())){
-            return redirect()->route('units.index')->with('yes','Update new unit successfully');
+        if ($unit->update($request->all())) {
+            return redirect()->route('admin.units.index')->with('yes', 'Update new unit successfully');
         }
-            return redirect()->back()->with('no','Update new failed');
+        return redirect()->back()->with('no', 'Update new failed');
     }
 
     /**
@@ -88,9 +88,9 @@ class UnitController extends Controller
      */
     public function destroy(Unit $unit)
     {
-        if ($unit->delete()){
-        return redirect()->back()->with('yes','Successfully deleted the supplier');
+        if ($unit->delete()) {
+            return redirect()->back()->with('yes', 'Successfully deleted the supplier');
         }
-      return redirect()->back()->with('no','cannot deleted the supplier');
+        return redirect()->back()->with('no', 'cannot deleted the supplier');
     }
 }

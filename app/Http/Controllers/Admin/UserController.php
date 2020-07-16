@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Banner;
+use App\User;
 use Illuminate\Http\Request;
-use App\Http\Requests\bannerAddRequest;
 
-class BannerController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,7 @@ class BannerController extends Controller
      */
     public function index()
     {
-        $banner = Banner::all();
-        return view('admin.banners.index', compact('banner'));
+        //
     }
 
     /**
@@ -27,7 +25,7 @@ class BannerController extends Controller
      */
     public function create()
     {
-        return view('admin.banners.create');
+        //
     }
 
     /**
@@ -36,26 +34,18 @@ class BannerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(bannerAddRequest $request)
+    public function store(Request $request)
     {
-        if ($request->hasFile('upload')) {
-            $file_name = uploadImg('upload');
-            $request->merge(['image' => $file_name]);
-        }
-        if (Banner::create($request->all())) {
-            return redirect()->route('admin.banners.index')->with('yes', 'Add new banner successfully');
-        }
-        return redirect()->back()->with('no', 'Adding new banner failed');
+        //
     }
-
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Banner  $banner
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Banner $banner)
+    public function show(User $user)
     {
         //
     }
@@ -63,10 +53,10 @@ class BannerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Banner  $banner
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Banner $banner)
+    public function edit(User $user)
     {
         //
     }
@@ -75,10 +65,10 @@ class BannerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Banner  $banner
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Banner $banner)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -86,10 +76,10 @@ class BannerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Banner  $banner
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Banner $banner)
+    public function destroy(User $user)
     {
         //
     }

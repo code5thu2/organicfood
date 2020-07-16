@@ -2,12 +2,12 @@
 @section('title','Supplier create')
 @section('main')
 
-<div class="row justify-content-center">      
+<div class="row justify-content-center">
     <div class="col-md-6  bg-white p-4">
         <div class="text-center">
             <h4>Supplier add new</h4>
         </div>
-        <form action="{{route('suppliers.store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.suppliers.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="">Supplier name</label>
@@ -31,8 +31,8 @@
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
-                <button type="submit" class="btn btn-primary btn-block">Add</button>
+            <button type="submit" class="btn btn-primary btn-block">Add</button>
         </form>
     </div>
-   </div>
+</div>
 @stop()
