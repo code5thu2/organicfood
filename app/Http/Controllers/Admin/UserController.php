@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\userAddRequest;
 
 class UserController extends Controller
 {
@@ -15,7 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $data = User::paginate(10);
+        return view('admin.users.index', compact('data'));
     }
 
     /**
@@ -25,7 +27,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -34,9 +36,12 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(userAddRequest $request)
     {
-        //
+        $request->merge(['password' => bcrypt($request->password)]);
+        if (User::create($request->all())) {
+            return redirect()->route('admin.users.index')->with('yes', 'Tạo tài khoản admin thành công');
+        }
     }
 
     /**

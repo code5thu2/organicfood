@@ -28,5 +28,6 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
         'products' => 'ProductController',
         'images' => 'ImageController',
         'roles' => 'RoleController',
+        'users' => 'UserController',
     ]);
 });

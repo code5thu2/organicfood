@@ -86,6 +86,11 @@ return [
         'route' => '',
         'items' => [
             [
+                'name' => 'User list',
+                'icon' => '',
+                'route' => 'admin.users.index'
+            ],
+            [
                 'name' => 'Role manager',
                 'icon' => '',
                 'route' => 'admin.roles.index'

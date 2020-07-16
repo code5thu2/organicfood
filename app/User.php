@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'phone', 'address', 'description', 'avatar'
     ];
 
     /**
@@ -44,6 +45,12 @@ class User extends Authenticatable
     //test phan quyen
     public function routes()
     {
+        $roles = $this->getRoles();
+        dd($role);
         return ['categories.index', 'admin.index'];
+    }
+    public function getRoles()
+    {
+        return $this->belongsToMany(Role::class);
     }
 }
