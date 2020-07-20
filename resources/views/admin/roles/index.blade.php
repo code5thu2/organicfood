@@ -21,7 +21,7 @@
                 @foreach($data as $model)
                 <tr>
                     <td scope="row">{{$model->id}}</td>
-                    <td></td>
+                    <td>{{$model->name}}</td>
                     <td></td>
                     <td>
                         <div class="dropdown">

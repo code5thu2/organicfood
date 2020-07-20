@@ -30,4 +30,6 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
         'roles' => 'RoleController',
         'users' => 'UserController',
     ]);
+    route::get('/login', 'UserController@login')->name('login');
+    route::post('/login', 'UserController@post_login')->name('login');
 });

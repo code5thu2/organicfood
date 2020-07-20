@@ -7,6 +7,8 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Route;
 
+use function GuzzleHttp\json_decode;
+
 class RoleController extends Controller
 {
     /**
@@ -30,11 +32,14 @@ class RoleController extends Controller
         $routes = [];
         $all = Route::getRoutes();
         foreach ($all as $r) {
-            array_push($routes, $r->getName());
+            $name = $r->getName();
+            $pos = strpos($name, 'admin');
+            if ($pos !== false && !in_array($name, $routes)) {
+                array_push($routes, $r->getName());
+            }
         }
         return view('admin.roles.create', compact('routes'));
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -47,7 +52,7 @@ class RoleController extends Controller
         Role::create(
             [
                 'name' => $request->name,
-                'name' => $routes,
+                'permissions' => $routes,
             ]
         );
         return redirect()->route('admin.roles.index')->with('yes', 'Thêm vị trí thành công');
@@ -72,7 +77,18 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        $permissions = json_decode($role->permissions);
+        // dd($permissions);
+        $routes = [];
+        $all = Route::getRoutes();
+        foreach ($all as $r) {
+            $name = $r->getName();
+            $pos = strpos($name, 'admin');
+            if ($pos !== false && !in_array($name, $routes)) {
+                array_push($routes, $r->getName());
+            }
+        }
+        return view('admin.roles.edit', compact('routes', 'role', 'permissions'));
     }
 
     /**
@@ -84,7 +100,9 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $routes = json_encode($request->route);
+        $role->update(['name' => $request->name, 'permissions' => $routes]);
+        return redirect()->route('admin.roles.index')->with('yes', 'Cập nhật vị trí thành công');
     }
 
     /**

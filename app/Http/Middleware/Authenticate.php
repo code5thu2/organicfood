@@ -3,7 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 use Closure;
 
 class Authenticate extends Middleware
@@ -22,6 +22,7 @@ class Authenticate extends Middleware
         $user = Auth::user(); //Lấy thông tin người dùng
         $route = $request->route()->getName();
         // dd($route);
+        // $user->can($route);
         // dd($user->can($route));
         return $next($request);
     }

@@ -40,17 +40,29 @@ class User extends Authenticatable
     public function hasPermission($route)
     {
         $routes = $this->routes();
-        return in_array($route, $routes) ? true : false;
+        if (in_array($routes, $routes)) {
+            return true;
+        }
+        return false;
+        // return in_array($route, $routes) ? true : false;
     }
     //test phan quyen
     public function routes()
     {
+        $data = [];
         $roles = $this->getRoles();
-        dd($role);
-        return ['categories.index', 'admin.index'];
+        foreach ($roles as $role) {
+            $permission = json_decode($role->permissions);
+            foreach ($permission as $per) {
+                if (!in_array($per, $data)) {
+                    array_push($data, $per);
+                }
+            }
+        }
+        return $data;
     }
     public function getRoles()
     {
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id');
     }
 }

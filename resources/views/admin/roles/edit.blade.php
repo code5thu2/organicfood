@@ -1,21 +1,22 @@
 @extends('layouts.admin')
 @section('title','Role add new')
 @section('main')
-<form action="{{route('admin.roles.store')}}" method="post" enctype="multipart/form-data">
+<form action="{{route('admin.roles.update',$role->id)}}" method="post">
     <div class="row p-3 bg-white" ng-app="role" ng-controller="roleController">
         <div class="col-12">
-            <h4>Role add new</h4>
+            <h4>Edit role</h4>
         </div>
         <div class="col-md-4">
             @csrf
+            @method('PUT')
             <div class="form-group">
                 <label for="">role name</label>
-                <input type="text" name="name" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror">
+                <input type="text" name="name" value="{{$role->name}}" class="form-control @error('name') is-invalid @enderror">
                 @error('name')
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Add</button>
+            <button type="submit" class="btn btn-primary btn-block">Update role</button>
         </div>
         <div class="col-md-8">
             <div class="form-group">
@@ -29,7 +30,7 @@
                     </label>
                     <div class="col-xs-6 p-2 w-50" ng-repeat="r in roles |filter:rname">
                         <label>
-                            <input type="checkbox" class="role-item" name="route[]" value="@{{r}}">
+                            <input type="checkbox" ng-model="role" ng-checked="set_checked(r)" class="role-item" name="route[]" value="@{{r}}">
                             @{{r}}
                         </label>
                     </div>
@@ -45,7 +46,19 @@
     var app = angular.module('role', []);
     app.controller('roleController', function($scope) {
         var roles = '<?php echo json_encode($routes); ?>';
+        var permissions = '<?php echo json_encode($permissions); ?>';
         $scope.roles = angular.fromJson(roles);
+        $scope.role = angular.fromJson(permissions);
+        $scope.set_checked = function(r) {
+            console.log(r);
+            for (var i = 0; i < $scope.role.length; i++) {
+                if ($scope.role[i] == r) {
+                    return true;
+                }
+
+            }
+            return false;
+        }
     })
     $('#check-all').click(function() {
         $('.role-item').not(this).prop('checked', this.checked);
