@@ -8,6 +8,7 @@ use App\Models\Role;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
 use App\Http\Requests\userAddRequest;
+use App\Http\Requests\userEditRequest;
 
 class UserController extends Controller
 {
@@ -21,11 +22,6 @@ class UserController extends Controller
         $data = User::paginate(10);
         return view('admin.users.index', compact('data'));
     }
-    public function login()
-    {
-        return view('admin.users.login');
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -69,8 +65,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        //Lấy ra role của user
+        $role_assignment = $user->getRoles->pluck('name', 'id')->toArray();
         $roles = Role::orderBy('name', 'ASC')->get();
-        return view('admin.users.edit', compact('roles', 'user'));
+        return view('admin.users.edit', compact('roles', 'user', 'role_assignment'));
     }
 
     /**
@@ -80,10 +78,16 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(userEditRequest $request, User $user)
     {
-        $user->update($request->only('name', 'email'));
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password ? bcrypt($request->password) : $user->password,
+        ];
+        $user->update($data);
         if (is_array($request->role)) {
+            UserRole::where('user_id', $user->id)->delete();
             foreach ($request->role as $role_id) {
                 UserRole::create(
                     [
@@ -93,6 +97,7 @@ class UserController extends Controller
                 );
             }
         }
+        return redirect()->route('admin.users.index')->with('yes', 'Update tài khoản thành công');
     }
     /**
      * Remove the specified resource from storage.

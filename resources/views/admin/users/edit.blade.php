@@ -13,12 +13,13 @@
                     <form method="POST" action="{{ route('admin.users.update',$user->id) }}">
                         @csrf
                         @method('PUT')
+                        <input type="hidden" name="id" value="{{$user->id}}">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group row">
                                     <label class="col-3 col-lg-2 col-form-label text-right">Name</label>
                                     <div class="col-9 col-lg-10">
-                                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$user->name}}" autocomplete="name" autofocus>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$user->name}}">
                                         @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -29,7 +30,7 @@
                                 <div class="form-group row">
                                     <label class="col-3 col-lg-2 col-form-label text-right">Email</label>
                                     <div class="col-9 col-lg-10">
-                                        <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$user->email}}" autocomplete="email" autofocus>
+                                        <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$user->email}}">
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -38,9 +39,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-3 col-lg-2 col-form-label text-right">Password</label>
-                                    <div class="col-9 col-lg-10">
-                                        <input id="password" type="text" class="form-control @error('password') is-invalid @enderror" name="password" value="{{$user->password}}" autocomplete="email" autofocus>
+                                    <label class="col-md-4 col-lg-4 col-form-label text-left">Password</label>
+                                    <div class="col-md-8 col-lg-8">
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password">
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -49,10 +50,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-3 col-lg-2 col-form-label text-right">Confirm password</label>
-                                    <div class="col-9 col-lg-10">
-                                        <input id="password" type="text" class="form-control @error('password') is-invalid @enderror" name="password" value="{{$user->password}}" autocomplete="email" autofocus>
-                                        @error('password')
+                                    <label class="col-md-4 col-lg-4 col-form-label text-left">Confirm password</label>
+                                    <div class="col-md-8 col-lg-8">
+                                        <input type="password" class="form-control @error('confirm_password') is-invalid @enderror" name="confirm_password">
+                                        @error('confirm_password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -60,9 +61,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group row mb-0">
-                                    <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            Register new admin account
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn btn-primary btn-block">
+                                            Update
                                         </button>
                                     </div>
                                 </div>
@@ -73,8 +74,9 @@
                                 </div>
                                 <div class="form-group row">
                                     @foreach($roles as $r)
+                                    <?php $checked = in_array($r->name, $role_assignment) ? 'checked' : ''; ?>
                                     <div class="col-md-6 pb-2" style="">
-                                        <input type="checkbox" name="role[]" value="{{$r->id}}" data-toggle="toggle" data-size="xs" data-onstyle="success"> {{$r->name}}
+                                        <input type="checkbox" {{$checked}} name="role[]" value="{{$r->id}}" data-toggle="toggle" data-size="xs" data-onstyle="success"> {{$r->name}}
                                     </div>
                                     @endforeach
                                 </div>

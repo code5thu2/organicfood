@@ -17,13 +17,14 @@ class Authenticate extends Middleware
     public function handle($request, Closure $next)
     {
         if (!Auth::check()) { //chưa đăng nhập
-            return redirect()->route('login');
+            return redirect()->route('admin.login');
         }
         $user = Auth::user(); //Lấy thông tin người dùng
         $route = $request->route()->getName();
         // dd($route);
-        // $user->can($route);
-        // dd($user->can($route));
+        // if ($user->cant($route)) {
+        //     return redirect()->route('admin.error', ['code' => 403]);
+        // }
         return $next($request);
     }
 }

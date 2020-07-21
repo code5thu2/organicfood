@@ -59,7 +59,9 @@
 </head>
 
 <body>
-
+    <?php
+    $user = Auth::user();
+    ?>
     <!-- ============================================================== -->
     <!-- main wrapper -->
     <!-- ============================================================== -->
@@ -86,15 +88,11 @@
                                 <div class="nav-user-info">
                                     <h5 class="mb-0 text-white nav-user-name"></h5>
                                 </div>
-                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>{{Auth::user()->name}}</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="return confirm('Bạn có chắc chắn muốn đăng xuất không?')">
+                                    Logout
                                 </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
                             </div>
                         </li>
                     </ul>
@@ -133,9 +131,11 @@
                                 <div id="{{$m['id']}}" class="collapse submenu">
                                     <ul class="nav flex-column">
                                         @foreach($m['items'] as $mc)
+                                        @if($user->can($mc['route']))
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{Route::has($mc['route']) ? route($mc['route']) : '#'}}"><i class="{{$mc['icon']}}"></i>{{$mc['name']}}</a>
                                         </li>
+                                        @endif
                                         @endforeach
                                     </ul>
                                 </div>

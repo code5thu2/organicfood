@@ -40,7 +40,7 @@ class User extends Authenticatable
     public function hasPermission($route)
     {
         $routes = $this->routes();
-        if (in_array($routes, $routes)) {
+        if (in_array($route, $routes)) {
             return true;
         }
         return false;
@@ -50,7 +50,7 @@ class User extends Authenticatable
     public function routes()
     {
         $data = [];
-        $roles = $this->getRoles();
+        $roles = $this->getRoles;
         foreach ($roles as $role) {
             $permission = json_decode($role->permissions);
             foreach ($permission as $per) {
@@ -63,6 +63,6 @@ class User extends Authenticatable
     }
     public function getRoles()
     {
-        return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id');
+        return $this->belongsToMany('App\Models\Role', 'user_roles', 'user_id', 'role_id');
     }
 }
