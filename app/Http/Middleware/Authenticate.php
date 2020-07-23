@@ -22,9 +22,9 @@ class Authenticate extends Middleware
         $user = Auth::user(); //Lấy thông tin người dùng
         $route = $request->route()->getName();
         // dd($route);
-        // if ($user->cant($route)) {
-        //     return redirect()->route('admin.error', ['code' => 403]);
-        // }
+        if ($user->cant($route)) {
+            return redirect()->route('admin.error', ['code' => 403]);
+        }
         return $next($request);
     }
 }

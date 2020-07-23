@@ -29,6 +29,8 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
         'images' => 'ImageController',
         'roles' => 'RoleController',
         'users' => 'UserController',
+        'blogs' => 'BlogController',
+        
     ]);
     route::get('/logout', 'AdminController@logout')->name('logout');
 });
