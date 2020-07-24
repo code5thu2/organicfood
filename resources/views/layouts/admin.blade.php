@@ -238,7 +238,7 @@
     <!-- slimscroll js -->
     <!-- <script src="{{url('public/backend/assets')}}/vendor/slimscroll/jquery.slimscroll.js"></script> -->
     <!-- main js -->
-    <script src="{{url('public/backend/assets')}}/libs/js/main-js.js"></script>
+    <!-- <script src="{{url('public/backend/assets')}}/libs/js/main-js.js"></script> -->
     <!-- chart chartist js -->
     <!-- <script src="{{url('public/backend/assets')}}/vendor/charts/chartist-bundle/chartist.min.js"></script> -->
     <!-- sparkline js -->
@@ -247,6 +247,8 @@
     <!-- <script src="{{url('public/backend/assets')}}/vendor/charts/morris-bundle/raphael.min.js"></script> -->
     <!-- <script src="{{url('public/backend/assets')}}/vendor/charts/morris-bundle/morris.js"></script> -->
     @yield('js')
+    @include('sweetalert::alert')
+
 </body>
 
 </html>

@@ -9,6 +9,7 @@ use App\Http\Requests\categoryAddRequest;
 use App\Http\Requests\categoryEditRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
@@ -42,7 +43,6 @@ class CategoryController extends Controller
      */
     public function store(categoryAddRequest $request, Category $category)
     {
-        // thay doi
         if ($request->hasFile('upload')) {
             $file_name = uploadImg('upload');
             $request->merge(['image' => $file_name]);
@@ -50,9 +50,11 @@ class CategoryController extends Controller
         $slug =  slugName('name');
         $request->merge(['slug' => $slug]);
         if (Category::create($request->all())) {
-            return redirect()->route('admin.categories.index')->with('yes', 'Add new category successfully');
+            Alert::toast('successfully completed', 'success');
+            return redirect()->route('admin.categories.index');
         }
-        return redirect()->back()->with('no', 'Adding new category failed');
+        Alert::toast('Error', 'error');
+        return redirect()->back();
     }
 
     /**
@@ -94,9 +96,11 @@ class CategoryController extends Controller
         $slug =  slugName('name');
         $request->merge(['slug' => $slug]);
         if ($category->update($request->all())) {
-            return Redirect()->route('admin.categories.index')->with('yes', 'Update category successfully');
+            Alert::toast('successfully completed', 'success');
+            return Redirect()->route('admin.categories.index');
         }
-        return  redirect()->back()->with('no', 'Update category failed');
+        Alert::toast('Error', 'error');
+        return  redirect()->back();
     }
 
     /**
@@ -108,8 +112,10 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         if ($category->delete()) {
-            return Redirect()->back()->with('yes', 'Successfully deleted the category');
+            Alert::toast('successfully completed', 'success');
+            return Redirect()->back();
         }
-        return Redirect()->back()->with('no', 'Cannot delete this category');
+        Alert::toast('Error', 'error');
+        return Redirect()->back();
     }
 }
