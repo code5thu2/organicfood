@@ -29,6 +29,8 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
         'images' => 'ImageController',
         'roles' => 'RoleController',
         'users' => 'UserController',
+        'blogs' => 'BlogController',
+        
     ]);
 });
 route::post('admin/login', 'Admin\AdminController@post_login')->name('admin.login');
