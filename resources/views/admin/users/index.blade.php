@@ -24,7 +24,11 @@
                     <td scope="row">{{$model->id}}</td>
                     <td>{{$model->name}}</td>
                     <td>{{$model->email}}</td>
-                    <td></td>
+                    <td>
+                        @foreach($model->getRoles as $role)
+                        <span>{{$role->name}}</span>
+                        @endforeach
+                    </td>
                     <td>
                         <div class="dropdown">
                             <a href="#" class=" card-drop" data-toggle="dropdown" aria-expanded="true">

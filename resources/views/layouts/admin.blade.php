@@ -231,7 +231,7 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <!-- jquery 3.3.1 -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="{{url('public/backend/assets')}}/vendor/jquery/jquery-3.4.1.min.js"></script>
     <!-- bootstap bundle js -->
     <script src="{{url('public/backend/assets')}}/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="{{url('public/backend/assets')}}/vendor/bootstrap4-toggle/js/bootstrap4-toggle.min.js"></script>
