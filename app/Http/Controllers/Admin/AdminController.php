@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\loginRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
@@ -28,6 +29,7 @@ class AdminController extends Controller
         if (Auth::attempt($request->only('email', 'password'), $request->has('remember'))) {
             return redirect()->route('admin.index');
         }
+        Alert::toast('Email hoặc mật khẩu không chính xác', 'error')->position('top');
         return redirect()->back()->with('no', 'Email hoặc mật khẩu không chính xác');
     }
     public function logout()
