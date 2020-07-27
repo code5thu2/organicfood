@@ -25,7 +25,7 @@
                 <input type="text" name="descript" value="{{old('descript')}}" class="form-control">
             </div>
             <div class="form-group">
-                <label for="">Category prioty</label>
+                <label for="">Banner prioty</label>
                 <input type="text" name="prioty" value="{{old('prioty')}}" class="form-control">
             </div>
             <div class="form-group">

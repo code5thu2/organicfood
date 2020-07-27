@@ -24,7 +24,7 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
         'suppliers' => 'SupplierController',
         'units' => 'UnitController',
         'banners' => 'BannerController',
-        // 'faqs' => 'FaqController',
+        'faqs' => 'FaqController',
         'products' => 'ProductController',
         'images' => 'ImageController',
         'roles' => 'RoleController',
