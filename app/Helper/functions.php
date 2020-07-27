@@ -2,6 +2,7 @@
 
 use App\Models\Product;
 use App\Models\Image;
+use Illuminate\Support\Facades\Route;
 // Tạo hàm upload ảnh và thay đổi tên ảnh
 if (!function_exists('uploadImg')) {
     function uploadImg($field_name)
@@ -18,6 +19,22 @@ if (!function_exists('slugName')) {
     function slugName($field_name)
     {
         return $slug = Str::slug(request()->$field_name);
+    }
+}
+//Hàm láy ra mảng route admin
+if (!function_exists('adminRoute')) {
+    function adminRoute()
+    {
+        $routes = [];
+        $all = Route::getRoutes();
+        foreach ($all as $r) {
+            $name = $r->getName();
+            $pos = strpos($name, 'admin');
+            if ($pos !== false && !in_array($name, $routes)) {
+                array_push($routes, $r->getName());
+            }
+        }
+        return $routes;
     }
 }
 if (!function_exists('addProduct')) {

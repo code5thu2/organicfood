@@ -231,14 +231,14 @@
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <!-- jquery 3.3.1 -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="{{url('public/backend/assets')}}/vendor/jquery/jquery-3.4.1.min.js"></script>
     <!-- bootstap bundle js -->
     <script src="{{url('public/backend/assets')}}/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="{{url('public/backend/assets')}}/vendor/bootstrap4-toggle/js/bootstrap4-toggle.min.js"></script>
     <!-- slimscroll js -->
     <!-- <script src="{{url('public/backend/assets')}}/vendor/slimscroll/jquery.slimscroll.js"></script> -->
     <!-- main js -->
-    <script src="{{url('public/backend/assets')}}/libs/js/main-js.js"></script>
+    <!-- <script src="{{url('public/backend/assets')}}/libs/js/main-js.js"></script> -->
     <!-- chart chartist js -->
     <!-- <script src="{{url('public/backend/assets')}}/vendor/charts/chartist-bundle/chartist.min.js"></script> -->
     <!-- sparkline js -->
@@ -247,6 +247,8 @@
     <!-- <script src="{{url('public/backend/assets')}}/vendor/charts/morris-bundle/raphael.min.js"></script> -->
     <!-- <script src="{{url('public/backend/assets')}}/vendor/charts/morris-bundle/morris.js"></script> -->
     @yield('js')
+    @include('sweetalert::alert')
+
 </body>
 
 </html>

@@ -91,6 +91,7 @@
     <script src="{{url('public/backend/assets')}}/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="{{url('public/backend/assets')}}/vendor/bootstrap4-toggle/js/bootstrap4-toggle.min.js"></script>
     <script src="{{url('public/backend/assets')}}/libs/js/main-js.js"></script>
+    @include('sweetalert::alert')
 </body>
 
 </html>

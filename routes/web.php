@@ -32,8 +32,8 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
         'blogs' => 'BlogController',
         
     ]);
-    route::get('/logout', 'AdminController@logout')->name('logout');
 });
 route::post('admin/login', 'Admin\AdminController@post_login')->name('admin.login');
 route::get('admin/login', 'Admin\AdminController@login')->name('admin.login');
+route::get('admin/logout', 'Admin\AdminController@logout')->name('admin.logout');
 Route::get('admin/error', 'Admin\AdminController@error')->name('admin.error');
