@@ -70,7 +70,7 @@
                     <div class="card shadow card-pro">
                         <div class="img-pro">
                             <img class="card-img-top" src="{{url('public')}}/app/images/background-img/bg-category.jpg" alt="Card image">
-                            <div class="overlay-pro">
+                            <div class="overlay-pro text-center">
                                 <ul class="icon-content">
                                     <li>
                                         <a href="#" class="icon-pro"><i class="far fa-eye"></i></a>
