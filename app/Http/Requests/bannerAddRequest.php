@@ -24,19 +24,12 @@ class bannerAddRequest extends FormRequest
     public function rules()
     {
         return [
-<<<<<<< HEAD
             'name' => 'required|max:100|unique:banners|',
             'upload' => 'mimes:jpg,jpeg,png|max:2048',
             'prioty' => 'integer',
-=======
-             'name' => 'required|max:100|unique:banners|',
-             'upload' => 'required|mimes:jpg,jpeg,png|max:1024',
-             'link' => 'required',
-             'descript' => 'required',
-             'prioty' => 'numeric',
-
-
->>>>>>> 6554af84c66b30b5e7a8478f8a5fc6f7093f31c0
+            'link' => 'required',
+            'descript' => 'required',
+            'prioty' => 'numeric',
         ];
     }
     public function messages()
@@ -51,7 +44,6 @@ class bannerAddRequest extends FormRequest
             'link.required' => 'Link không được để trống',
             'descript.required' => 'Mô tả không được để trống',
             'prioty.numeric' => 'chỉ được nhập số',
-            
         ];
     }
 }

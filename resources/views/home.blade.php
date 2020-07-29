@@ -4,33 +4,21 @@
 <section>
     <!-- bắt đầu top banner -->
     <div id="carouselId" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
+        <!-- <ol class="carousel-indicators">
             <li data-target="#carouselId" data-slide-to="0" class="active"></li>
             <li data-target="#carouselId" data-slide-to="1"></li>
             <li data-target="#carouselId" data-slide-to="2"></li>
-        </ol>
+        </ol> -->
         <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active text-center">
-                <img src="{{url('public')}}/app/images/banner/banner-img.jpg" alt="First slide" class="img-fluid" />
+            @foreach($banner_top as $bt)
+            <div class="carousel-item {{$bt->prioty == 1 ? 'active' : ''}} text-center">
+                <img src="{{url('uploads')}}/{{$bt->image}}" alt="{{$bt->name}}" class="lazy img-fluid" />
                 <div class="carousel-caption d-none d-md-block">
-                    <h3>Title</h3>
-                    <p>Description</p>
+                    <h3>{{$bt->descript}}</h3>
+                    <a href="{{$bt->descript}}">Learn more</a>
                 </div>
             </div>
-            <div class="carousel-item">
-                <img src="{{url('public')}}/app/images/banner/banner-img.jpg" alt="Second slide" class="img-fluid" />
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Title</h3>
-                    <p>Description</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{{url('public')}}/app/images/banner/banner-img.jpg" alt="Third slide" class="img-fluid" />
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Title</h3>
-                    <p>Description</p>
-                </div>
-            </div>
+            @endforeach
         </div>
         <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
             <span class="prev-btn" aria-hidden="true"><i class="fas fa-angle-left"></i></span>
@@ -79,67 +67,34 @@
         <div class="container">
             <div class="product-carousel owl-carousel owl-theme text-center">
                 <div class="item">
-                    <div class="card shadow rounded">
-                        <img class="card-img-top" src="{{url('public')}}/app/images/product/product-img.jpg" alt="" />
-                        <div class="card-body">
-                            <h4 class="card-title">Title</h4>
-                            <p class="card-text">Body</p>
+                    <div class="card shadow card-pro">
+                        <div class="img-pro">
+                            <img class="card-img-top" src="{{url('public')}}/app/images/background-img/bg-category.jpg" alt="Card image">
+                            <div class="overlay-pro">
+                                <ul class="icon-content">
+                                    <li>
+                                        <a href="#" class="icon-pro"><i class="far fa-eye"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="icon-pro"><i class="far fa-heart"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="icon-pro"><i class="fas fa-shopping-cart"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="card shadow rounded">
-                        <img class="card-img-top" src="{{url('public')}}/app/images/product/product-img.jpg" alt="" />
-                        <div class="card-body">
-                            <h4 class="card-title">Title</h4>
-                            <p class="card-text">Body</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="card shadow rounded">
-                        <img class="card-img-top" src="{{url('public')}}/app/images/product/product-img.jpg" alt="" />
-                        <div class="card-body">
-                            <h4 class="card-title">Title</h4>
-                            <p class="card-text">Body</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="card shadow rounded">
-                        <img class="card-img-top" src="{{url('public')}}/app/images/product/product-img.jpg" alt="" />
-                        <div class="card-body">
-                            <h4 class="card-title">Title</h4>
-                            <p class="card-text">Body</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="card shadow rounded">
-                        <img class="card-img-top" src="{{url('public')}}/app/images/product/product-img.jpg" alt="" />
-                        <div class="card-body">
-                            <h4 class="card-title">Title</h4>
-                            <p class="card-text">Body</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="card shadow rounded">
-                        <img class="card-img-top" src="{{url('public')}}/app/images/product/product-img.jpg" alt="" />
-                        <div class="card-body">
-                            <h4 class="card-title">Title</h4>
-                            <p class="card-text">Body</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="card shadow rounded">
-                        <img class="card-img-top" src="{{url('public')}}/app/images/product/product-img.jpg" alt="" />
-                        <div class="card-body">
-                            <h4 class="card-title">Title</h4>
-                            <p class="card-text">Body</p>
-                        </div>
-                    </div>
+                        <div class="card-body text-center body-pro">
+                            <span class="card-title title-pro">Lee Uniforms Vegetablsấe's Short-Sleeve</span>
+                            <div class="price-pro">
+                                <span>$ 23.00</span>
+                                <span><del>$ 12.00</del></span>
+                            </div>
+                            <div class="buy-now">
+                                <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
+                            </div>
+                        </div> <!-- end-card-body -->
+                    </div> <!-- end card -->
                 </div>
             </div>
         </div>

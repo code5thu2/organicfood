@@ -25,8 +25,8 @@ class HomeController extends Controller
     public function index()
     {
         $parentCat = Category::where('parent_id', 0)->get();
-        $banner_top = Banner::where('position', 0)->get();
-        $banner_mid = Banner::where('position', 1)->get();
-        return view('home', compact('parentCat'));
+        $banner_top = Banner::where('position', 0)->where('status', 1)->get();
+        $banner_mid = Banner::where('position', 1)->where('status', 1)->get();
+        return view('home', compact('parentCat', 'banner_top', 'banner_mid'));
     }
 }
