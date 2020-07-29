@@ -1,80 +1,383 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="{{url('public')}}/app/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="{{url('public')}}/app/fontawesome/css/all.css" />
+    <link rel="stylesheet" href="{{url('public')}}/app/OwlCarousel/owl.carousel.min.css" />
+    <link rel="stylesheet" href="{{url('public')}}/app/OwlCarousel/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="{{url('public')}}/app/css/style.css" />
+    <link rel="stylesheet" href="{{url('public')}}/app/ratting/star-rating-svg.css" />
 </head>
+
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+    <!-- Bắt đầu search form -->
+    <div id="myOverlay" class="overlay">
+        <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
+        <div class="overlay-content">
+            <form action="">
+                <input type="text" placeholder="Search.." name="search" />
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+        <!-- kết thúc search formform -->
+    </div>
+    <div class="mastercontainer">
+        <header>
+            <!-- bắt đầu top-header -->
+            <div class="top-nav container-fluid">
+                <div class="row align-items-center clearfix">
+                    <div class="social col-md-10">
+                        <ul>
+                            <li>
+                                <a id="social" href=""><i class="fab fa-facebook-f"></i></a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
+                            <li>
+                                <a id="social" href=""><i class="fab fa-twitter"></i></a>
                             </li>
-                        @endguest
-                    </ul>
+                            <li>
+                                <a id="social" href=""><i class="fab fa-google-plus-g"></i></a>
+                            </li>
+                            <li>
+                                <a id="social" href=""><i class="fab fa-pinterest-p"></i></a>
+                            </li>
+                            <li>
+                                <a id="social" href=""><i class="fab fa-youtube"></i></a>
+                            </li>
+                            <li id="contact">
+                                <span class="contact-title ml-5">Phone: </span>
+                                <a href="">0969906925</a>
+                                <span class="contact-title ml-2">Email: </span>
+                                <a href="">Levietanhtdvp@gmail.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="my-account col-md-2">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="far fa-user"></i>
+                                My account
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item disabled" href="#">Disabled action</a>
+                                <h6 class="dropdown-header">Section header</h6>
+                                <a class="dropdown-item" href="#">Action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">After divider action</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+            <!-- kết thúc top-header -->
+            <!-- bắt đầu mid-header -->
+            <div class="mid-nav container-fluid">
+                <div class="row align-items-center">
+                    <div class="col-4 text-left">
+                        <button class="btn btn-circle wish-list">
+                            <i class="far fa-heart"></i>
+                            <span class="badge badge-secondary">01</span>
+                        </button>
+                    </div>
+                    <div class="col-4 text-center p-0">
+                        <a id="logo" href=""><img src="{{url('public')}}/app/images/logo/main-logo.png" alt="" /></a>
+                    </div>
+                    <div class="col-4 text-right">
+                        <button class="btn btn-circle search-btn" onclick="openSearch()">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <button class="btn btn-circle cart-btn" onclick="showCartBox()">
+                            <i class="fa fa-shopping-bag"></i>
+                            <span class="badge badge-secondary">01</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Bắt đầu cart box -->
+                <div class="card float-right" id="cartBox">
+                    <div class="card-body">
+                        <p class="card-text font-weight-bolder">2 items in your cart</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item border-0">Item 1</li>
+                            <li class="list-group-item border-0">Item 2</li>
+                            <li class="list-group-item border-0">Item 3</li>
+                        </ul>
+                        <h5>Total: $6.5</h5>
+                        <div class="">
+                            <button type="button" class="view-cart btn btn-outline-primary">
+                                view cart
+                            </button>
+                            <button type="button" class="checkout btn btn-primary float-right">
+                                checkout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- kết thúc cart box -->
+            </div>
+            <!-- kết thúc mid-headerheader -->
+            <!-- bắt đầu nav chính -->
+            <div class="main-nav">
+                <nav class="navbar navbar-expand-md navbar-light">
+                    <div class="container-fluid">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
+                            <span class="navbar-toggler-icon"> </span>
+                        </button>
+                        <div class="navbar-collapse collapse" id="navbar">
+                            <ul class="navbar-nav nav-fill w-100">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">home</a>
+                                    <!-- <img src="images/background-img/bg-img-2.png" alt="" /> -->
+                                </li>
+                                <li class="dropdown menu-large position-static nav-item">
+                                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Shop</a>
+                                    <ul class="dropdown-menu megamenu dropdown_menu-7">
+                                        <div class="row">
+                                            @foreach($parentCat as $c)
+                                            <li class="col-md-3 menu-item">
+                                                <ul>
+                                                    <li class="dropdown-header">{{$c->name}}</li>
+                                                    @if($c->childCat)
+                                                    @foreach($c->childCat as $sc)
+                                                    <li>
+                                                        <a href="#" class="sub-menu-item">{{$sc->name}}</a>
+                                                    </li>
+                                                    @endforeach
+                                                    @endif
+                                                </ul>
+                                            </li>
+                                            @endforeach
+                                        </div>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">vegetables</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">fruits</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">organic fruits</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"> sprouts</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">custom</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">blog</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">contact </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <div class="right-btn">
+                    <button class="btn search-btn reponsive-btn" onclick="openSearch()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="btn btn-circle reponsive-btn" onclick="showCartBox()">
+                        <i class="fa fa-shopping-bag"></i>
+                        <span class="badge badge-secondary">01</span>
+                    </button>
+                </div>
+            </div>
+            <!-- kết thúc nav chính -->
+        </header>
+        @yield('main')
+        <footer>
+            <div class="container top-footer">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="footer-logo">
+                            <img src="{{url('public')}}/app/images/logo/large-logo.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="footer-contact">
+                            <div class="address">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
+                            </div>
+                            <div class="phone">
+                                <i class="fas fa-phone-alt"></i>
+                                <a href="">0969906925</a>
+                            </div>
+                            <div class="email">
+                                <i class="far fa-envelope"></i>
+                                <a href="">levietanhtdvp@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="title">information</div>
+                                <ul>
+                                    <li><a href="">site map</a></li>
+                                    <li><a href="">search terms</a></li>
+                                    <li><a href="">advanced search</a></li>
+                                    <li><a href="">about us</a></li>
+                                    <li><a href="">contact us</a></li>
+                                    <li><a href="">supplier</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="title">style advisor</div>
+                                <ul>
+                                    <li><a href="">your account</a></li>
+                                    <li><a href="">information</a></li>
+                                    <li><a href="">address</a></li>
+                                    <li><a href="">discount</a></li>
+                                    <li><a href="">orders history</a></li>
+                                    <li><a href="">additional information</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="title">quick links</div>
+                                <ul>
+                                    <li><a href="">blogs</a></li>
+                                    <li><a href="">FAQs</a></li>
+                                    <li><a href="">payment</a></li>
+                                    <li><a href="">shipment</a></li>
+                                    <li><a href="">where is my order?</a></li>
+                                    <li><a href="">return policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="title">instagram</div>
+                        <div class="instagram-img-box">
+                            <img src="{{url('public')}}/app/images/social/insta-img.jpg" class="img-fluid" alt="">
+                            <img src="{{url('public')}}/app/images/social/insta-img.jpg" class="img-fluid" alt="">
+                            <img src="{{url('public')}}/app/images/social/insta-img.jpg" class="img-fluid" alt="">
+                            <img src="{{url('public')}}/app/images/social/insta-img.jpg" class="img-fluid" alt="">
+                            <img src="{{url('public')}}/app/images/social/insta-img.jpg" class="img-fluid" alt="">
+                            <img src="{{url('public')}}/app/images/social/insta-img.jpg" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
+    <script src="{{url('public')}}/app/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="{{url('public')}}/app/lib/angular.min.js"></script>
+    <script src="{{url('public')}}/app/js/popper.min.js"></script>
+    <script src="{{url('public')}}/app/js/bootstrap.min.js"></script>
+    <script src="{{url('public')}}/app/OwlCarousel/owl.carousel.min.js"></script>
+    <script src="{{url('public')}}/app/ratting/jquery.star-rating-svg.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script>
+    <script src="{{url('public')}}/app/app.js"></script>
+    <script>
+        function openSearch() {
+            document.getElementById('myOverlay').style.display = 'block';
+        }
+
+        function closeSearch() {
+            document.getElementById('myOverlay').style.display = 'none';
+        }
+
+        function showCartBox() {
+            var x = document.getElementById('cartBox');
+            if (x.style.display === 'none') {
+                x.style.display = 'block';
+            } else {
+                x.style.display = 'none';
+            }
+        }
+        //lazy load image
+        $(function() {
+            $('.lazy').Lazy();
+        });
+        $('.category-carousel').owlCarousel({
+            loop: true,
+            margin: 20,
+            responsiveClass: true,
+            center: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true,
+                },
+                600: {
+                    items: 3,
+                    nav: false,
+                },
+            },
+        });
+        $('.product-carousel').owlCarousel({
+            loop: true,
+            margin: 15,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                600: {
+                    items: 2,
+                },
+                768: {
+                    items: 3,
+                },
+
+                993: {
+                    items: 3,
+                },
+            },
+        });
+        $('.blog-carousel').owlCarousel({
+            loop: true,
+            margin: 15,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1,
+                },
+                600: {
+                    items: 3,
+                },
+                768: {
+                    items: 4,
+                },
+            },
+        });
+        $('.brand-carousel').owlCarousel({
+            loop: true,
+            margin: 60,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 2,
+                },
+                600: {
+                    items: 4,
+                },
+                768: {
+                    items: 5,
+                },
+            },
+        });
+    </script>
+    <script>
+        $(".product-rating").starRating({
+            totalStars: 5,
+            starShape: 'rounded',
+            starSize: 14,
+            emptyColor: 'lightgray',
+            hoverColor: '#5e9e47',
+            activeColor: '#5e9e47',
+            ratedColor: '#5e9e47',
+            useGradient: false,
+            disableAfterRate: false
+        });
+    </script>
 </body>
+
 </html>

@@ -15,11 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
-        return response([
-            'data' => $category,
-            'message' => 'tin nhan',
-        ], 200);
+       
     }
 
     /**

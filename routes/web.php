@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
-// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], function () {
     Route::get('', 'AdminController@index')->name('index');
@@ -30,7 +30,7 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
         'roles' => 'RoleController',
         'users' => 'UserController',
         'blogs' => 'BlogController',
-        
+
     ]);
 });
 route::post('admin/login', 'Admin\AdminController@post_login')->name('admin.login');

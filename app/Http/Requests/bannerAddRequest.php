@@ -24,19 +24,19 @@ class bannerAddRequest extends FormRequest
     public function rules()
     {
         return [
-             'name' => 'required|max:100|unique:banners|',
-            'upload' => 'mimes:jpg,jpeg,png|max:1024',
+            'name' => 'required|max:100|unique:banners|',
+            'upload' => 'mimes:jpg,jpeg,png|max:2048',
             'prioty' => 'integer',
         ];
     }
-     public function messages()
+    public function messages()
     {
         return [
-              'name.required' => 'Tên banner không được để trống',
+            'name.required' => 'Tên banner không được để trống',
             'name.max' => 'Tên banner không quá 100 kí tự',
             'name.unique' => 'Tên banner đã tồn tại',
             'upload.mimes' => 'Định dạnh ảnh phải là jpg, jpeg, png',
-            'upload.max' => 'Kích thước ảnh không được quá 1024kb',
+            'upload.max' => 'Kích thước ảnh không được quá 2048kb',
             'upload.required' => 'Ảnh không được để trống',
             'prioty.iteger' => 'chỉ được nhập số',
         ];
