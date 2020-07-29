@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class bannerAddRequest extends FormRequest
+class bannerEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +23,9 @@ class bannerAddRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-             'name' => 'required|max:100|unique:banners|',
-             'upload' => 'required|mimes:jpg,jpeg,png|max:1024',
+         return [
+             'name' => 'required|max:100|unique:banners,name,' . request()->id,
+             'upload' => 'mimes:jpg,jpeg,png|max:1024',
              'link' => 'required',
              'descript' => 'required',
              'prioty' => 'numeric',
@@ -41,7 +41,6 @@ class bannerAddRequest extends FormRequest
             'name.unique' => 'Tên banner đã tồn tại',
             'upload.mimes' => 'Định dạnh ảnh phải là jpg, jpeg, png',
             'upload.max' => 'Kích thước ảnh không được quá 1024kb',
-            'upload.required' => 'Ảnh không được để trống',
             'link.required' => 'Link không được để trống',
             'descript.required' => 'Mô tả không được để trống',
             'prioty.numeric' => 'chỉ được nhập số',

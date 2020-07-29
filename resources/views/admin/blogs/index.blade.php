@@ -23,7 +23,7 @@
                 <tr>
                 	<td scope="row">{{$model->id}}</td>
                 	<td scope="row">{{$model->name}}</td>
-                	<td scope="row">{{$model->create_at}}</td>
+                	<td scope="row">{{$model->created_at}}</td>
                 	  <td class="{{$model->status == 1 ? 'text-success' : 'text-danger'}}">{{$model->status == 1 ? 'Enable' : 'Disable'}}</td>
                     <td>
                         <div class="dropdown">

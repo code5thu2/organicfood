@@ -7,6 +7,7 @@ use App\Models\Blog;
 use Illuminate\Http\Request;
 use App\Http\Requests\blogAddRequest;
 use App\Http\Requests\blogEditRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class BlogController extends Controller
 {
@@ -47,9 +48,11 @@ class BlogController extends Controller
         $slug =  slugName('name');
         $request->merge(['slug' => $slug]);
         if  (Blog::create($request->all())) {
-            return redirect()->route('admin.blogs.index')->with('yes', 'Tạo mới blog thành công');
-        } 
-            return redirect()->back()->with('no', 'Có lỗi xảy ra khi tải ảnh blog');
+            Alert::toast('Tạo mới thành công','success');
+            return redirect()->route('admin.blogs.index');
+        }
+            Alert::toast('Có lỗi xảy ra','error');
+            return redirect()->back();
     }
 
     /**
@@ -90,9 +93,11 @@ class BlogController extends Controller
         $slug =  slugName('name');
         $request->merge(['slug' => $slug]);
         if ($blog->update($request->all())) {
-            return Redirect()->route('admin.blogs.index')->with('yes', 'Cập nhật thành công');
+            Alert::toast('Cập nhật thành công','success');
+            return Redirect()->route('admin.blogs.index');
         }
-        return  redirect()->back()->with('no', 'Cập nhật thất bại');
+        Alert::toast('Có lỗi xảy ra','error');
+        return  redirect()->back();
     }
 
     /**
@@ -104,8 +109,10 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
          if ($blog->delete()) {
-            return Redirect()->back()->with('yes', 'Xóa thành công');
+            Alert::toast('Xóa thành công','success');
+            return Redirect()->back();
         }
-        return Redirect()->back()->with('no', '');
+        Alert::toast('Có lỗi xảy ra','error');
+        return Redirect()->back();
     }
 }

@@ -44,7 +44,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="{{route('admin.faqs.edit',$model->id)}}" class="dropdown-item">Edit faq</a>
-                                <form action="{{route('admin.suppliers.destroy',$model->id)}}" method="post">
+                                <form action="{{route('admin.faqs.destroy',$model->id)}}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="dropdown-item" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này')">Delete</button>

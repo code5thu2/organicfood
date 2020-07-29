@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Faq;
 use Illuminate\Http\Request;
 use App\Http\Requests\faqAddRequest;
+use App\Http\Requests\faqEditRequest;
 
+use RealRashid\SweetAlert\Facades\Alert;
 class FaqController extends Controller
 {
     /**
@@ -39,9 +41,11 @@ class FaqController extends Controller
     public function store(faqAddRequest $request)
     {
         if  (Faq::create($request->all())) {
-            return redirect()->route('admin.faqs.index')->with('yes', 'Tạo mới faq thành công');
-        } 
-            return redirect()->back()->with('no', 'Có lỗi xảy ra khi tạo faq');
+            Alert::toast('Tạo mới thành công', 'success');
+            return redirect()->route('admin.faqs.index');
+        }
+            Alert::toast('Có lỗi xảy ra', 'error'); 
+            return redirect()->back();
     }
 
     /**
@@ -63,7 +67,7 @@ class FaqController extends Controller
      */
     public function edit(Faq $faq)
     {
-        //
+        return view('admin.faqs.edit', compact('faq'));
     }
 
     /**
@@ -73,9 +77,14 @@ class FaqController extends Controller
      * @param  \App\Models\Faq  $faq
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Faq $faq)
+    public function update(faqEditRequest $request, Faq $faq)
     {
-        //
+         if ($faq->update($request->all())) {
+            Alert::toast('Cập nhật thành công', 'success');
+            return Redirect()->route('admin.faqs.index');
+        }
+        Alert::toast('Có lỗi xảy ra', 'error');
+        return  redirect()->back();
     }
 
     /**
@@ -86,6 +95,11 @@ class FaqController extends Controller
      */
     public function destroy(Faq $faq)
     {
-        //
+        if ($faq->delete()){
+            Alert::toast('Xóa thành công','success');
+            return redirect()->Route('admin.faqs.index');
+        }
+            Alert::toast('Có lỗi xảy ra','error');
+            return redirect()->back();
     }
 }
