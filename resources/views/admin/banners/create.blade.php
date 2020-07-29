@@ -18,15 +18,24 @@
             </div>
             <div class="form-group">
                 <label for="">Banner link</label>
-                <input type="text" name="link" value="{{old('link')}}" class="form-control">
+                <input type="text" name="link" value="{{old('link')}}" class="form-control @error('link') is-invalid @enderror">
+                @error('link')
+                <small class="text-danger">{{$message}}</small>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="">Banner descript</label>
-                <input type="text" name="descript" value="{{old('descript')}}" class="form-control">
+                <input type="text" name="descript" value="{{old('descript')}}" class="form-control @error('descript') is-invalid @enderror">
+                @error('descript')
+                <small class="text-danger">{{$message}}</small>
+                @enderror
             </div>
             <div class="form-group">
-                <label for="">Category prioty</label>
-                <input type="text" name="prioty" value="{{old('prioty')}}" class="form-control">
+                <label for="">Banner prioty</label>
+                <input type="text" name="prioty" value="{{old('prioty')}}" class="form-control  @error('prioty') is-invalid @enderror">
+                @error('prioty')
+                <small class="text-danger">{{$message}}</small>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="">Banner position</label>

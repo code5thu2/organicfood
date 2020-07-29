@@ -17,14 +17,14 @@
             </div>
             <div class="form-group">
                 <label for="">Summary</label>
-                 <textarea name="summary"  class="form-control @error('summary') is-invalid @enderror" cols="10" rows="10" value="{{old('summary')}}"></textarea>
+                 <textarea name="summary"  class="form-control @error('summary') is-invalid @enderror" cols="10" rows="10" value="{{old('summary')}}">{{old('summary')}}</textarea>
                 @error('summary')
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
                 <div class="form-group">
                     <label for="">Blog image</label>
-                    <input type="file" class="form-control-file  @error('upload') is-invalid @enderror" name="upload" placeholder="">
+                    <input type="file" class="form-control-file  @error('upload') is-invalid @enderror" name="upload" placeholder="" value="{{old('upload')}}">
                     @error('upload')
                     <small class="text-danger">{{$message}}</small>
                     @enderror
@@ -56,7 +56,7 @@
     <div class="col-md-12">
         <div class="form-group">
             <label for="">Content</label>
-            <textarea name="content" id="content" class="form-control @error('content') is-invalid @enderror" cols="30" rows="30" value="{{old('content')}}"></textarea>
+            <textarea name="content" id="content" class="form-control @error('content') is-invalid @enderror" cols="30" rows="30" value="{{old('content')}}">{{old('content')}}</textarea>
             @error('content')
             <small class="text-danger">{{$message}}</small>
             @enderror

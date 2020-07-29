@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','blog')
+@section('title','blog update')
 @section('main')
 <form action="{{route('admin.blogs.update',$blog->id)}}" method="post" enctype="multipart/form-data">
 <div class="row justify-content-center bg-white p-4">

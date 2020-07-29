@@ -17,9 +17,15 @@ class CreateBannersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('image');
+<<<<<<< HEAD
             $table->string('link')->nullable();
             $table->tinyInteger('prioty')->nullable();
             $table->tinyInteger('position')->nullable();
+=======
+            $table->string('link');
+            $table->tinyInteger('prioty')->nullable();;
+            $table->tinyInteger('position');
+>>>>>>> 6554af84c66b30b5e7a8478f8a5fc6f7093f31c0
             $table->string('descript');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
