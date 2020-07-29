@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Faq;
+use App\Models\Subcrise;
 use Illuminate\Http\Request;
-use App\Http\Requests\faqAddRequest;
-use App\Http\Requests\faqEditRequest;
-
 use RealRashid\SweetAlert\Facades\Alert;
-class FaqController extends Controller
+use App\Http\Requests\subcriseAddRequest;
+class SubcriseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +16,8 @@ class FaqController extends Controller
      */
     public function index()
     {
-        $faq = Faq::all();
-        return view('admin.faqs.index', compact('faq'));
+        $subcrise = Subcrise::all();
+        return view('admin.subcrises.index',compact('subcrise'));
     }
 
     /**
@@ -29,7 +27,7 @@ class FaqController extends Controller
      */
     public function create()
     {
-        return view('admin.faqs.create');
+        return view('admin.subcrises.index');
     }
 
     /**
@@ -38,23 +36,23 @@ class FaqController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(faqAddRequest $request)
+    public function store(subcriseAddRequest $request)
     {
-        if  (Faq::create($request->all())) {
-            Alert::toast('Tạo mới thành công', 'success');
-            return redirect()->route('admin.faqs.index');
+        if (Subcrise::create($request->all())) {
+            Alert::toast('Tạo mới thành công','success');
+            return redirect()->route('admin.subcrises.index');
         }
-            Alert::toast('Có lỗi xảy ra', 'error'); 
-            return redirect()->back();
+         Alert::toast('Có lỗi xảy ra','error');
+        return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Faq  $faq
+     * @param  \App\Models\Subcrise  $subcrise
      * @return \Illuminate\Http\Response
      */
-    public function show(Faq $faq)
+    public function show(Subcrise $subcrise)
     {
         //
     }
@@ -62,40 +60,35 @@ class FaqController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Faq  $faq
+     * @param  \App\Models\Subcrise  $subcrise
      * @return \Illuminate\Http\Response
      */
-    public function edit(Faq $faq)
+    public function edit(Subcrise $subcrise)
     {
-        return view('admin.faqs.edit', compact('faq'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Faq  $faq
+     * @param  \App\Models\Subcrise  $subcrise
      * @return \Illuminate\Http\Response
      */
-    public function update(faqEditRequest $request, Faq $faq)
+    public function update(Request $request, Subcrise $subcrise)
     {
-         if ($faq->update($request->all())) {
-            Alert::toast('Cập nhật thành công', 'success');
-            return Redirect()->route('admin.faqs.index');
-        }
-        Alert::toast('Có lỗi xảy ra', 'error');
-        return  redirect()->back();
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Faq  $faq
+     * @param  \App\Models\Subcrise  $subcrise
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Faq $faq)
+    public function destroy(Subcrise $subcrise)
     {
-        if ($faq->delete()){
+        if ($subcrise->delete()){
             Alert::toast('Xóa thành công','success');
             return redirect()->back();
         }

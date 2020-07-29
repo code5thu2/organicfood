@@ -30,6 +30,7 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
         'roles' => 'RoleController',
         'users' => 'UserController',
         'blogs' => 'BlogController',
+        'subcrises' => 'SubcriseController',
         
     ]);
 });
