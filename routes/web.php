@@ -33,7 +33,16 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
 
     ]);
 });
+
 route::post('admin/login', 'Admin\AdminController@post_login')->name('admin.login');
 route::get('admin/login', 'Admin\AdminController@login')->name('admin.login');
 route::get('admin/logout', 'Admin\AdminController@logout')->name('admin.logout');
 Route::get('admin/error', 'Admin\AdminController@error')->name('admin.error');
+
+Route::get('/customer/login', 'CustomerController@login')->name('customer.login');
+Route::post('/customer/register', 'CustomerController@register')->name('customer.register');
+Route::group(['prefix' => 'customer', 'middleware' => 'cus'], function () {
+    Route::get('profile', 'CustomerController@profile')->name('customer.profile');
+    Route::get('order', 'CustomerController@order')->name('customer.order');
+    Route::get('change_password', 'CustomerController@change_password')->name('customer.change_password');
+});

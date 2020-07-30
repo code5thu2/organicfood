@@ -1213,7 +1213,6 @@ a.icon-pro:hover {
   color: #898785;
   font-size: 14px;
   font-weight: 400;
-  border: none;
   border-radius: 0;
   box-shadow: none;
   outline: none !important;
@@ -1242,9 +1241,6 @@ a.icon-pro:hover {
   border-radius: 5px;
   bottom: 0;
   left: 0;
-}
-.my-account-page span{
-  color: #8d8d8d;
 }
 .my-account-page  label{
   margin-bottom: 8px;
