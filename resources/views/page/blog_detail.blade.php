@@ -61,7 +61,10 @@ use Carbon\Carbon;
                     </div>
                 </div>
                 <div class="comment-box mt-5">
-                    <h3 class="sub-blog-title mb-5">03 comment</h3>
+                    <?php
+                    $comment_total = $blog->commentsTotal->count();
+                    ?>
+                    <h3 class="sub-blog-title mb-5">{{$comment_total > 10 ? '0'.$comment_total : $comment_total}} comment</h3>
                     @include('page.comments_show', ['comments' => $blog->comments, 'blog_id' => $blog->id])
                     <div class="comment-write">
                         <h3 class="sub-blog-title mb-2 mt-5">leave a comment</h3>

@@ -31,7 +31,7 @@ use Carbon\Carbon;
                             <div class="card-body">
                                 <ul>
                                     <li><a href=""><i class="far fa-clock"></i> {{$model->created_at->toFormattedDateString()}}</a></li>
-                                    <li><a href=""><i class="far fa-comment-dots"></i> 0 comment</a></li>
+                                    <li><a href=""><i class="far fa-comment-dots"></i> {{$model->commentsTotal->count()}} comment</a></li>
                                 </ul>
                                 <h2 class="card-title"><a href="">{{$model->summary}}</a></h2>
                                 <a type="button" class="read-btn btn btn-outline-primary" href="{{route('blogs.blog_detail',['id' => $model->id,'slug' => $model->slug])}}">read more</a>
@@ -39,6 +39,7 @@ use Carbon\Carbon;
                         </div>
                     </div>
                     @endforeach
+                    <div>{{$blog->links()}}</div>
                 </div>
             </div>
             <div class="col-md-3">
