@@ -30,7 +30,7 @@ class AdminController extends Controller
             return redirect()->route('admin.index');
         }
         Alert::toast('Email hoặc mật khẩu không chính xác', 'error')->position('top');
-        return redirect()->back()->with('no', 'Email hoặc mật khẩu không chính xác');
+        return redirect()->back();
     }
     public function logout()
     {

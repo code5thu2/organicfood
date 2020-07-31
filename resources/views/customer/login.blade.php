@@ -14,26 +14,27 @@
         </div>
     </div>
 </div>
+
 <!-- bắt đầu phần my account -->
 <div class="container my-account-page">
     <div class="row">
         <div class="col-md-6 login-box">
-            <form action="" method="post">
+            <form action="{{route('customer.post_login')}}" method="post">
                 @csrf
                 <h2>login</h2>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="email" placeholder="Email...">
+                    <input type="text" class="form-control" name="email" value="{{old('email')}}" placeholder="Email...">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="password" aria-describedby="helpId" placeholder="Password...">
+                    <input type="password" class="form-control" name="password" value="{{old('password')}}" placeholder="Password...">
                 </div>
                 <label class="form-check-label">
-                    <input type="checkbox" name="" id=""><span> Remember password</span>
+                    <input type="checkbox" name="remember"><span> Remember password</span>
                 </label>
                 <label class="float-right">
                     <a href=""><span>forgot your password?</span></a>
                 </label>
-                <button type="submit" name="" id="" class="btn btn-primary btn-lg btn-block">Đăng nhập</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Đăng nhập</button>
             </form>
         </div>
         <div class="col-md-6 register box">
@@ -41,41 +42,41 @@
                 @csrf
                 <h2>register</h2>
                 <div class="form-group">
-                    <input type="text" class="form-control is-invalid " name="name" placeholder="Họ và tên">
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" value="{{old('name')}}" name="name" placeholder="Họ và tên">
                     @error('name')
-                    <span class="invalid-feedback" role="alert">
+                    <small class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
-                    </span>
+                    </small>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="email" placeholder="Nhập email">
+                    <input type="text" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}" name="email" placeholder="Nhập email">
                     @error('email')
-                    <span class="invalid-feedback" role="alert">
+                    <small class="text-danger" role="alert">
                         <strong>{{ $message }}</strong>
-                    </span>
+                    </small>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu...">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" value="{{old('password')}}" name="password" placeholder="Nhập mật khẩu...">
                     @error('password')
-                    <span class="invalid-feedback" role="alert">
+                    <small class="text-danger" role="alert">
                         <strong>{{ $message }}</strong>
-                    </span>
+                    </small>
                     @enderror
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="confirm_password" placeholder="Nhập lại mật khẩu...">
+                    <input type="password" class="form-control @error('confirm_password') is-invalid @enderror" value="{{old('confirm_password')}}" name="confirm_password" placeholder="Nhập lại mật khẩu...">
                     @error('confirm_password')
-                    <span class="invalid-feedback" role="alert">
+                    <small class="text-danger" role="alert">
                         <strong>{{ $message }}</strong>
-                    </span>
+                    </small>
                     @enderror
                 </div>
                 <label class="form-check-label w-100">
-                    <input type="checkbox" name="" id=""><span> privacy policy agreement?</span>
+                    <input type="checkbox"><span> privacy policy agreement?</span>
                 </label>
-                <button type="submit" name="" id="" class="btn btn-primary btn-lg btn-block">Đăng ký</button>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Đăng ký</button>
             </form>
         </div>
     </div>

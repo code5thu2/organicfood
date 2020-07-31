@@ -80,6 +80,7 @@ class UserController extends Controller
      */
     public function update(userEditRequest $request, User $user)
     {
+        // dd($request->all());
         $data = [
             'name' => $request->name,
             'email' => $request->email,
@@ -96,6 +97,8 @@ class UserController extends Controller
                     ]
                 );
             }
+        } else {
+            UserRole::where('user_id', $user->id)->delete();
         }
         return redirect()->route('admin.users.index')->with('yes', 'Update tài khoản thành công');
     }

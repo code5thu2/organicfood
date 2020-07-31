@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,8 +27,8 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('*', function ($view) {
             $view->with([
-                'parentCat' => Category::where('parent_id', 0)->orderBy('name', 'ASC')->get(),
-                // 'category' => Category::where('parent_id',0)->orderBy('name','ASC')->get();
+                'parentCat' => Category::where(['parent_id' => 0, 'status' => 1])->orderBy('name', 'ASC')->get(),
+                'new_blog' => Blog::where('status', 1)->limit(7)->orderBy('id', 'DESC')->get(),
             ]);
         });
     }

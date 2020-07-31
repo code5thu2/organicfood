@@ -58,18 +58,22 @@
                     </div>
                     <div class="my-account col-md-2">
                         <div class="dropdown">
+                            @if(Auth::guard('cus')->check())
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="far fa-user"></i>
-                                My account
+                                {{Auth::guard('cus')->user()->name}}
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item disabled" href="#">Disabled action</a>
-                                <h6 class="dropdown-header">Section header</h6>
-                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="{{route('customer.profile')}}">Profile</a>
+                                <a class="dropdown-item" href="#">Wishlist</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">After divider action</a>
+                                <a class="dropdown-item" href="{{route('customer.logout')}}">Logout</a>
                             </div>
+                            @else
+                            <button class="btn btn-secondary">
+                                <a class="login-btn" href="{{route('customer.login')}}">Login / Register</a>
+                            </button>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -272,6 +276,7 @@
     <script src="{{url('public')}}/app/js/bootstrap.min.js"></script>
     <script src="{{url('public')}}/app/OwlCarousel/owl.carousel.min.js"></script>
     <script src="{{url('public')}}/app/ratting/jquery.star-rating-svg.js"></script>
+    @include('sweetalert::alert')
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script>
     <script src="{{url('public')}}/app/app.js"></script>

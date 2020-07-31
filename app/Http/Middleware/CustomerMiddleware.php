@@ -15,7 +15,7 @@ class CustomerMiddleware
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next, $guard = 'cus')
     {
         if (!Auth::guard($guard)->check()) {
             return redirect()->route('customer.login');
