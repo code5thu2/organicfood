@@ -13,18 +13,18 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                     <th>Create_at</th>
+                    <th>Create_at</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-               @foreach($blog as $model)
+                @foreach($blog as $model)
                 <tr>
-                	<td scope="row">{{$model->id}}</td>
-                	<td scope="row">{{$model->name}}</td>
-                	<td scope="row">{{$model->created_at}}</td>
-                	  <td class="{{$model->status == 1 ? 'text-success' : 'text-danger'}}">{{$model->status == 1 ? 'Enable' : 'Disable'}}</td>
+                    <td scope="row">{{$model->id}}</td>
+                    <td scope="row">{{$model->name}}</td>
+                    <td scope="row">{{$model->created_at}}</td>
+                    <td class="{{$model->status == 1 ? 'text-success' : 'text-danger'}}">{{$model->status == 1 ? 'Enable' : 'Disable'}}</td>
                     <td>
                         <div class="dropdown">
                             <a href="#" class=" card-drop" data-toggle="dropdown" aria-expanded="true">
@@ -41,9 +41,9 @@
                         </div>
                     </td>
                 </tr>
-                 @endforeach
+                @endforeach
             </tbody>
-        </table>	
+        </table>
     </div>
 </div>
 @stop()

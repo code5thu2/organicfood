@@ -55,7 +55,7 @@
             </div>
             <div class="form-group">
                 <label for="">Banner image</label>
-                <input type="file" class="form-control-file  @error('upload') is-invalid @enderror" name="upload" placeholder="">
+                <input type="file" class="form-control-file  @error('upload') is-invalid @enderror" name="upload" value="{{old('upload')}}">
                 @error('upload')
                 <small class="text-danger">{{$message}}</small>
                 @enderror

@@ -2,13 +2,13 @@
 @section('title','banner update')
 @section('main')
 
-        <form action="{{route('admin.banners.update', $banner->id)}}" method="post" enctype="multipart/form-data">
-        
-<div class="row justify-content-center bg-white p-4">
-    <div class="col-md-6">
-        <div class="text-center ">
-            <h4>Banner add new</h4>
+<form action="{{route('admin.banners.update', $banner->id)}}" method="post" enctype="multipart/form-data">
+
+    <div class="row justify-content-center bg-white p-4">
+        <div class="col-12 ">
+            <h4>Edit banner</h4>
         </div>
+        <div class="col-md-6">
             @csrf
             @method('PUT')
             <input type="hidden" name="id" value="{{$banner->id}}">
@@ -48,7 +48,7 @@
                     <option value="2">Bottom</option>
                 </select>
             </div>
-             <div class="form-group">
+            <div class="form-group">
                 <label class="custom-control custom-radio custom-control-inline">
                     <input type="radio" name="status" {{$banner->status == 1 ? 'checked' : ''}} class="custom-control-input" value="1"><span class="custom-control-label">Enable</span>
                 </label>
@@ -56,21 +56,20 @@
                     <input type="radio" name="status" class="custom-control-input" value="0" {{$banner->status == 0 ? 'checked' : ''}}><span class="custom-control-label">Disable</span>
                 </label>
             </div>
-
-    </div>
-        <div class="col-md-6 ">
+        </div>
+        <div class="col-md-6">
             <div class="form-group">
                 <label for="">Banner image</label>
-                <input type="file" class="form-control-file  @error('upload') is-invalid @enderror" name="upload" placeholder="" class="">
+                <input type="file" class="form-control-file  @error('upload') is-invalid @enderror" name="upload">
                 @error('upload')
                 <small class="text-danger">{{$message}}</small>
                 @enderror
-                  <div class="mt-5 text-center">
-                      <img src="{{url('uploads')}}/{{$banner->image}}" alt="">
-                  </div>
+                <div class="mt-5 text-center">
+                    <img src="{{url('uploads')}}/{{$banner->image}}" alt="" class="img-fluid">
+                </div>
             </div>
-        </div>  
-            <button type="submit" class="btn btn-primary btn-block">update</button>
-</div>    
-        </form>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">update</button>
+    </div>
+</form>
 @stop()

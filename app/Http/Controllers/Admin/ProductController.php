@@ -56,10 +56,12 @@ class ProductController extends Controller
         }
         if (addProduct()) {
             DB::commit();
-            return redirect()->route('admin.products.index')->with('yes', 'Tạo mới sản phẩm thành công');
+            Alert::toast('Tạo mới sản phẩm thành công', 'success');
+            return redirect()->route('admin.products.index');
         } elseif (!addProduct()) {
             DB::rollback();
-            return redirect()->back()->with('no', 'Có lỗi xảy ra khi tải ảnh sản phẩm');
+            Alert::toast('Có lỗi xảy ra khi tải ảnh sản phẩm', 'error');
+            return redirect()->back();
         }
     }
 
