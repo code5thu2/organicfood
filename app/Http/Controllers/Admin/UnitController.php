@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Unit;
 use Illuminate\Http\Request;
 use App\Http\Requests\unitRequest;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class UnitController extends Controller
 {
@@ -39,9 +41,11 @@ class UnitController extends Controller
     public function store(unitRequest $request)
     {
         if (Unit::create($request->all())) {
-            return redirect()->route('admin.units.index')->with('yes', 'Add new unit successfully');
+           Alert::toast('Tạo mới thành công','success');
+             return redirect()->route('admin.units.index');
         }
-        return redirect()->back()->with('no', 'Add new failed');
+        Alert::toast('Có lỗi xảy ra','error');
+        return redirect()->back();
     }
     /**
      * Display the specified resource.
@@ -75,9 +79,11 @@ class UnitController extends Controller
     public function update(unitRequest $request, Unit $unit)
     {
         if ($unit->update($request->all())) {
-            return redirect()->route('admin.units.index')->with('yes', 'Update new unit successfully');
+           Alert::toast('Cập nhật thành công', 'success');
+            return Redirect()->route('admin.units.index');
         }
-        return redirect()->back()->with('no', 'Update new failed');
+        Alert::toast('Có lỗi xảy ra', 'error');
+        return  redirect()->back();
     }
 
     /**
@@ -89,8 +95,10 @@ class UnitController extends Controller
     public function destroy(Unit $unit)
     {
         if ($unit->delete()) {
-            return redirect()->back()->with('yes', 'Successfully deleted the supplier');
+            Alert::toast('Xóa thành công','success');
+            return redirect()->back();
         }
-        return redirect()->back()->with('no', 'cannot deleted the supplier');
+        Alert::toast('Có lỗi xảy ra','error');
+        return redirect()->back();
     }
 }

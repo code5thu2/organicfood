@@ -91,7 +91,7 @@
                                             <i class="far fa-heart"></i>
                                         </a></li>
                                     <li><a href="#" class="icon-pro">
-                                            <i class="far fa-heart"></i>
+                                            <i class="fas fa-shopping-cart"></i>
                                         </a></li>
                                 </ul>
                             </div>

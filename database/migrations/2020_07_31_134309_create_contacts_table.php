@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubcrisesTable extends Migration
+class CreateContactsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateSubcrisesTable extends Migration
      */
     public function up()
     {
-        Schema::create('subcrises', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('email');
-            $table->tinyInteger('status')->default(0);
+            $table->string('name');
+            $table->string('link')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateSubcrisesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subcrises');
+        Schema::dropIfExists('contacts');
     }
 }

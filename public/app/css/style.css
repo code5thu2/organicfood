@@ -1169,7 +1169,7 @@ padding-bottom: 20px;
 
 /* The icon inside the overlay is positioned in the middle vertically and horizontally */
 .icon-pro{
-  color: #FF0814;
+  color: #5a4a3b;
   font-size: 18px;
   /* transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%); */
@@ -1196,8 +1196,40 @@ padding-bottom: 20px;
 /* When you move the mouse over the icon, change color */
 a.icon-pro:hover {
   color: white;
-  background-color: #FF0814;
-  border: 2px solid #FF0814;
+  background-color: #5a4a3b;
+  border: 2px solid #5a4a3b;
+}
+.sale{
+  height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    background: #ed64a5;
+    color: #fff;
+    font-size: 30px;
+    line-height: 65px;
+    position: absolute;
+    top: -18px;
+    right: 20px;
+    z-index: 99;
+    font-family: 'frenteH1';
+}
+.new{
+  height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    background: #fea249;
+    color: #fff;
+    font-size: 30px;
+    line-height: 65px;
+    position: absolute;
+    top: -18px;
+    right: 20px;
+    z-index: 99;
+    font-family: 'frenteH1';
 }
 
 /*  kết thúc trang product list */

@@ -50,7 +50,7 @@
                                 <form action="{{route('admin.suppliers.destroy',$model->id)}}" method="post">
                                     @method('DELETE')
                                     @csrf
-                                    <button type="submit" class="dropdown-item" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này')">Delete</button>
+                                    <button type="submit" class="dropdown-item" onclick="return confirm('Bạn có chắc chắn muốn xóa')">Delete</button>
                                 </form>
                             </div>
                         </div>

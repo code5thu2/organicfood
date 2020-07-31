@@ -35,7 +35,7 @@
                                 <form action="{{route('admin.blogs.destroy',$model->id)}}" method="post">
                                     @method('DELETE')
                                     @csrf
-                                    <button type="submit" class="dropdown-item" onclick="return confirm('Bạn có chắc chắn muốn xóa user này')">Delete</button>
+                                    <button type="submit" class="dropdown-item" onclick="return confirm('Bạn có chắc chắn muốn')">Delete</button>
                                 </form>
                             </div>
                         </div>

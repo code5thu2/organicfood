@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class subcriseAddRequest extends FormRequest
+class contactAddRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,15 @@ class subcriseAddRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|unique:subcrises',
+            'name' => 'required|max:100|unique:contacts|',
         ];
     }
-     public function messages()
+    public function messages()
     {
-        return [          
-            'email.required' => 'email không được để trống',
-            'email.email' => 'email không đúng định dạng',
-            'email.unique' => 'email đã được sử dụng',
+        return [
+            'name.required' => 'Tên không được để trống',
+            'name.max' => 'Tên không quá 100 kí tự',
+            'name.unique' => 'Tên đã tồn tại',
         ];
     }
 }

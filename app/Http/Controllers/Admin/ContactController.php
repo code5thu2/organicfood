@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Subcrise;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
-use App\Http\Requests\subcriseAddRequest;
-class SubcriseController extends Controller
+use App\Http\Requests\contactAddRequest;
+use App\Http\Requests\contactEditRequest;
+
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +18,8 @@ class SubcriseController extends Controller
      */
     public function index()
     {
-        $subcrise = Subcrise::all();
-        return view('admin.subcrises.index',compact('subcrise'));
+        $contact = Contact::all();
+        return view('admin.contacts.index',compact('contact'));
     }
 
     /**
@@ -27,7 +29,7 @@ class SubcriseController extends Controller
      */
     public function create()
     {
-        return view('admin.subcrises.index');
+         return view('admin.contacts.index');
     }
 
     /**
@@ -36,23 +38,23 @@ class SubcriseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(subcriseAddRequest $request)
+    public function store(contactAddRequest $request)
     {
-        if (Subcrise::create($request->all())) {
+        if (Contact::create($request->all())){
             Alert::toast('Tạo mới thành công','success');
-            return redirect()->route('admin.subcrises.index');
+             return redirect()->route('admin.contacts.index');
         }
-         Alert::toast('Có lỗi xảy ra','error');
+        Alert::toast('Có lỗi xảy ra','error');
         return redirect()->back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Subcrise  $subcrise
+     * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show(Subcrise $subcrise)
+    public function show(Contact $contact)
     {
         //
     }
@@ -60,39 +62,44 @@ class SubcriseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Subcrise  $subcrise
+     * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subcrise $subcrise)
+    public function edit(Contact $contact)
     {
-        //
+         return view('admin.contacts.edit',compact('contact'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Subcrise  $subcrise
+     * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subcrise $subcrise)
+    public function update(contactEditRequest $request, Contact $contact)
     {
-        //
+         if ($contact->update($request->all())) {
+            Alert::toast('Cập nhật thành công', 'success');
+            return Redirect()->route('admin.contacts.index');
+        }
+        Alert::toast('Có lỗi xảy ra', 'error');
+        return  redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Subcrise  $subcrise
+     * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subcrise $subcrise)
+    public function destroy(Contact $contact)
     {
-        if ($subcrise->delete()){
+        if($contact->delete()){
             Alert::toast('Xóa thành công','success');
             return redirect()->back();
         }
-            Alert::toast('Có lỗi xảy ra','error');
-            return redirect()->back();
+        Alert::toast('Có lỗi xảy ra','error');
+        return redirect()->back();
     }
 }

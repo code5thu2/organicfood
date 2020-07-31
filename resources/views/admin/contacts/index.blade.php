@@ -1,17 +1,38 @@
 @extends('layouts.admin')
-@section('title','unit management')
+\@section('title','contact')
 @section('main')
 <div class="row p-3 bg-white">
     <div class="col-md-4">
         <div class="text-center">
-            <h4>Unit add new</h4>
+            <h4>contact add new</h4>
         </div>
-        <form action="{{route('admin.units.store')}}" method="post" enctype="multipart/form-data">
+        <form action="{{route('admin.contacts.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="">Unit name</label>
+                <label for="">contact name</label>
                 <input type="text" name="name" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror">
                 @error('name')
+                <small class="text-danger">{{$message}}</small>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="">email</label>
+                <input type="email" name="email" value="{{old('email')}}" class="form-control @error('email') is-invalid @enderror">
+                @error('email')
+                <small class="text-danger">{{$message}}</small>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="">link</label>
+                <input type="text" name="link" value="{{old('link')}}" class="form-control @error('link') is-invalid @enderror">
+                @error('link')
+                <small class="text-danger">{{$message}}</small>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="">phone</label>
+                <input type="tel" name="phone" value="{{old('phone')}}" class="form-control @error('phone') is-invalid @enderror">
+                @error('phone')
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
@@ -24,22 +45,28 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
+                    <th>Link</th>
+                    <th>Email</th>
+                    <th>Phone</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($unit as $model)
+                @foreach($contact as $model)
                 <tr>
                     <td>{{$model->id}}</td>
                     <td>{{$model->name}}</td>
+                    <td>{{$model->link}}</td>
+                    <td>{{$model->email}}</td>
+                    <td>{{$model->phone}}</td>
                     <td>
                         <div class="dropdown">
                             <a href="#" class=" card-drop" data-toggle="dropdown" aria-expanded="true">
                                 <i class="fas fa-info-circle"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="{{route('admin.units.edit',$model->id)}}" class="dropdown-item">Edit unit</a>
-                                <form action="{{route('admin.units.destroy',$model->id)}}" method="post">
+                                <a href="{{route('admin.contacts.edit',$model->id)}}" class="dropdown-item">Edit contact</a>
+                                <form action="{{route('admin.contacts.destroy',$model->id)}}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="dropdown-item" onclick="return confirm('Bạn có chắc chắn muốn xóa')">Delete</button>

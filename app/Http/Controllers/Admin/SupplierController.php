@@ -45,9 +45,11 @@ class SupplierController extends Controller
             $request->merge(['image' => $file_name]);
         }
         if (Supplier::create($request->all())) {
-            return redirect()->route('admin.suppliers.index')->with('yes', 'Add new supplier successfully');
+              Alert::toast('Tạo mới thành công','success');
+            return redirect()->route('admin.suppliers.index');
         }
-        return redirect()->back()->with('no', 'Adding new supplier failed');
+          Alert::toast('Có lỗi xảy ra','error');
+        return redirect()->back();
     }
 
     /**
@@ -88,9 +90,11 @@ class SupplierController extends Controller
             $request->merge(['image' => $file_name]);
         }
         if ($supplier->update($request->all())) {
-            return redirect()->route('admin.suppliers.index')->with('yes', 'Update supplier successfully');
+              Alert::toast('Cập nhật thành công','success');
+            return redirect()->route('admin.suppliers.index');
         }
-        return redirect()->back()->with('no', 'Update supplier failed');
+          Alert::toast('Có lỗi xảy ra','error');
+        return redirect()->back();
     }
 
     /**
@@ -102,8 +106,10 @@ class SupplierController extends Controller
     public function destroy(Supplier $supplier)
     {
         if ($supplier->delete()) {
-            return redirect()->back()->with('yes', 'Successfully deleted the supplier');
+             Alert::toast('Xóa thành công','success');
+            return redirect()->back();
         }
-        return redirect()->back()->with('no', 'cannot deleted the supplier');
+        Alert::toast('Có lỗi xảy ra','error');
+        return redirect()->back();
     }
 }
