@@ -1051,7 +1051,7 @@ ul li.icon-list a.card-link.lv1{
   color: #88c442;
     font-weight: bold;
     font-size: 20px;
-    display: block;
+    /* display: block; */
 }
 ul li.icon-list{
    background: url('../images/logo/sidebar-list-icon.png')left top no-repeat;
@@ -1171,24 +1171,16 @@ padding-bottom: 20px;
 .icon-pro{
   color: #5a4a3b;
   font-size: 18px;
-  /* transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%); */
-  /* text-align: center; */
   border: 2px solid white;
   border-radius: 50%;
   padding: 6px 8px 6px 8px;
   background-color: white;
-  /* -webkit-transition: all 0.7s ease; transition: all 0.7s ease; */
-
 }
 .overlay-pro ul li{
   padding: 0 15px;
 }
 .icon-content{
-  /* position: absolute; */
   list-style: none;
-  /* top: 42%;
-  left: 11%; */
   cursor: pointer;
   display: flex;
 }

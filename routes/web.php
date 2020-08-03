@@ -19,6 +19,8 @@ Route::get('/', 'HomeController@index')->name('home');
 //blog route
 Route::get('/page/blog', 'Admin\BlogController@blog_list')->name('blogs.blog_list');
 Route::get('/page/blog/{id}-{slug}', 'Admin\BlogController@blog_detail')->name('blogs.blog_detail');
+//Product list
+Route::get('page/product-list', 'Admin\ProductController@product_list')->name('products.product_list');
 
 route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], function () {
     Route::get('', 'AdminController@index')->name('index');
