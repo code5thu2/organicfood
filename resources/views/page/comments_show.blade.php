@@ -17,7 +17,6 @@
                     @csrf
                     <div class="form-group">
                         <textarea name="content" cols="70%" rows="3"></textarea>
-
                         <input type=hidden name=blog_id value="{{ $blog->id }}" />
                         <input type=hidden name=parent_id value="{{ $comment->id }}" />
                         <input type=hidden name="customer_id" value="{{ Auth::guard('cus')->user()->id }}" />

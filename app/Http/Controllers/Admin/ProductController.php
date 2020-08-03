@@ -25,6 +25,11 @@ class ProductController extends Controller
         $product = Product::paginate(10);
         return view('admin.products.index', compact('product'));
     }
+    public function product_list()
+    {
+        $product = Product::paginate(10);
+        return view('page.product_list', compact('product'));
+    }
 
     /**
      * Show the form for creating a new resource.
