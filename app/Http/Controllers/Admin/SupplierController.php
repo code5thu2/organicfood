@@ -7,6 +7,7 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Requests\supplierAddRequest;
 use App\Http\Requests\supplierEditRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SupplierController extends Controller
 {

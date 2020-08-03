@@ -36,6 +36,8 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
         'users' => 'UserController',
         'blogs' => 'BlogController',
         'contacts' => 'ContactController',
+        'shipings' => 'ShipingController',
+        'pays' => 'PayController',
         
     ]);
 });
