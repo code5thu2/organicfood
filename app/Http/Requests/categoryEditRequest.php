@@ -26,7 +26,7 @@ class categoryEditRequest extends FormRequest
         return [
             'name' => 'required|max:100|unique:categories,name,' . request()->id,
             'slug' => 'unique:categories,slug,' . request()->id,
-            'upload' => 'mimes:jpg,jpeg,png|max:1024'
+            'upload' => 'mimes:jpg,jpeg,png|max:2048'
         ];
     }
     public function messages()
@@ -37,7 +37,7 @@ class categoryEditRequest extends FormRequest
             'name.unique' => 'Category name already exists dasda',
             'slug.unique' => 'slug already exists',
             'upload.mimes' => 'Image format must be jpg, jpeg, png file',
-            'upload.max' => 'Please choose a photo smaller than 1024kb'
+            'upload.max' => 'Please choose a photo smaller than 2048'
         ];
     }
 }

@@ -25,7 +25,7 @@ class categoryAddRequest extends FormRequest
     {
         return [
             'name' => 'required|max:100|unique:categories|',
-            'upload' => 'mimes:jpg,jpeg,png|max:1024'
+            'upload' => 'mimes:jpg,jpeg,png|max:2048'
         ];
     }
     public function messages()
@@ -35,7 +35,7 @@ class categoryAddRequest extends FormRequest
             'name.max' => 'Category name cannot exceed 100 characters',
             'name.unique' => 'Category name already exists',
             'upload.mimes' => 'Image format must be jpg, jpeg, png file',
-            'upload.max' => 'Please choose a photo smaller than 1024kb'
+            'upload.max' => 'Please choose a photo smaller than 2048kb'
         ];
     }
 }

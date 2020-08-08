@@ -12,11 +12,11 @@
                             <div id="accordion">
                                 <div class="card">
                                     @foreach($parentCat as $model)
-                                    <div class="product-rating" data-rating="3.7"></div>
+
                                     <ul class="open-lv1">
                                         <li class="icon-list">
-                                            <a href="" class="card-link lv1 w-75">{{$model->name}}</a>
-                                            <a class="card-link lv1" data-toggle="collapse" href="#collapse-{{$model->id}}"><i class="fas fa-chevron-right"></i></a>
+                                            <a href="{{route('home.view',['slug' => $model -> slug])}}" class="card-link lv1 w-75">{{$model->name}}</a>
+                                            <a class="card-link lv1" data-toggle="collapse" href="#collapse-{{$model->id}}"><i class="fas fa-chevron-right float-right"></i></a>
                                         </li>
                                     </ul>
                                     <!-- lv2 -->
@@ -24,7 +24,9 @@
                                         @if($model->childCat)
                                         @foreach($model->childCat as $sub_model)
                                         <ul class="open">
-                                            <li><i class="fas fa-chevron-right"></i><a data-toggle="collapse" href="#collapse-{{$sub_model->id}}">{{$sub_model->name}}<i class="fa fa-plus float-right"></i></a>
+                                            <li><i class="fas fa-chevron-right"></i>
+                                                <a href="{{route('home.view',['slug' => $sub_model -> slug])}}">{{$sub_model->name}}</a>
+                                                <a href="#collapse-{{$sub_model->id}}" data-toggle="collapse"><i class="fa fa-plus float-right"></i></a>
                                             </li>
                                         </ul>
                                         <div id="collapse-{{$sub_model->id}}" class="panel-collapse collapse" data-parent="#collapse-{{$model->id}}">

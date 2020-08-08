@@ -10,7 +10,7 @@ use App\Models\Unit;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB as FacadesDB;
+use RealRashid\SweetAlert\Facades\Alert;
 use DB;
 
 class ProductController extends Controller
@@ -24,11 +24,6 @@ class ProductController extends Controller
     {
         $product = Product::paginate(10);
         return view('admin.products.index', compact('product'));
-    }
-    public function product_list()
-    {
-        $product = Product::paginate(10);
-        return view('page.product_list', compact('product'));
     }
 
     /**
@@ -52,18 +47,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $slug =  slugName('name');
-        $request->merge(['slug' => $slug]);
+        $addPro = new Product;
+
         DB::beginTransaction();
-        if ($request->hasFile('upload')) {
-            $file_name = uploadImg('upload');
-            $request->merge(['image' => $file_name]);
-        }
-        if (addProduct()) {
+
+        if ($addPro->createPro()) {
             DB::commit();
             Alert::toast('Tạo mới sản phẩm thành công', 'success');
             return redirect()->route('admin.products.index');
-        } elseif (!addProduct()) {
+        } else {
             DB::rollback();
             Alert::toast('Có lỗi xảy ra khi tải ảnh sản phẩm', 'error');
             return redirect()->back();

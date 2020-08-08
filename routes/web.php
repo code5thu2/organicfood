@@ -17,13 +17,14 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/', 'HomeController@index')->name('home');
 //blog route
-Route::get('/page/blog', 'Admin\BlogController@blog_list')->name('blogs.blog_list');
-Route::get('/page/blog/{id}-{slug}', 'Admin\BlogController@blog_detail')->name('blogs.blog_detail');
+Route::get('/blog', 'Admin\BlogController@blog_list')->name('blogs.blog_list');
+Route::get('/blog/{id}-{slug}', 'Admin\BlogController@blog_detail')->name('blogs.blog_detail');
 //Product list
-Route::get('page/product-list', 'Admin\ProductController@product_list')->name('products.product_list');
+Route::get('/product-list', 'HomeController@product_list')->name('home.product_list');
+Route::get('product-list/{slug}', 'HomeController@view')->name('home.view');
 
 route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], function () {
-    Route::get('', 'AdminController@index')->name('index');
+    Route::get('/', 'AdminController@index')->name('index');
     route::resources([
         'categories' => 'CategoryController',
         'suppliers' => 'SupplierController',
@@ -35,6 +36,7 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
         'roles' => 'RoleController',
         'users' => 'UserController',
         'blogs' => 'BlogController',
+        'tags' => 'TagController',
 
     ]);
 });

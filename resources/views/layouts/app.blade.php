@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{url('public')}}/app/OwlCarousel/owl.theme.default.min.css" />
     <link rel="stylesheet" href="{{url('public')}}/app/css/style.css" />
     <link rel="stylesheet" href="{{url('public')}}/app/ratting/star-rating-svg.css" />
+    @yield('css')
 </head>
 
 <body>
@@ -270,7 +271,7 @@
             </div>
         </footer>
     </div>
-    <script src="{{url('public')}}/app/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="{{url('public')}}/app/js/jquery-3.3.1.min.js"></script>
     <script src="{{url('public')}}/app/lib/angular.min.js"></script>
     <script src="{{url('public')}}/app/js/popper.min.js"></script>
     <script src="{{url('public')}}/app/js/bootstrap.min.js"></script>
@@ -279,6 +280,7 @@
     @include('sweetalert::alert')
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script>
+    @yield('js')
     <script src="{{url('public')}}/app/app.js"></script>
     <script>
         function openSearch() {
@@ -371,7 +373,7 @@
         });
     </script>
     <script>
-        $(".product-rating").starRating({
+        $(".product-rated").starRating({
             totalStars: 5,
             starShape: 'rounded',
             starSize: 14,
@@ -380,7 +382,7 @@
             activeColor: '#5e9e47',
             ratedColor: '#5e9e47',
             useGradient: false,
-            disableAfterRate: false
+            readOnly: true
         });
     </script>
 </body>

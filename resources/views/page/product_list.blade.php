@@ -23,120 +23,40 @@
                 @include('page.category_widget')
                 <div class="col-md-8 col-sm-12 col xs-12">
                     <div class="row">
-                        <div class="col-md-6 col-lg-4">
+                        @foreach($product as $model)
+                        <div class="col-md-4">
                             <div class="card shadow card-pro">
                                 <div class="img-pro">
-                                    <img class="card-img-top" src="images/background-img/bg-category.jpg" alt="Card image">
+                                    <img class="lazy card-img-top img-fluid" data-src="{{url('uploads/Products')}}/{{$model->image}}" alt="Card image">
                                     <div class="overlay-pro">
                                         <ul class="icon-content">
-                                            <li><a href="#" class="icon-pro">
+                                            <li><a href="{{route('home.view',['slug' => $model->slug])}}" class="icon-pro">
                                                     <i class="far fa-eye"></i>
                                                 </a></li>
                                             <li><a href="#" class="icon-pro">
                                                     <i class="far fa-heart"></i>
                                                 </a></li>
                                             <li><a href="#" class="icon-pro">
-                                                    <i class="far fa-heart"></i>
+                                                    <i class="fas fa-cart-arrow-down"></i>
                                                 </a></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="card-body text-center body-pro">
-                                    <span class="card-title title-pro">Lee Uniforms Vegetable's Short-Sleeve</span>
+                                    <span class="card-title title-pro">{{$model->name}}</span>
                                     <div class="price-pro">
-                                        <span>$ 23.00</span>
-                                        <span><del>$ 12.00</del></span>
+                                        <span>đ {{$model->sale >0 ? number_format($model->sale) : number_format($model->price)}}</span>
+                                        <span><del>đ {{$model->sale > 0 ? number_format($model->price) : '0.00'}}</del></span>
                                     </div>
                                     <div class="buy-now">
                                         <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
-                                    </div>
-                                </div> <!-- end-card-body -->
-                            </div> <!-- end card -->
-                        </div> <!-- end-col-4 -->
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card shadow card-pro">
-                                <div class="img-pro">
-                                    <img class="card-img-top" src="images/background-img/bg-category.jpg" alt="Card image">
-                                    <div class="overlay-pro">
-                                        <ul class="icon-content">
-                                            <li><a href="#" class="icon-pro">
-                                                    <i class="far fa-eye"></i>
-                                                </a></li>
-                                            <li><a href="#" class="icon-pro">
-                                                    <i class="far fa-heart"></i>
-                                                </a></li>
-                                        </ul>
                                     </div>
                                 </div>
-                                <div class="card-body text-center body-pro">
-                                    <span class="card-title title-pro">Lee Uniforms Vegetable's Short-Sleeve</span>
-                                    <div class="price-pro">
-                                        <span>$ 23.00</span>
-                                        <span><del>$ 12.00</del></span>
-                                    </div>
-                                    <div class="buy-now">
-                                        <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
-                                    </div>
-                                </div> <!-- end-card-body -->
-                            </div> <!-- end card -->
-                        </div> <!-- end-col-4 -->
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card shadow card-pro">
-                                <div class="img-pro">
-                                    <img class="card-img-top" src="images/background-img/bg-category.jpg" alt="Card image">
-                                    <div class="overlay-pro">
-                                        <ul class="icon-content">
-                                            <li><a href="#" class="icon-pro">
-                                                    <i class="far fa-eye"></i>
-                                                </a></li>
-                                            <li><a href="#" class="icon-pro">
-                                                    <i class="far fa-heart"></i>
-                                                </a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="card-body text-center body-pro">
-                                    <span class="card-title title-pro">Lee Uniforms Vegetable's Short-Sleeve</span>
-                                    <div class="price-pro">
-                                        <span>$ 23.00</span>
-                                        <span><del>$ 12.00</del></span>
-                                    </div>
-                                    <div class="buy-now">
-                                        <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
-                                    </div>
-                                </div> <!-- end-card-body -->
-                            </div> <!-- end card -->
-                        </div> <!-- end-col-4 -->
-                        <div class="col-md-6 col-lg-4">
-                            <div class="card shadow card-pro">
-                                <div class="img-pro">
-                                    <img class="card-img-top" src="images/background-img/bg-category.jpg" alt="Card image">
-                                    <div class="overlay-pro">
-                                        <ul class="icon-content">
-                                            <li><a href="#" class="icon-pro">
-                                                    <i class="far fa-eye"></i>
-                                                </a></li>
-                                            <li><a href="#" class="icon-pro">
-                                                    <i class="far fa-heart"></i>
-                                                </a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="card-body text-center body-pro">
-                                    <span class="card-title title-pro">Lee Uniforms Vegetable's Short-Sleeve</span>
-                                    <div class="price-pro">
-                                        <span>$ 23.00</span>
-                                        <span><del>$ 12.00</del></span>
-                                    </div>
-                                    <div class="buy-now">
-                                        <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
-                                    </div>
-                                </div> <!-- end-card-body -->
-                            </div> <!-- end card -->
-                        </div> <!-- end-col-4 -->
-
-
+                            </div>
+                        </div>
+                        @endforeach
                     </div> <!-- end-row -->
+                    <div>{{$product->links()}}</div>
                     <!-- end-container -->
                 </div> <!-- end-col-8 -->
             </div>

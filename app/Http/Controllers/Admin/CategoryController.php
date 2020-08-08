@@ -20,7 +20,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::orderBy('id')->where('parent_id', 0)->paginate(3);
+        $category = Category::orderBy('id')->where('parent_id', 0)->paginate(5);
         return view('admin.categories.index', compact('category'));
     }
 
@@ -49,6 +49,7 @@ class CategoryController extends Controller
         }
         $slug =  slugName('name');
         $request->merge(['slug' => $slug]);
+        // dd($request->all());
         if (Category::create($request->all())) {
             Alert::toast('successfully completed', 'success');
             return redirect()->route('admin.categories.index');

@@ -3,7 +3,7 @@
 @section('main')
 <section>
     <!-- bắt đầu top banner -->
-    <div id="carouselId" class="carousel slide" data-ride="carousel">
+    <div id="carouselId" class="carousel slide banner-top" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselId" data-slide-to="0" class="active"></li>
             <li data-target="#carouselId" data-slide-to="1"></li>
@@ -11,7 +11,7 @@
         </ol>
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active text-center">
-                <img src="{{url('public')}}/app/images/banner/banner-img.jpg" alt="First slide" class="img-fluid" style="object-fit: cover;width: 100%; height: 350px;" />
+                <img src="{{url('public')}}/app/images/banner/banner-img.jpg" alt="First slide" class="img-fluid" />
                 <div class="carousel-caption d-none d-md-block">
                     <h3>Tifsdftle</h3>
                     <p>Description</p>
@@ -155,7 +155,7 @@
                                     <div class="col-sm-7">
                                         <div class="text-left card-body">
                                             <h5>jessica simpon</h5>
-                                            <div class="product-rating"></div>
+                                            <div class="product-rated"></div>
                                             <span>$ 23.00</span>
                                             <span><del>$ 12.00</del></span>
                                             <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
@@ -173,7 +173,7 @@
                                     <div class="col-sm-7">
                                         <div class="text-left card-body">
                                             <h5 class="">jessica simpon</h5>
-                                            <div class="product-rating" data-rating="4"></div>
+                                            <div class="product-rated" data-rating="4"></div>
                                             <span>$ 23.00</span>
                                             <span><del>$ 12.00</del></span>
                                             <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
@@ -191,7 +191,7 @@
                                     <div class="col-sm-7">
                                         <div class="text-left card-body">
                                             <h5 class="">jessica simpon</h5>
-                                            <div class="product-rating" data-rating="4"></div>
+                                            <div class="product-rated" data-rating="4"></div>
                                             <span>$ 23.00</span>
                                             <span><del>$ 12.00</del></span>
                                             <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
@@ -216,7 +216,7 @@
                                     <div class="col-sm-7">
                                         <div class="text-left card-body">
                                             <h5 class="">jessica simpon</h5>
-                                            <div class="product-rating" data-rating="4"></div>
+                                            <div class="product-rated" data-rating="4"></div>
                                             <span>$ 23.00</span>
                                             <span><del>$ 12.00</del></span>
                                             <a href="#" class="{{url('public')}}/app/btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
@@ -234,7 +234,7 @@
                                     <div class="col-sm-7">
                                         <div class="text-left card-body">
                                             <h5 class="">jessica simpon</h5>
-                                            <div class="product-rating" data-rating="4"></div>
+                                            <div class="product-rated" data-rating="4"></div>
                                             <span>$ 23.00</span>
                                             <span><del>$ 12.00</del></span>
                                             <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
@@ -252,7 +252,7 @@
                                     <div class="col-sm-7">
                                         <div class="text-left card-body">
                                             <h5 class="">jessica simpon</h5>
-                                            <div class="product-rating" data-rating="4"></div>
+                                            <div class="product-rated" data-rating="4"></div>
                                             <span>$ 23.00</span>
                                             <span><del>$ 12.00</del></span>
                                             <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>

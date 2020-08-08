@@ -26,4 +26,8 @@ class Category extends Model
     {
         return $this->hasOne(Category::class, 'id', 'parent_id');
     }
+    public function products()
+    {
+        return $this->hasMany(Product::class)->where('status', '>', 0);
+    }
 }
