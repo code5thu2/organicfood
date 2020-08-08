@@ -11,11 +11,9 @@ class Product extends Model
 
     public function createPro()
     {
-        if (request('upload')) {
-            $file_name = uploadImg('upload');
-            dd($file_name);
-            request()->merge(['image' => $file_name]);
-        }
+        // dd(request()->all());
+        $img = str_replace(url('uploads') . '/', '', request()->image);
+        // dd($img);
         $slug = Str::slug(request()->name);
         request()->merge(['slug' => $slug]);
         $product_id = Product::create(
@@ -30,7 +28,7 @@ class Product extends Model
                 'unit_id' => request()->unit_id,
                 'status' => request()->status,
                 'content' => request()->content,
-                'image' => request()->image,
+                'image' => $img,
             ]
         );
         if (request()->other_image) {

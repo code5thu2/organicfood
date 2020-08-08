@@ -36,18 +36,7 @@
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
-            <div class="form-group">
-                <label for="">Other image</label>
-                <div class="input-group mb-3">
-                    <input type="hidden" name="other_image" class="form-control" id="other_image">
-                    <div class="input-group-append">
-                        <button type="button" data-toggle="modal" data-target="#modelId" class="btn btn-outline-primary"><i class="fas fa-plus"></i></button>
-                    </div>
-                </div>
-                @error('other_upload')
-                <small class="text-danger">{{$message}}</small>
-                @enderror
-            </div>
+
     </div>
     <div class="col-md-6">
         <div class="form-group">
@@ -78,13 +67,6 @@
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
-                    <label for="">Product image</label>
-                    <input type="file" class="form-control-file  @error('upload') is-invalid @enderror" name="upload" placeholder="">
-                    @error('upload')
-                    <small class="text-danger">{{$message}}</small>
-                    @enderror
-                </div>
-                <div class="form-group">
                     <label for="">Trạng thái</label> <br>
                     <label class="custom-control custom-radio custom-control-inline">
                         <input type="radio" name="status" checked="" class="custom-control-input" value="1"><span class="custom-control-label">Enable</span>
@@ -94,11 +76,22 @@
                     </label>
                 </div>
             </div>
-            <div class="col-6"></div>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="card-deck" id="img_show_list">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="">Product image</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
+                        <div class="input-group-append">
+                            <button type="button" class="btn btn-primary" href="#modal-upload" data-toggle="modal"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <img src="" id="img_show" class="img-fluid" alt="">
+                    </div>
+                    @error('image')
+                    <small class="text-danger">{{$message}}</small>
+                    @enderror
+                </div>
+
+            </div>
         </div>
     </div>
     <div class="col-md-12">
@@ -110,6 +103,24 @@
             @enderror
         </div>
     </div>
+    <div class="col-12">
+        <div class="form-group">
+            <label for="">Other image</label>
+            <div class="input-group mb-3">
+                <input type="hidden" name="other_image" class="form-control" id="other_image">
+                <div class="input-group-append">
+                    <button type="button" data-toggle="modal" data-target="#modelId" class="btn btn-outline-primary"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+            @error('other_upload')
+            <small class="text-danger">{{$message}}</small>
+            @enderror
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card-deck" id="img_show_list">
+        </div>
+    </div>
     <button type="submit" class="btn btn-primary btn-block">Add</button>
     </form>
 </div>
@@ -119,6 +130,21 @@
 <script src="{{url('public')}}/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 <script src="{{url('public')}}/tinymce/config.js" referrerpolicy="origin"></script>
 <!-- Modal -->
+<div class="modal fade" id="modal-upload" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 1000px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe src="{{url('file')}}/dialog.php?akey=iwGeh4J5XFdIc4MVpG5M20BFejSGEw3bJeqpi3Vgm8w&field_id=image" width="100%" height="400px" style="border: 0;overflow-y:auto;" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 1000px;">
         <div class="modal-content">
@@ -146,6 +172,10 @@
             _html += '</div>';
         }
         $('#img_show_list').html(_html);
+    });
+    $('#modal-upload').on('hide.bs.modal', function() {
+        var _img = $('input#image').val();
+        $('img#img_show').attr('src', _img);
     });
 </script>
 @stop()
