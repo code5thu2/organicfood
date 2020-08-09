@@ -9,6 +9,8 @@ use App\Models\Supplier;
 use App\Models\Unit;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use App\Http\Requests\productAddRequest;
+use App\Models\Tag;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 use DB;
@@ -22,7 +24,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::paginate(10);
+        $product = Product::paginate(5);
         return view('admin.products.index', compact('product'));
     }
 
@@ -36,7 +38,8 @@ class ProductController extends Controller
         $category = Category::all();
         $supplier = Supplier::all();
         $unit = Unit::all();
-        return view('admin.products.create', compact('category', 'supplier', 'unit'));
+        $tag = Tag::all();
+        return view('admin.products.create', compact('category', 'supplier', 'unit', 'tag'));
     }
 
     /**
@@ -45,19 +48,15 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(productAddRequest $request)
     {
         $addPro = new Product;
-
-        DB::beginTransaction();
-
-        if ($addPro->createPro()) {
-            DB::commit();
+        $add = $addPro->createPro();
+        if ($add) {
             Alert::toast('Tạo mới sản phẩm thành công', 'success');
             return redirect()->route('admin.products.index');
-        } else {
-            DB::rollback();
-            Alert::toast('Có lỗi xảy ra khi tải ảnh sản phẩm', 'error');
+        } elseif (!$add) {
+            Alert::toast('có lỗi xảy ra, không thể tạo mới sản phẩm', 'error');
             return redirect()->back();
         }
     }
@@ -70,7 +69,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('admin.products.show', compact('product'));
     }
 
     /**
@@ -81,7 +80,12 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $category = Category::all();
+        $supplier = Supplier::all();
+        $unit = Unit::all();
+        $tag = Tag::all();
+        $tag_assignment = $product->tags->pluck('name', 'id')->toArray();
+        return view('admin.products.edit', compact('category', 'supplier', 'unit', 'tag', 'product', 'tag_assignment'));
     }
 
     /**
@@ -93,7 +97,16 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+
+        $editPro = new Product;
+        $add = $editPro->updatePro();
+        if ($add) {
+            Alert::toast('Update sản phẩm thành công', 'success');
+            return redirect()->route('admin.products.index');
+        } else {
+            Alert::toast('Update sản phẩm thành công !', 'success');
+            return redirect()->route('admin.products.index');
+        }
     }
 
     /**
@@ -104,6 +117,12 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        if ($product->images->count()) {
+            Image::where('product_id', $product->id)->delete();
+        }
+        if ($product->delete()) {
+            Alert::toast('Xóa sản phẩm thành công', 'success');
+            return redirect()->back();
+        };
     }
 }

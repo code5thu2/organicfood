@@ -15,27 +15,29 @@
 
                                     <ul class="open-lv1">
                                         <li class="icon-list">
-                                            <a href="{{route('home.view',['slug' => $model -> slug])}}" class="card-link lv1 w-75">{{$model->name}}</a>
+                                            <a href="{{route('home.view',['id' => $model -> id,'slug' => $model -> slug])}}" class="card-link lv1 w-75">{{$model->name}}</a>
                                             <a class="card-link lv1" data-toggle="collapse" href="#collapse-{{$model->id}}"><i class="fas fa-chevron-right float-right"></i></a>
                                         </li>
                                     </ul>
                                     <!-- lv2 -->
                                     <div id="collapse-{{$model->id}}" class="list-group collapse lv2" data-parent="#accordion" data-toggle="collapse">
-                                        @if($model->childCat)
+                                        @if($model->childCat->count())
                                         @foreach($model->childCat as $sub_model)
                                         <ul class="open">
                                             <li><i class="fas fa-chevron-right"></i>
-                                                <a href="{{route('home.view',['slug' => $sub_model -> slug])}}">{{$sub_model->name}}</a>
+                                                <a href="{{route('home.view',['id' => $sub_model -> id,'slug' => $sub_model -> slug])}}">{{$sub_model->name}}</a>
+                                                @if($sub_model->childCat->count())
                                                 <a href="#collapse-{{$sub_model->id}}" data-toggle="collapse"><i class="fa fa-plus float-right"></i></a>
+                                                @endif
                                             </li>
                                         </ul>
                                         <div id="collapse-{{$sub_model->id}}" class="panel-collapse collapse" data-parent="#collapse-{{$model->id}}">
                                             <ul class="list-group lv3 mb-3 ml-5">
-                                                <li><a href="">- Spinach</a></li>
-                                                <li><a href="">- Spring Onion</a></li>
-                                                <li><a href="">- Cabbage</a></li>
-                                                <li><a href="">- Spinach</a></li>
-                                                <li><a href="">- Lettuce</a></li>
+                                                @if($sub_model->childCat->count())
+                                                @foreach($sub_model->childCat as $sm)
+                                                <li><a href="{{route('home.view',['id' => $sm -> id,'slug' => $sm -> slug])}}">- {{$sm->name}}</a></li>
+                                                @endforeach
+                                                @endif
                                             </ul>
                                         </div>
                                         @endforeach

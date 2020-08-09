@@ -16,38 +16,59 @@
         </div>
     </div>
     <div class="product-detail-page">
-        @foreach(@product_detail as $model)
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <div class="sp-wrap">
-                        <a href="{{url('uploads')}}/Products/do-xanh.jpg"><img src="{{url('uploads')}}/Products/do-xanh.jpg" alt="" class="img-fluid"></a>
-                        <a href="{{url('uploads')}}/1596419198-elianna-friedman-4jpnpu7iw8k-unsplash.jpg"><img src="{{url('uploads')}}/1596419198-elianna-friedman-4jpnpu7iw8k-unsplash.jpg" alt="" class="img-fluid"></a>
-                        <a href="{{url('uploads')}}/Products/do-xanh.jpg"><img src="{{url('uploads')}}/Products/do-xanh.jpg" alt="" class="img-fluid"></a>
-                        <a href="{{url('uploads')}}/Products/do-xanh.jpg"><img src="{{url('uploads')}}/Products/do-xanh.jpg" alt="" class="img-fluid"></a>
-                        <a href="{{url('uploads')}}/Products/do-xanh.jpg"><img src="{{url('uploads')}}/Products/do-xanh.jpg" alt="" class="img-fluid"></a>
+                        <a href="{{url('uploads')}}/{{$product_detail->image}}"><img src="{{url('uploads')}}/{{$product_detail->image}}" alt="" class="img-fluid"></a>
+                        @if($product_detail->images)
+                        @foreach($product_detail->images as $i)
+                        <a href="{{url('uploads')}}/{{$i->name}}"><img src="{{url('uploads')}}/{{$i->name}}" alt="" class="img-fluid"></a>
+                        @endforeach
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <h3 class="product-name">Lorem ipsum dolor sit,</h3>
+                    <h3 class="product-name">{{$product_detail->name}}</h3>
                     <div class="rating-total">
                         <div class="product-rated" data-rating="4"></div>
                         <span> 05 reviews </span>
                     </div>
                     <div class="price">
-                        <div class="original-price">$23.00</div>
-                        <div class="sale-price"><del>$12.00</del></div>
+
+                        <div class="original-price">đ {{$product_detail->sale > 0 ? number_format($product_detail->sale) : number_format($product_detail->price)}}</div>
+                        <div class="sale-price"><del>{{$product_detail->sale > 0 ? 'đ '.number_format($product_detail->price) : ''}}</del></div>
                     </div>
                     <div class="product-status">
-                        Available: <span>Còn hàng</span>
+                        Available: <span>
+                            <?php switch ($product_detail->status) {
+                                case 1:
+                                    echo ('Hết hàng');
+                                    break;
+                                case 2:
+                                    echo ('Còn hàng');
+                                    break;
+                                case 3:
+                                    echo ('New');
+                                    break;
+                                case 4:
+                                    echo ('Sale');
+                                    break;
+                                case 5:
+                                    echo ('Hot');
+                                    break;
+                                default:
+                                    '';
+                            } ?>
+                        </span>
                     </div>
                     <div class="product-description">
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat, animi veniam. Nisi praesentium tenetur quia sequi odio porro iure nihil? Commodi omnis dolorem dignissimos, nisi blanditiis dolorum delectus illum alias.</p>
+                        <p>{{$product_detail->description}}</p>
                     </div>
                     <div class="product-quantity">
                         <div class="def-number-input number-input safari_only">
                             <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-                            <input class="quantity" min="1" name="quantity" value="" type="number">
+                            <input class="quantity" min="1" name="quantity" value="1" type="number">
                             <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
                         </div>
                         <div class="cart ml-2">
@@ -62,13 +83,16 @@
                     <div class="tag-box">
                         <div class="tag-row">
                             <span class="tag-label category">Category</span><span class="dots">:</span>
-                            <div class="category-value tag-label-value ">Vegetables</div>
+                            <div class="category-value tag-label-value ">{{$product_detail->cat->name}}</div>
                         </div>
                         <div class="tag-row">
                             <span class="tag-label">Tags</span><span class="dots">:</span>
-                            <div class="tag-label-value"><a class="tag-btn" href="#">Food</a>
-                                <a class="tag-btn" href="#">Organic Food</a>
-                                <a class="tag-btn" href="#">Garden</a>
+                            <div class="tag-label-value">
+                                @if($product_detail->tags->count())
+                                @foreach($product_detail->tags as $t)
+                                <a class="tag-btn" href="#">{{$t->name}}</a>
+                                @endforeach
+                                @endif
                             </div>
                         </div>
                         <div class="tag-row">
@@ -99,9 +123,8 @@
                             </li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane fade show active" id="description">
-                                <h4 class="mt-2">Home tab content</h4>
-                                <p>Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui. Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth.</p>
+                            <div class="tab-pane fade show active mt-2" id="description">
+                                {!!$product_detail->content!!}
                             </div>
                             <div class="tab-pane fade" id="review">
                                 <h4 class="mt-2">Profile tab content</h4>
@@ -115,7 +138,6 @@
                 </div>
             </div>
         </div>
-        @endforeach
     </div>
     <!-- bắt đầu phần help box -->
     <div class="container help-box mt-4">

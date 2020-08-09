@@ -23,29 +23,35 @@
                 @include('page.category_widget')
                 <div class="col-md-8 col-sm-12 col xs-12">
                     <div class="row">
+                        @if($category->products->count())
+                        @foreach($pro_by_id as $model)
                         <div class="col-md-4">
                             <div class="card shadow card-pro">
                                 <div class="img-pro">
-                                    <img class="card-img-top img-fluid" src="{{url('public')}}/app/images/background-img/bg-category.jpg" alt="Card image">
+                                    <img class="lazy card-img-top img-fluid" data-src="{{url('uploads')}}/{{$model->image}}" alt="">
                                     <div class="overlay-pro">
                                         <ul class="icon-content">
-                                            <li><a href="#" class="icon-pro">
+                                            <li><a href="{{route('home.view',['id'=> $model->id,'slug' => $model->slug])}}" class="icon-pro">
                                                     <i class="far fa-eye"></i>
                                                 </a></li>
                                             <li><a href="#" class="icon-pro">
                                                     <i class="far fa-heart"></i>
                                                 </a></li>
-                                            <li><a href="#" class="icon-pro">
+                                            <li><a href="" class="icon-pro">
                                                     <i class="fas fa-cart-arrow-down"></i>
                                                 </a></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="card-body text-center body-pro">
-                                    <span class="card-title title-pro">Lee Uniforms Vegetable's Short-Sleeve</span>
+                                    <span class="card-title title-pro">{{$model->name}}</span>
                                     <div class="price-pro">
-                                        <span>$ 23.00</span>
-                                        <span><del>$ 12.00</del></span>
+                                        @if($model->sale > 0)
+                                        <span>đ {{number_format($model->sale)}}</span>
+                                        <span><del>đ {{number_format($model->price)}}</del></span>
+                                        @else
+                                        <span>đ {{number_format($model->price)}}</span>
+                                        @endif
                                     </div>
                                     <div class="buy-now">
                                         <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
@@ -53,7 +59,10 @@
                                 </div>
                             </div>
                         </div>
+                        @endforeach
+                        @endif
                     </div>
+                    <div>{{$pro_by_id->links()}}</div>
                 </div>
             </div>
         </div>

@@ -11,15 +11,12 @@ class Product extends Model
 
     public function createPro()
     {
-        // dd(request()->all());
         $img = str_replace(url('uploads') . '/', '', request()->image);
-        // dd($img);
         $slug = Str::slug(request()->name);
-        request()->merge(['slug' => $slug]);
         $product_id = Product::create(
             [
                 'name' => request()->name,
-                'slug' => request()->slug,
+                'slug' => $slug,
                 'price' => request()->price,
                 'sale' => request()->sale,
                 'description' => request()->description,
@@ -31,6 +28,15 @@ class Product extends Model
                 'image' => $img,
             ]
         );
+        // dd($product_id->all());
+        if (request()->tag) {
+            foreach (request()->tag as $tag_id) {
+                ProductTag::create([
+                    'product_id' => $product_id->id,
+                    'tag_id' => $tag_id
+                ]);
+            }
+        }
         if (request()->other_image) {
             $photos = json_decode(request()->other_image, true);
             foreach ($photos as $photo) {
@@ -43,6 +49,55 @@ class Product extends Model
                 ]);
             }
         }
+    }
+    public function updatePro()
+    {
+        // dd(request()->all());
+        $img = str_replace(url('uploads') . '/', '', request()->image);
+        $slug = Str::slug(request()->name);
+        $product_id = Product::where('id', request()->id)->update(
+            [
+                'name' => request()->name,
+                'slug' => $slug,
+                'price' => request()->price,
+                'sale' => request()->sale,
+                'description' => request()->description,
+                'category_id' => request()->category_id,
+                'supplier_id' => request()->supplier_id,
+                'unit_id' => request()->unit_id,
+                'status' => request()->status,
+                'content' => request()->content,
+                'image' =>  $img,
+            ]
+        );
+        if (is_array(request()->tag)) {
+            // dd(request()->tag);
+            ProductTag::where('product_id', request()->id)->delete();
+            foreach (request()->tag as $tag_id) {
+                ProductTag::create([
+                    'product_id' => request()->id,
+                    'tag_id' => $tag_id
+                ]);
+            }
+        } else {
+            ProductTag::where('product_id', request()->id)->delete();
+        }
+        if (request()->other_image) {
+            Image::where('product_id', request()->id)->delete();
+            $photos = json_decode(request()->other_image, true);
+            foreach ($photos as $photo) {
+                $image_name = str_replace(url('uploads') . '/', '', $photo);
+                Image::create([
+                    'product_id' => request()->id,
+                    'name' => $image_name,
+                    'prioty' => 1,
+                    'status' => 1,
+                ]);
+            }
+        }
+    }
+    public function deletePro($id)
+    {
     }
 
     public function cat()
@@ -57,8 +112,12 @@ class Product extends Model
     {
         return $this->hasOne(Unit::class, 'id', 'unit_id');
     }
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class, 'product_tags');
     }
 }

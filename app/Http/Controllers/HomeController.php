@@ -37,12 +37,15 @@ class HomeController extends Controller
         return view('page.product_list', compact('product'));
     }
 
-    public function view($slug)
+    public function view($id, $slug)
     {
-        $category = Category::where('slug', $slug)->first();
-        $product_detail = Product::where('slug', $slug)->first();
+        $category = Category::where(['slug' => $slug, 'id' => $id])->first();
         if ($category) {
-            return view('page.product_view', compact('category'));
+            $pro_by_id = Product::where('category_id', $category->id)->where('status', '>', 0)->paginate(20);
+        }
+        $product_detail = Product::where(['slug' => $slug, 'id' => $id])->first();
+        if ($category) {
+            return view('page.product_view', compact('category', 'pro_by_id'));
         } elseif ($product_detail) {
             return view('page.product_detail', compact('product_detail'));
         } else {

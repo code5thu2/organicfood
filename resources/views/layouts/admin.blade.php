@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/fonts/flag-icon-css/flag-icon.min.css"> -->
+    @yield('css')
     <style>
         body {
             font-family: "montserratRegular";
@@ -47,7 +48,7 @@
             font-family: "montserratMedium";
         }
     </style>
-    <script>
+    <script type="text/javascript">
         var base_url = function() {
             return "{{url('')}}";
         }

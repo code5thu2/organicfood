@@ -76,12 +76,17 @@
 }
 .mid-nav #cartBox {
     position: absolute;
-    width: 260px;
+    width: 350px;
     display: none;
     z-index: 75;
     top: 165px;
     right: 95px;
     color: #5a4a3b;
+}
+.mid-nav #cartBox .cart-pro {
+    color: #81af76;
+    font-weight: 600;
+    font-size: 15px;
 }
 .mid-nav #cartBox button {
     width: 45%;

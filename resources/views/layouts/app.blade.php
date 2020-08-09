@@ -98,20 +98,31 @@
                         </button>
                         <button class="btn btn-circle cart-btn" onclick="showCartBox()">
                             <i class="fa fa-shopping-bag"></i>
-                            <span class="badge badge-secondary">01</span>
+                            <span class="badge badge-secondary">{{$cart->total_quantity}}</span>
                         </button>
                     </div>
                 </div>
                 <!-- Bắt đầu cart box -->
                 <div class="card float-right" id="cartBox">
                     <div class="card-body">
-                        <p class="card-text font-weight-bolder">2 items in your cart</p>
+                        <span class="float-right"><a type="btn" onclick="closeCartBox()"><i class="fas fa-times"></i></a></span>
+                        <p class="card-text font-weight-bolder">{{$cart->total_quantity}} items in your cart</p>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item border-0">Item 1</li>
-                            <li class="list-group-item border-0">Item 2</li>
-                            <li class="list-group-item border-0">Item 3</li>
+                            @foreach($cart->items as $item)
+                            <li class="list-group-item border-0">
+                                <div class="row">
+                                    <div class="col-3"><img src="{{url('uploads')}}/{{$item['image']}}" class="img-fluid" alt=""></div>
+                                    <div class="col-9">
+                                        <div class="row">
+                                            <div class="col-12 cart-pro">{{$item['name']}}</div>
+                                            <div class="col-12">{{$item['quantity']}} x {{$item['price']}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            @endforeach
                         </ul>
-                        <h5>Total: $6.5</h5>
+                        <h5>Total: {{number_format($cart->total_price)}} đ</h5>
                         <div class="">
                             <button type="button" class="view-cart btn btn-outline-primary">
                                 view cart
@@ -292,13 +303,13 @@
         }
 
         function showCartBox() {
-            var x = document.getElementById('cartBox');
-            if (x.style.display === 'none') {
-                x.style.display = 'block';
-            } else {
-                x.style.display = 'none';
-            }
+            document.getElementById('cartBox').style.display = 'block';
         }
+
+        function closeCartBox() {
+            document.getElementById('cartBox').style.display = 'none';
+        }
+
         //lazy load image
         $(function() {
             $('.lazy').Lazy();

@@ -21,7 +21,15 @@ Route::get('/blog', 'Admin\BlogController@blog_list')->name('blogs.blog_list');
 Route::get('/blog/{id}-{slug}', 'Admin\BlogController@blog_detail')->name('blogs.blog_detail');
 //Product list
 Route::get('/product-list', 'HomeController@product_list')->name('home.product_list');
-Route::get('product-list/{slug}', 'HomeController@view')->name('home.view');
+Route::get('product-list/{id}-{slug}', 'HomeController@view')->name('home.view');
+//Order
+route::group(['prefix' => 'cart'], function () {
+    route::get('/view', 'CartController@view')->name('cart.view');
+    route::get('/add/{id}', 'CartController@add')->name('cart.add');
+    route::get('/remove/{id}', 'CartController@remove')->name('cart.remove');
+    route::get('/update/{id}/{quantity}', 'CartController@update')->name('cart.update');
+    route::get('/clear', 'CartController@clear')->name('cart.clear');
+});
 
 route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], function () {
     Route::get('/', 'AdminController@index')->name('index');
