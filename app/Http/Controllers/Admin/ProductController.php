@@ -51,7 +51,7 @@ class ProductController extends Controller
     public function store(productAddRequest $request)
     {
         $addPro = new Product;
-        $add = $addPro->createPro();
+        $add = $addPro->createPro($request);
         if ($add) {
             Alert::toast('Tạo mới sản phẩm thành công', 'success');
             return redirect()->route('admin.products.index');
@@ -99,12 +99,12 @@ class ProductController extends Controller
     {
 
         $editPro = new Product;
-        $add = $editPro->updatePro();
+        $add = $editPro->updatePro($request);
         if ($add) {
             Alert::toast('Update sản phẩm thành công', 'success');
             return redirect()->route('admin.products.index');
         } else {
-            Alert::toast('Update sản phẩm thành công !', 'success');
+            Alert::toast('Update sản phẩm không thành công !', 'error');
             return redirect()->route('admin.products.index');
         }
     }

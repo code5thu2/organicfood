@@ -12,9 +12,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(RoleTableSeeder::class);
-        $this->call(AdminAccountDatabaseSeeder::class);
-        $this->call(UserTableSeeder::class);
+        // $this->call(RoleTableSeeder::class);
+        // $this->call(AdminAccountDatabaseSeeder::class);
+        // $this->call(UserTableSeeder::class);
+        $this->call(PaymentDatabaseSeeder::class);
         // $this->call(ProductTableSeeder::class);
     }
 }
@@ -30,6 +31,15 @@ class AdminAccountDatabaseSeeder extends Seeder
         DB::table('user_roles')->insert([
             'user_id' => 1,
             'role_id' => 1
+        ]);
+    }
+}
+class PaymentDatabaseSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('payments')->insert([
+            'name' => 'Thanh toán khi nhận hàng'
         ]);
     }
 }

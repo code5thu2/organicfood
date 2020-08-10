@@ -64,7 +64,7 @@
                         </span>
                     </div>
                 </div>
-                <button type="button" name="" id="" class="btn btn-danger btn-lg btn-block mt-3">Tiến hành thanh toán</button>
+                <a type="button" href="{{route('checkout')}}" class="btn btn-danger btn-lg btn-block mt-3">Tiến hành thanh toán</a>
             </div>
         </div>
     </div>

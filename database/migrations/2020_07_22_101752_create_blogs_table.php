@@ -14,17 +14,17 @@ class CreateBlogsTable extends Migration
     public function up()
     {
         Schema::create('blogs', function (Blueprint $table) {
-    $table->increments('id');
-    $table->string('name');
-    $table->string('slug')->unique();
-    $table->string('image');
-    $table->string('summary');
-    $table->text('content');
-    $table->tinyInteger('status')->default(0);
-    $table->string('meta_key')->nullable();
-    $table->string('meta_descript')->nullable();
-     $table->string('meta_title')->nullable();
-    $table->timestamps();
+            $table->increments('id');
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->string('image');
+            $table->string('summary');
+            $table->text('content');
+            $table->tinyInteger('status')->default(0);
+            $table->string('meta_key')->nullable();
+            $table->string('meta_descript')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->timestamps();
         });
     }
 

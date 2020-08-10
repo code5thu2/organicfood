@@ -30,6 +30,11 @@ route::group(['prefix' => 'cart'], function () {
     route::get('/update/{id}', 'CartController@update')->name('cart.update');
     route::get('/clear', 'CartController@clear')->name('cart.clear');
 });
+//Order
+route::group(['prefix' => 'checkout'], function () {
+    route::get('/', 'CheckoutController@form')->name('checkout');
+    route::post('/', 'CheckoutController@submit_form')->name('checkout');
+});
 
 route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], function () {
     Route::get('/', 'AdminController@index')->name('index');
