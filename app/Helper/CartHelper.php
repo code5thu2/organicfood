@@ -20,6 +20,7 @@ class CartHelper
             'name' => $product->name,
             'price' => $product->sale > 0 ? $product->sale : $product->price,
             'image' => $product->image,
+            'unit' => $product->unit->name,
             'quantity' => $quantity,
         ];
         if (isset($this->items[$product->id])) {
@@ -31,15 +32,15 @@ class CartHelper
     }
     public function remove($id)
     {
-        if (isset($this->items[$product->id])) {
-            unset($this->items[$product->id]);
+        if (isset($this->items[$id])) {
+            unset($this->items[$id]);
         }
         session(['cart' => $this->items]);
     }
     public function update($id, $quantity = 1)
     {
         if (isset($this->items[$id])) {
-            $this->items[$product->id]['quantity'] = $quantity;
+            $this->items[$id]['quantity'] = $quantity;
         }
         session(['cart' => $this->items]);
     }

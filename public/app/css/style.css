@@ -105,6 +105,11 @@
     box-shadow: none;
     margin: 0;
     text-transform: none;
+    width: 45%;
+    font-size: small;
+    border-radius: 0;
+    padding: 2px 5px;
+    outline: 2px;
 }
 .mid-nav #cartBox .view-cart:hover {
     background-color: #5a5652 !important;
@@ -1668,24 +1673,22 @@ a.icon-pro:hover {
     color: #4a4642;
 }
 
-.product-detail-page
     .product-quantity
     .number-input
     input[type="number"]::-webkit-inner-spin-button,
-.product-detail-page
     .product-quantity
     .number-input
     input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
-.product-detail-page .product-quantity .number-input {
+ .product-quantity .number-input {
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.product-detail-page .product-quantity .number-input button {
+ .product-quantity .number-input button {
     -webkit-appearance: none;
     background-color: transparent;
     border: none;
@@ -1696,8 +1699,8 @@ a.icon-pro:hover {
     position: relative;
 }
 
-.product-detail-page .product-quantity .number-input button:before,
-.product-detail-page .product-quantity .number-input button:after {
+ .product-quantity .number-input button:before,
+ .product-quantity .number-input button:after {
     display: inline-block;
     position: absolute;
     content: "";
@@ -1705,11 +1708,11 @@ a.icon-pro:hover {
     transform: translate(-50%, -50%);
 }
 
-.product-detail-page .product-quantity .number-input button.plus:after {
+ .product-quantity .number-input button.plus:after {
     transform: translate(-50%, -50%) rotate(90deg);
 }
 
-.product-detail-page .product-quantity .number-input input[type="number"] {
+ .product-quantity .number-input input[type="number"] {
     text-align: center;
 }
 
@@ -1719,22 +1722,21 @@ a.icon-pro:hover {
     border-radius: 0.25rem;
 }
 
-.product-detail-page .product-quantity .number-input.number-input button {
+ .product-quantity .number-input.number-input button {
     width: 2.6rem;
     height: 0.7rem;
 }
 
-.product-detail-page .product-quantity .number-input.number-input button.minus {
+ .product-quantity .number-input.number-input button.minus {
     padding-left: 10px;
 }
 
-.product-detail-page .product-quantity .number-input.number-input button:before,
-.product-detail-page .product-quantity .number-input.number-input button:after {
+ .product-quantity .number-input.number-input button:before,
+ .product-quantity .number-input.number-input button:after {
     width: 0.7rem;
     background-color: #495057;
 }
 
-.product-detail-page
     .product-quantity
     .number-input.number-input
     input[type="number"] {
@@ -1749,11 +1751,11 @@ a.icon-pro:hover {
 
 @media not all and (min-resolution: 0.001dpcm) {
     @supports (-webkit-appearance: none) and (stroke-color: transparent) {
-        .product-detail-page
+        
             .product-quantity
             .number-input.def-number-input.safari_only
             button:before,
-        .product-detail-page
+        
             .product-quantity
             .number-input.def-number-input.safari_only
             button:after {

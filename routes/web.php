@@ -27,7 +27,7 @@ route::group(['prefix' => 'cart'], function () {
     route::get('/view', 'CartController@view')->name('cart.view');
     route::get('/add/{id}', 'CartController@add')->name('cart.add');
     route::get('/remove/{id}', 'CartController@remove')->name('cart.remove');
-    route::get('/update/{id}/{quantity}', 'CartController@update')->name('cart.update');
+    route::get('/update/{id}', 'CartController@update')->name('cart.update');
     route::get('/clear', 'CartController@clear')->name('cart.clear');
 });
 
