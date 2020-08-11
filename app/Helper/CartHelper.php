@@ -15,6 +15,7 @@ class CartHelper
     }
     public function add($product, $quantity = 1)
     {
+        request()->quantity ? $quantity = request()->quantity : 1;
         $item = [
             'id' => $product->id,
             'name' => $product->name,

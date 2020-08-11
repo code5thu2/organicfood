@@ -31,8 +31,8 @@
                 <div class="col-md-6">
                     <h3 class="product-name">{{$product_detail->name}}</h3>
                     <div class="rating-total">
-                        <div class="product-rated" data-rating="4"></div>
-                        <span> 05 reviews </span>
+                        <div class="product-rated mt-2" data-rating="{{$product_detail->total_number_rating_point > 0 ? round($product_detail->total_number_rating_point / $product_detail->total_number_rating, 1, PHP_ROUND_HALF_UP) : 0}}"></div>
+                        <span> ({{$product_detail->total_number_rating}} nhận xét) </span>
                     </div>
                     <div class="price">
 
@@ -66,14 +66,16 @@
                         <p>{{$product_detail->description}}</p>
                     </div>
                     <div class="product-quantity">
-                        <div class="def-number-input number-input safari_only">
-                            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-                            <input class="quantity" min="1" name="quantity" value="1" type="number">
-                            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
-                        </div>
-                        <div class="cart ml-2">
-                            <button class="cart-detail-btn">Add to cart</button>
-                        </div>
+                        <form action="{{route('cart.add',['id' => $product_detail->id])}}" method="get">
+                            <div class="def-number-input number-input safari_only">
+                                <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+                                <input class="quantity" min="1" name="quantity" value="1" type="number">
+                                <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                            </div>
+                            <div class="cart ml-2">
+                                <button type="submit" class="cart-detail-btn">Add to cart</button>
+                            </div>
+                        </form>
                         <div class="extra">
                             <ul class="list-inline">
                                 <li><a href="#"><i class="fas fa-heart"></i></a></li>
@@ -127,11 +129,67 @@
                                 {!!$product_detail->content!!}
                             </div>
                             <div class="tab-pane fade" id="review">
-                                <h4 class="mt-2">Profile tab content</h4>
-                                <div class="product-rating" data-rating=""></div>
-                                <input type="" name="rate" value="" id="input_rate">
-                                <input type="text" id="input_1" value="2" gia_tri="2">
-                                <div class="mt-3" id="kq_input_1">ABC</div>
+                                <div class="row align-items-center rated-box">
+                                    <div class="rating-point col-sm-4 text-center p-4">
+                                        <h4>Đánh giá trung bình</h4>
+                                        <p class="score">{{$product_detail->total_number_rating_point > 0 ? round($product_detail->total_number_rating_point / $product_detail->total_number_rating, 1, PHP_ROUND_HALF_UP) : 0}}/5</p>
+                                        <div class="product-rated" data-rating="{{$product_detail->total_number_rating_point > 0 ? round($product_detail->total_number_rating_point / $product_detail->total_number_rating, 1, PHP_ROUND_HALF_UP) : 0}}"></div>
+                                        <p>({{$product_detail->total_number_rating}} nhận xét)</p>
+                                    </div>
+                                    <div class="col-sm-4 text-center p-4"></div>
+                                    <div class="col-sm-4 text-center p-4 align-items-center">
+                                        <div class="">
+                                            @if(Auth::guard('cus')->check())
+                                            <button class="btn btn-danger" data-toggle="collapse" data-target="#collapserating" aria-expanded="false" aria-controls="collapserating">Viết nhận xét của bạn</button>
+                                            @else
+                                            <button class="btn btn-primary" data-toggle="collapse" data-target="#collapserating" aria-expanded="false" aria-controls="collapserating">Đăng nhập để đánh giá</button>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="collapse row align-items-center p-4" id="collapserating">
+                                    @if(Auth::guard('cus')->check())
+                                    @if(Auth::guard('cus')->user()->ratings->count())
+                                    <h5>Bạn đã đánh giá sản phẩm này</h5>
+                                    @else
+                                    <span>Đánh giá của bạn: </span>
+                                    <div class="product-rating float-right" data-rating=""></div>
+                                    <form action="{{route('rating',['id' => $product_detail->id])}}" method="post">
+                                        @csrf
+                                        <div class="mt-3">
+                                            <input type="hidden" name="number" value="" id="input_rate">
+                                            <input type="hidden" name="product_id" value="{{$product_detail->id}}">
+                                            <input type="hidden" name="customer_id" value="{{Auth::guard('cus')->user()->id}}">
+                                            <textarea class="mt-1" name="content" cols="100%" rows="5"></textarea>
+                                        </div>
+                                        <div class="w-100">
+                                            <button type="submit" class="btn btn-sm btn-warning mt-2">Gửi đánh giá</button>
+                                        </div>
+                                    </form>
+                                    @endif
+                                    @else
+                                    <form action="{{route('customer.post_login')}}" method="post">
+                                        @csrf
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Email</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" name="email" class="form-control" value="{{old('email')}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Password</label>
+                                            <div class="col-sm-8">
+                                                <input type="password" name="password" class="form-control" value="{{old('password')}}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                <button type="submit" class="btn btn-sm btn-primary">Đăng nhập</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -204,10 +262,22 @@
     });
 </script>
 <script>
+    $(".product-rated").starRating({
+        totalStars: 5,
+        starShape: 'rounded',
+        starSize: 25,
+        emptyColor: 'lightgray',
+        hoverColor: '#FFC120',
+        activeColor: '#FFC120',
+        ratedColor: '#FFC120',
+        useGradient: false,
+        readOnly: true
+    });
     $(".product-rating").starRating({
         totalStars: 5,
         starShape: 'rounded',
-        starSize: 45,
+        starSize: 25,
+        minRating: 1,
         emptyColor: 'lightgray',
         hoverColor: '#5e9e47',
         activeColor: '#5e9e47',
@@ -221,12 +291,5 @@
             console.log(_input.value);
         }
     });
-    var input_1 = document.getElementById("input_1")
-    var value_input_1 = input_1.value
-    console.log(value_input_1)
-    var gia_tri_input_1 = input_1.getAttribute("gia_tri")
-    console.log(gia_tri_input_1)
-    var div_input_1 = document.getElementById("kq_input_1")
-    div_input_1.innerHTML = value_input_1
 </script>
 @stop()

@@ -98,7 +98,9 @@
                         </button>
                         <button class="btn btn-circle cart-btn" onclick="showCartBox()">
                             <i class="fa fa-shopping-bag"></i>
+                            @if($cart->total_quantity > 0)
                             <span class="badge badge-secondary">{{$cart->total_quantity < 10 ? '0'.$cart->total_quantity : $cart->total_quantity }}</span>
+                            @endif
                         </button>
                     </div>
                 </div>

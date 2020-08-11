@@ -98,6 +98,15 @@ class Product extends Model
         }
         return $request;
     }
+    public function addRating($id)
+    {
+        $proAdd = Product::find($id);
+        $pro = Product::where('id', $id)->update([
+            'total_number_rating_point' => $proAdd->total_number_rating_point += request()->number,
+            'total_number_rating' => $proAdd->total_number_rating += 1,
+        ]);
+        return $id;
+    }
     public function deletePro($id)
     {
     }
@@ -121,5 +130,9 @@ class Product extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'product_tags');
+    }
+    public function orders()
+    {
+        return $this->belongsToMany('App\Models\Order', 'detail_orders', 'product_id', 'order_id')->as('order_detail');
     }
 }

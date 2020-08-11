@@ -16,4 +16,12 @@ class Customer extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class, 'customer_id', 'id');
+    }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

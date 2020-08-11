@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use Illuminate\Http\Request;
-use Route;
+use Illuminate\Support\Facades\Route;
 
 use function GuzzleHttp\json_decode;
 

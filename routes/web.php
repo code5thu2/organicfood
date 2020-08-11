@@ -30,10 +30,15 @@ route::group(['prefix' => 'cart'], function () {
     route::get('/update/{id}', 'CartController@update')->name('cart.update');
     route::get('/clear', 'CartController@clear')->name('cart.clear');
 });
-//Order
+//checkout
 route::group(['prefix' => 'checkout'], function () {
     route::get('/', 'CheckoutController@form')->name('checkout');
     route::post('/', 'CheckoutController@submit_form')->name('checkout');
+});
+
+//rating
+route::group(['prefix' => 'rating'], function () {
+    route::post('/{id}', 'RatingController@submit_rating')->name('rating');
 });
 
 route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], function () {
@@ -50,8 +55,10 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
         'users' => 'UserController',
         'blogs' => 'BlogController',
         'tags' => 'TagController',
-
     ]);
+    Route::get('/orders', 'OrderController@index')->name('orders.index');
+    Route::get('/orders/{id}', 'OrderController@show')->name('orders.show');
+    Route::put('/orders/status-update/{id}-{status}', 'OrderController@status_update')->name('orders.status_update');
 });
 
 route::post('admin/login', 'Admin\AdminController@post_login')->name('admin.login');

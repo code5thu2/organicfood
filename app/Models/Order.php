@@ -11,6 +11,11 @@ class Order extends Model
 {
     protected $fillable = ['name', 'email', 'phone', 'address', 'note', 'customer_id', 'payment_id', 'total', 'status'];
 
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
     public function createOrder($cart)
     {
         $cus_id = Auth::guard('cus')->user()->id;
@@ -49,5 +54,29 @@ class Order extends Model
             session(['cart' => '']);
         }
         return $cart;
+    }
+    public function statusUpdateByAd($id, $status)
+    {
+        $order = Order::find($id);
+        switch ($status) {
+            case 0:
+                $orderUpdate = $order->update(['status' => 1]);
+                break;
+            case 1:
+                $orderUpdate = $order->update(['status' => 2]);
+                break;
+            case 2:
+                $orderUpdate = $order->update(['status' => 3]);
+                break;
+            case 4:
+                $orderUpdate = $order->update(['status' => 4]);
+                break;
+            default:
+                break;
+        }
+        if ($orderUpdate) {
+            return true;
+        }
+        return false;
     }
 }

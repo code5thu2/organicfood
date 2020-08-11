@@ -1847,6 +1847,25 @@ a.icon-pro:hover {
     color: #4a4642;
     font-weight: 500;
 }
+.product-detail-page .rating-point .score {
+    color: rgb(254, 48, 46);
+    font-size: 47px;
+    font-weight: 500;
+    margin: 20px 0px 0px;
+}
+.product-detail-page .rated-box {
+    border-bottom: 1px solid rgb(247, 247, 247);
+}
+/* Kết thúc product-detail-page */
+/* bắt đầu phần order detail */
+.order-detail-page .cart-table td {
+    padding: 30px 30px;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 14px;
+    color: #4a4642;
+    font-weight: 500;
+}
 .order-detail-page {
     margin-bottom: 200px;
 }
