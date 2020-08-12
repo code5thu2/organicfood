@@ -9,6 +9,7 @@ use App\Models\Payment;
 use App\Helper\CartHelper;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\createOrderRequest;
 
 class CheckoutController extends Controller
 {
@@ -21,7 +22,7 @@ class CheckoutController extends Controller
         $payment = Payment::all();
         return view('checkout', compact('payment'));
     }
-    public function submit_form(Request $request, CartHelper $cart)
+    public function submit_form(createOrderRequest $request, CartHelper $cart)
     {
         $createOrder = new Order;
         if ($createOrder->createOrder($cart)) {

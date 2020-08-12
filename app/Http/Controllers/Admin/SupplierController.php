@@ -7,6 +7,7 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Requests\supplierAddRequest;
 use App\Http\Requests\supplierEditRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class SupplierController extends Controller
 {
@@ -101,9 +102,13 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        if ($supplier->delete()) {
-            return redirect()->back()->with('yes', 'Successfully deleted the supplier');
+        if (!$supplier->products->count()) {
+            if ($supplier->delete()) {
+                Alert::toast('Xóa nhà cung cấp thành công', 'success');
+                return redirect()->back();
+            }
         }
-        return redirect()->back()->with('no', 'cannot deleted the supplier');
+        Alert::toast('Không thể xóa nhà cung cấp', 'error');
+        return redirect()->back();
     }
 }

@@ -9,9 +9,16 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $orders = Order::orderBy('id', 'DESC')->paginate(15);
+        $orderSearch = new Order;
+        $status = '';
+        if (request()->status > 0) {
+            $status = request()->status;
+            $key = request()->key;
+            $orders =  $orderSearch->orderSearchByStatus($status, $key);
+        }
         return view('admin.orders.index', compact('orders'));
     }
     public function show($id)

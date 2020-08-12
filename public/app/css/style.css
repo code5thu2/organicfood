@@ -1982,7 +1982,6 @@ a.icon-pro:hover {
 /* kết thúcthúc order detail */
 /* bắt đầu phần checkout page */
 .checkout-box {
-    border-bottom: 1px solid #f1f1f1;
     padding: 18px 0 0px;
 }
 
@@ -1993,6 +1992,7 @@ a.icon-pro:hover {
 textarea.form-control,
 select.form-control {
     background: #f1f1f1;
+    border: 1px solid #f1f1f1;
     height: 52px;
     width: 100%;
     border-radius: 2px;
@@ -2001,10 +2001,8 @@ select.form-control {
     padding: 0 22px;
     color: #898785;
     font-size: 14px;
-    text-transform: capitalize;
     font-weight: 400;
-    margin-bottom: 17px;
-    border: none;
+    margin-top: 17px;
     box-shadow: none;
 }
 .checkout-box .checkout-order-table {

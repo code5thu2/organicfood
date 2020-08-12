@@ -75,7 +75,7 @@
                                 <div class="form-group row">
                                     @foreach($roles as $r)
                                     <?php $checked = in_array($r->name, $role_assignment) ? 'checked' : ''; ?>
-                                    <div class="col-md-6 pb-2" style="">
+                                    <div class="col-md-6 pb-2">
                                         <input type="checkbox" {{$checked}} name="role[]" value="{{$r->id}}" data-toggle="toggle" data-size="xs" data-onstyle="success"> {{$r->name}}
                                     </div>
                                     @endforeach

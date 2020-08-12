@@ -7,17 +7,27 @@ use Carbon\Carbon; ?>
 <div class="row">
     <div class="col-12 table-responsive p-3 bg-white">
         <div class="row pb-2">
-            <div class="col-8">
+            <div class="col-6">
             </div>
-            <div class="col-4">
-                <div class="form-group">
-                    <div class="input-group">
-                        <input type="text" class="form-control">
-                        <div class="input-group-append">
-                            <button type="button" class="btn btn-primary">Go!</button>
+            <div class="col-6">
+                <form action="" method="get">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <select class="mr-2" name="status" id="">
+                                <option value="0">All</option>
+                                <option {{Request::get('status') == 1 ? 'selected' : ''}} value="1">Chờ duyệt</option>
+                                <option {{Request::get('status') == 2 ? 'selected' : ''}} value="2">Đã xác nhận</option>
+                                <option {{Request::get('status') == 3 ? 'selected' : ''}} value="3">Đang vận chuyển</option>
+                                <option {{Request::get('status') == 4 ? 'selected' : ''}} value="4">Hoàn thành</option>
+                                <option {{Request::get('status') == 5 ? 'selected' : ''}} value="5">Hủy</option>
+                            </select>
+                            <input type="text" name="key" placeholder="Nhập mã đơn..." class="form-control">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary">Go!</button>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
         <table class="table table-hover">
@@ -25,10 +35,10 @@ use Carbon\Carbon; ?>
                 <tr>
                     <th width="5%">#</th>
                     <th width="20%">Người đặt</th>
-                    <th width="30%">Địa chỉ</th>
+                    <th width="28%">Địa chỉ</th>
                     <th width="8%">Phone</th>
                     <th>Tổng tiền</th>
-                    <th>Trạng thái</th>
+                    <th width="13%">Trạng thái</th>
                     <th width="11%">Ngày đặt</th>
                     <th width="4%"></th>
                 </tr>
@@ -94,7 +104,7 @@ use Carbon\Carbon; ?>
                                     @else($status == 3)
                                     @endif
                                 </form>
-                                @if($status != 3)
+                                @if(in_array($status_name,[0,1,2,4]))
                                 <form action="{{route('admin.orders.status_update',['id' => $model->id,'status' => 4])}}" method="post">
                                     @csrf
                                     @method('PUT')
@@ -110,9 +120,12 @@ use Carbon\Carbon; ?>
         </table>
         <div class="row justify-content-end">
             <div class="mt-3 col-12">
-                {{$orders->links()}}
+                {{$orders->withQueryString()->links()}}
             </div>
         </div>
     </div>
 </div>
+@stop()
+@section('js')
+$
 @stop()

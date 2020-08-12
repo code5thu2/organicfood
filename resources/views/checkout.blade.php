@@ -25,23 +25,38 @@
                     @csrf
                     <div class=" row checkout-form text-left">
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="name" value="{{Auth::guard('cus')->user()->name}}" class="form-control" placeholder="Tên người nhận">
+                            <input type="text" name="name" value="{{Auth::guard('cus')->user()->name}}" class="form-control @error('name') border border-danger @enderror" placeholder="Tên người nhận">
+                            @error('name')
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <input type="text" name="phone" value="{{Auth::guard('cus')->user()->phone}}" class="form-control" placeholder="Số điện thoại">
+                            <input type="text" name="phone" value="{{Auth::guard('cus')->user()->phone}}" class="form-control @error('phone') border border-danger @enderror" placeholder="Số điện thoại">
+                            @error('phone')
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <input type="text" name="email" value="{{Auth::guard('cus')->user()->email}}" class="form-control" placeholder="Email người nhận">
+                            <input type="text" name="email" value="{{Auth::guard('cus')->user()->email}}" class="form-control @error('email') border border-danger @enderror" placeholder="Email người nhận">
+                            @error('email')
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <input type="text" name="address" value="{{Auth::guard('cus')->user()->address}}" class="form-control" placeholder="Địa chỉ người nhận">
+                            <input type="text" name="address" value="{{Auth::guard('cus')->user()->address}}" class="form-control @error('address') border border-danger @enderror" placeholder="Địa chỉ người nhận">
+                            @error('address')
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <select class="form-control" name="payment_id">
+                            <select class="form-control @error('payment_id') border border-danger @enderror" name="payment_id">
                                 @foreach($payment as $p)
                                 <option value="{{$p->id}}">{{$p->name}}</option>
                                 @endforeach
                             </select>
+                            @error('payment_id')
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <textarea rows="5" placeholder="Ghi chú..." class="form-control pt-2" name="note"></textarea>

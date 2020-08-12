@@ -16,8 +16,26 @@ class Order extends Model
         return $this->belongsTo(Customer::class);
     }
 
+    public function orderDetail()
+    {
+        return $this->hasMany(DetailOrder::class);
+    }
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class);
+    }
+    public function orderSearchByStatus($status, $key)
+    {
+        if ($key) {
+            $orders = Order::where('status', $status - 1)->where('id', 'like', '%' . $key . '%')->orderBy('id', 'DESC')->paginate(15);
+        } else {
+            $orders = Order::where('status', $status - 1)->orderBy('id', 'DESC')->paginate(15);
+        }
+        return $orders;
+    }
     public function createOrder($cart)
     {
+        dd(request()->all());
         $cus_id = Auth::guard('cus')->user()->id;
         $cus_email = Auth::guard('cus')->user()->email;
         $cus_name = Auth::guard('cus')->user()->name;
