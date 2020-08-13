@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddRatingsToProductsTable extends Migration
+class AddColumnActiveToCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddRatingsToProductsTable extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->unsignedInteger('total_number_rating')->default(0);
-            $table->unsignedFloat('total_number_rating_point')->default(0);
+        Schema::table('customers', function (Blueprint $table) {
+            $table->string('code_active')->nullable();
         });
     }
 
@@ -26,7 +25,7 @@ class AddRatingsToProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
+        Schema::table('customers', function (Blueprint $table) {
             //
         });
     }

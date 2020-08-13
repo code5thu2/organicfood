@@ -31,8 +31,8 @@
                 <div class="col-md-6">
                     <h3 class="product-name">{{$product_detail->name}}</h3>
                     <div class="rating-total">
-                        <div class="product-rated mt-2" data-rating="{{$product_detail->total_number_rating_point > 0 ? round($product_detail->total_number_rating_point / $product_detail->total_number_rating, 1, PHP_ROUND_HALF_UP) : 0}}"></div>
-                        <span> ({{$product_detail->total_number_rating}} nhận xét) </span>
+                        <div class="product-rated mt-2" data-rating="{{$svg_rate}}"></div>
+                        <span> ({{$total_review}} nhận xét) </span>
                     </div>
                     <div class="price">
 
@@ -132,9 +132,9 @@
                                 <div class="row align-items-center rated-box">
                                     <div class="rating-point col-sm-4 text-center p-4">
                                         <h4>Đánh giá trung bình</h4>
-                                        <p class="score">{{$product_detail->total_number_rating_point > 0 ? round($product_detail->total_number_rating_point / $product_detail->total_number_rating, 1, PHP_ROUND_HALF_UP) : 0}}/5</p>
-                                        <div class="product-rated" data-rating="{{$product_detail->total_number_rating_point > 0 ? round($product_detail->total_number_rating_point / $product_detail->total_number_rating, 1, PHP_ROUND_HALF_UP) : 0}}"></div>
-                                        <p>({{$product_detail->total_number_rating}} nhận xét)</p>
+                                        <p class="score">{{$svg_rate}}/5</p>
+                                        <div class="product-rated" data-rating="{{$svg_rate}}"></div>
+                                        <p>({{$total_review}} nhận xét)</p>
                                     </div>
                                     <div class="col-sm-4 text-center p-4"></div>
                                     <div class="col-sm-4 text-center p-4 align-items-center">
@@ -149,12 +149,12 @@
                                 </div>
                                 <div class="collapse row align-items-center p-4" id="collapserating">
                                     @if(Auth::guard('cus')->check())
-                                    @if(Auth::guard('cus')->user()->ratings->count())
-                                    <h5>Bạn đã đánh giá sản phẩm này</h5>
+                                    @if(in_array(Auth::guard('cus')->user()->id,$cus_array))
+                                    <h3>Bạn đã đánh giá sản phẩm này rồi</h3>
                                     @else
                                     <span>Đánh giá của bạn: </span>
                                     <div class="product-rating float-right" data-rating=""></div>
-                                    <form action="{{route('rating',['id' => $product_detail->id])}}" method="post">
+                                    <form action="{{route('rating')}}" method="post">
                                         @csrf
                                         <div class="mt-3">
                                             <input type="hidden" name="number" value="" id="input_rate">

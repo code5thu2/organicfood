@@ -48,13 +48,23 @@
                             <small class="text-danger">{{$message}}</small>
                             @enderror
                         </div>
-                        <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
                             <select class="form-control @error('payment_id') border border-danger @enderror" name="payment_id">
                                 @foreach($payment as $p)
                                 <option value="{{$p->id}}">{{$p->name}}</option>
                                 @endforeach
                             </select>
                             @error('payment_id')
+                            <small class="text-danger">{{$message}}</small>
+                            @enderror
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <select class="form-control @error('shipping_id') border border-danger @enderror" name="shipping_id">
+                                @foreach($shipping as $s)
+                                <option value="{{$s->id}}">{{$s->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('shipping_id')
                             <small class="text-danger">{{$message}}</small>
                             @enderror
                         </div>

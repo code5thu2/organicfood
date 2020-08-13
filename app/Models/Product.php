@@ -135,4 +135,8 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Models\Order', 'detail_orders', 'product_id', 'order_id')->as('order_detail');
     }
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class, 'product_id', 'id');
+    }
 }

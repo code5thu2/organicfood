@@ -13,15 +13,11 @@ class RatingController extends Controller
     {
         $this->middleware('cus');
     }
-    public function submit_rating(Request $request, $id)
+    public function submit_rating(Request $request)
     {
-        $pro_id = $id;
         if (Rating::create($request->all())) {
-            $proRate = new Product;
-            if ($proRate->addRating($pro_id)) {
-                Alert::success('Đánh giá sản phẩm thành công', 'Thank you!');
-                return redirect()->back();
-            }
+            Alert::success('Đánh giá sản phẩm thành công', 'Thank you!');
+            return redirect()->back();
         }
     }
 }

@@ -16,11 +16,10 @@ class CreateDetailOrdersTable extends Migration
         Schema::create('detail_orders', function (Blueprint $table) {
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('order_id');
+            $table->string('product_name');
             $table->integer('quantity');
             $table->float('price');
             $table->primary(['product_id', 'order_id']);
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('order_id')->references('id')->on('orders');
             $table->timestamps();
         });
     }

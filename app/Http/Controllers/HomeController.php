@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -47,7 +48,14 @@ class HomeController extends Controller
         if ($category) {
             return view('page.product_view', compact('category', 'pro_by_id'));
         } elseif ($product_detail) {
-            return view('page.product_detail', compact('product_detail'));
+            $total_review = 0;
+            $svg_rate = 0;
+            $cus_array = $product_detail->ratings->pluck('customer_id')->toArray();
+            if ($product_detail->ratings->count()) {
+                $total_review = $product_detail->ratings->count('product_id');
+                $svg_rate = $product_detail->ratings->avg('number');
+            }
+            return view('page.product_detail', compact('product_detail', 'total_review', 'svg_rate', 'cus_array'));
         } else {
             return view('404');
         }

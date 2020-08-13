@@ -17,6 +17,8 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('payment_id');
+            $table->unsignedInteger('shipping_id');
+            $table->string('payment');
             $table->string('name');
             $table->string('phone');
             $table->string('address');
@@ -28,7 +30,6 @@ class CreateOrdersTable extends Migration
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('payment_id')->references('id')->on('payments');
         });
     }
 

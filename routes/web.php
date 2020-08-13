@@ -38,7 +38,7 @@ route::group(['prefix' => 'checkout'], function () {
 
 //rating
 route::group(['prefix' => 'rating'], function () {
-    route::post('/{id}', 'RatingController@submit_rating')->name('rating');
+    route::post('/', 'RatingController@submit_rating')->name('rating');
 });
 
 route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], function () {
@@ -59,6 +59,8 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
     Route::get('/orders', 'OrderController@index')->name('orders.index');
     Route::get('/orders/{id}', 'OrderController@show')->name('orders.show');
     Route::put('/orders/status-update/{id}-{status}', 'OrderController@status_update')->name('orders.status_update');
+    route::get('/customer-list', 'AdminController@customer_list')->name('customers.customer_list');
+    route::put('/customer-update-status/{id}', 'AdminController@customer_update_status')->name('customers.customer_update_status');
 });
 
 route::post('admin/login', 'Admin\AdminController@post_login')->name('admin.login');
@@ -69,6 +71,7 @@ Route::get('admin/error', 'Admin\AdminController@error')->name('admin.error');
 Route::get('/customer/login', 'CustomerController@login')->name('customer.login');
 Route::post('/customer/login', 'CustomerController@post_login')->name('customer.post_login');
 Route::post('/customer/register', 'CustomerController@register')->name('customer.register');
+Route::get('/customer/verify-account', 'CustomerController@verify_account')->name('customer.verify_account');
 Route::group(['prefix' => 'customer', 'middleware' => 'cus'], function () {
     Route::get('logout', 'CustomerController@logout')->name('customer.logout');
     Route::get('profile', 'CustomerController@profile')->name('customer.profile');

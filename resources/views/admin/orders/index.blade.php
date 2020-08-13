@@ -14,14 +14,14 @@ use Carbon\Carbon; ?>
                     <div class="form-group">
                         <div class="input-group">
                             <select class="mr-2" name="status" id="">
-                                <option value="0">All</option>
+                                <option {{Request::get('status') == '' ? 'selected' : ''}} value="">All</option>
                                 <option {{Request::get('status') == 1 ? 'selected' : ''}} value="1">Chờ duyệt</option>
                                 <option {{Request::get('status') == 2 ? 'selected' : ''}} value="2">Đã xác nhận</option>
                                 <option {{Request::get('status') == 3 ? 'selected' : ''}} value="3">Đang vận chuyển</option>
                                 <option {{Request::get('status') == 4 ? 'selected' : ''}} value="4">Hoàn thành</option>
                                 <option {{Request::get('status') == 5 ? 'selected' : ''}} value="5">Hủy</option>
                             </select>
-                            <input type="text" name="key" placeholder="Nhập mã đơn..." class="form-control">
+                            <input type="text" name="id" placeholder="Nhập mã đơn..." class="form-control">
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-primary">Go!</button>
                             </div>
@@ -35,12 +35,11 @@ use Carbon\Carbon; ?>
                 <tr>
                     <th width="5%">#</th>
                     <th width="20%">Người đặt</th>
-                    <th width="28%">Địa chỉ</th>
-                    <th width="8%">Phone</th>
+                    <th>Phone</th>
                     <th>Tổng tiền</th>
-                    <th width="13%">Trạng thái</th>
-                    <th width="11%">Ngày đặt</th>
-                    <th width="4%"></th>
+                    <th>Trạng thái</th>
+                    <th>Ngày đặt</th>
+                    <th width="5%"></th>
                 </tr>
             </thead>
             <tbody>
@@ -80,12 +79,11 @@ use Carbon\Carbon; ?>
                 <tr class="{{$bg}} text-dark">
                     <td scope="row">{{$model->id}}</td>
                     <td>{{$model->customer->name}}</td>
-                    <td>{{$model->address}}</td>
                     <td>{{$model->phone}}</td>
                     <td class="text-right">{{number_format($model->total)}}đ</td>
-                    <td>{{$status_name}}</td>
+                    <td class="text-center">{{$status_name}}</td>
                     <td class="text-center">{{date('d-m-Y',strtotime($model->created_at))}}</td>
-                    <td>
+                    <td class="text-center">
                         <div class="dropdown">
                             <a href="#" class=" card-drop" data-toggle="dropdown" aria-expanded="true">
                                 <i class="fas fa-info-circle"></i>
@@ -104,7 +102,7 @@ use Carbon\Carbon; ?>
                                     @else($status == 3)
                                     @endif
                                 </form>
-                                @if(in_array($status_name,[0,1,2,4]))
+                                @if(in_array($status,[0,1,2]))
                                 <form action="{{route('admin.orders.status_update',['id' => $model->id,'status' => 4])}}" method="post">
                                     @csrf
                                     @method('PUT')

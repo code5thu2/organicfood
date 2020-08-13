@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\loginRequest;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\Customer;
 
 class AdminController extends Controller
 {
@@ -36,5 +37,21 @@ class AdminController extends Controller
     {
         Auth::logout();
         return redirect()->route('admin.login');
+    }
+    public function customer_list()
+    {
+        $customers = Customer::paginate(15);
+        return view('admin.customers.customer_list', compact('customers'));
+    }
+    public function customer_update_status($id)
+    {
+        $cus = new Customer;
+        $cus_update = $cus->updateCusStatus($id);
+        if ($cus_update) {
+            Alert::toast('cập nhật tài khoản khách hàng thành công', 'success');
+            return redirect()->back();
+        }
+        Alert::toast('Lỗi, cập nhật không thành công', 'error');
+        return redirect()->back();
     }
 }

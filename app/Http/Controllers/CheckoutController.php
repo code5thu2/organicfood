@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\Shipping;
 use App\Helper\CartHelper;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Mail;
@@ -20,7 +21,8 @@ class CheckoutController extends Controller
     public function form()
     {
         $payment = Payment::all();
-        return view('checkout', compact('payment'));
+        $shipping = Shipping::all();
+        return view('checkout', compact('payment', 'shipping'));
     }
     public function submit_form(createOrderRequest $request, CartHelper $cart)
     {
@@ -29,7 +31,8 @@ class CheckoutController extends Controller
             Alert::success('Đặt hàng thành công', 'Success');
             return redirect()->route('cart.view');
         } else {
-            Alert::error('Đặt hàng không thành công', 'Error');
+            alert()->warning('Warning', 'Tài khoản của bạn không được đặt hàng');
+            // Alert::toast('', 'error', 'center-center');
             return redirect()->back();
         }
     }

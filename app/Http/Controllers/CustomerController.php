@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Requests\customerAddRequest;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -25,9 +26,10 @@ class CustomerController extends Controller
     }
     public function register(customerAddRequest $request)
     {
-        $request->merge(['password' => bcrypt($request->password)]);
-        if (Customer::create($request->all())) {
-            toast('Đăng ký thành công', 'success');
+        $customer = new Customer;
+        $customerAcc = $customer->registerAccount();
+        if ($customerAcc) {
+            toast('Đăng ký thành công, vui lòng vào email để xác thực tài khoản của bạn', 'success');
             return redirect()->back();
         }
         toast('Đăng ký thất bại, có lỗi xảy ra', 'error');
@@ -35,7 +37,27 @@ class CustomerController extends Controller
     }
     public function profile()
     {
-        return view('customer.profile');
+        $cus = new Customer;
+        $cus_id = Auth::guard('cus')->user()->id;
+        if ($cus->checkStatus($cus_id)) {
+            return view('customer.profile');
+        } else {
+            alert()->warning('Warning', 'Tài khoản của bạn đã bị chặn!');
+            return redirect()->back();
+        }
+    }
+    public function verify_account(Request $request)
+    {
+        $cus = new Customer;
+        $id = $request->id;
+        $code = $request->code;
+        if ($cus->submitVerify($id, $code)) {
+            Alert::toast('Tài khoản của bạn đã được kích hoạt', 'success');
+            return redirect()->route('home');
+        } else {
+            Alert::toast('Đường dẫn xác nhận tài khoản không chính xác', 'error');
+            return redirect()->route('home');
+        }
     }
     public function order()
     {
