@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Mail;
 
 class Order extends Model
 {
-    protected $fillable = ['name', 'email', 'phone', 'address', 'note', 'customer_id', 'payment_id', 'total', 'status', 'shipping_id', 'payment', 'shipping', 'shipping_cost'];
+    protected $fillable = ['name', 'email', 'phone', 'address', 'note', 'customer_id', 'payment_id', 'total', 'status', 'shipping_id', 'shipping_cost'];
 
     public function customer()
     {
@@ -45,9 +45,7 @@ class Order extends Model
     public function createOrder($cart)
     {
         $customer = new Customer;
-        $payment = new Payment;
         $shipping = new Shipping;
-        $payment_check = $payment->where('id', request()->payment_id)->first();
         $shipping_check = $shipping->where('id', request()->shipping_id)->first();
         // dd($shipping_check->cost);
         $cus_id = Auth::guard('cus')->user()->id;
@@ -63,14 +61,11 @@ class Order extends Model
                 'customer_id' => $cus_id,
                 'payment_id' => request()->payment_id,
                 'total' => $cart->total_price,
-                'payment' => $payment_check->name,
-                'shipping_id' => $shipping_check->id,
-                'shipping' => $shipping_check->name,
+                'shipping_id' => request()->shipping_id,
                 'shipping_cost' => $shipping_check->cost,
             ]);
             if ($order) {
                 foreach ($cart->items as $pro_id => $item) {
-                    $product_name = $item['name'];
                     $quantity = $item['quantity'];
                     $price = $item['price'];
                     DetailOrder::create([
@@ -78,13 +73,12 @@ class Order extends Model
                         'product_id' => $pro_id,
                         'quantity' => $quantity,
                         'price' => $price,
-                        'product_name' => $product_name
                     ]);
                 }
                 Mail::send('mail.order_mail', [
                     'cus_name' => $cus_name,
                     'order' => $order,
-                    'items' => $cart->items
+                    'items' => $cart->items,
                 ], function ($mail) use ($cus_email, $cus_name) {
                     $mail->to($cus_email, $cus_name);
                     $mail->from('levietanhtdvp@gmail.com');

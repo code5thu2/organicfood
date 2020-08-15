@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Requests\customerAddRequest;
+use App\Http\Requests\checkMailRequest;
+use App\Http\Requests\checkPassRequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -62,6 +64,49 @@ class CustomerController extends Controller
     public function order()
     {
         return view('customer.order');
+    }
+    public function forgot_password()
+    {
+        return view('customer.forgot_password');
+    }
+    public function send_code(checkMailRequest $request)
+    {
+        $customers = new Customer;
+        $cus = $customers->where('email', $request->email)->first();
+        // dd($cus);
+        if ($cus) {
+            $customers->saveCode($cus);
+            Alert::toast('Vui lòng kiểm tra email để lấy lại mật khâủ', 'success')->position('top-center');
+            return redirect()->route('home');
+        } else {
+            Alert::toast('Email không tồn tại', 'warning')->position('top-center');
+            return redirect()->back();
+        }
+    }
+    public function reset_password(Request $request)
+    {
+        $email = $request->email;
+        $code = $request->code;
+        $check_cus = Customer::where(['email' => $email, 'code_active' => $code])->first();
+        if ($check_cus) {
+            return view('customer.reset_password', compact('email', 'code'));
+        } else {
+            Alert::toast('Đường dẫn lấy lại mật khẩu không đúng', 'warning')->position('top-center');
+            return redirect()->route('home');
+        }
+    }
+    public function confirm_reset_password(checkPassRequest $request)
+    {
+        $cus = Customer::where(['email' => $request->email, 'code_active' => $request->code])->first();
+        if ($cus) {
+            $cus->password = bcrypt($request->password);
+            $cus->save();
+            alert()->success('success', 'Thay đổi mật khẩu thành công!');
+            return redirect()->route('home');
+        } else {
+            alert()->error('error', 'có lỗi, không thể thay đổi mật khẩu');
+            return redirect()->back();
+        }
     }
     public function change_password()
     {

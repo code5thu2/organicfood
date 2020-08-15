@@ -79,4 +79,25 @@ class Customer extends Authenticatable
             return false;
         }
     }
+    public function saveCode($cus)
+    {
+        $code =  bcrypt(md5(time() . $cus->email));
+        $cus_name = $cus->name;
+        $cus_email = $cus->email;
+        $url = route('customer.reset_password', ['email' => $cus_email, 'code' => $code]);
+        $upcode = Customer::where('id', $cus->id)->update([
+            'code_active' =>  $code,
+        ]);
+        if ($upcode) {
+            Mail::send('mail.reset_password_mail', [
+                'url' =>  $url,
+                'cus_name' => $cus_name,
+            ], function ($mail) use ($cus_email, $cus_name) {
+                $mail->to($cus_email, $cus_name);
+                $mail->from('levietanhtdvp@gmail.com');
+                $mail->subject('Lấy lại mật khẩu');
+            });
+            return $upcode;
+        }
+    }
 }

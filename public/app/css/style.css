@@ -15,6 +15,16 @@
     margin: 0;
 }
 
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
+    background-color: #88C342;
+    color: #FFF;
+    border: 0;
+}
+
 .mastercontainer {
     max-width: 1600px;
     margin: 0 auto;

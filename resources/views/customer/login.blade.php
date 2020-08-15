@@ -32,7 +32,7 @@
                     <input type="checkbox" name="remember"><span> Remember password</span>
                 </label>
                 <label class="float-right">
-                    <a href=""><span>forgot your password?</span></a>
+                    <a href="{{route('customer.forgot_password')}}"><span>forgot your password?</span></a>
                 </label>
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Đăng nhập</button>
             </form>

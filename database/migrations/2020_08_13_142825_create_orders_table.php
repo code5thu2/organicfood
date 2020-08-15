@@ -18,18 +18,18 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('payment_id');
             $table->unsignedInteger('shipping_id');
-            $table->string('payment');
             $table->string('name');
             $table->string('phone');
             $table->string('address');
             $table->string('email');
-            $table->string('shipping');
             $table->text('note')->nullable();
             $table->float('total', 20, 2);
             $table->float('shipping_cost', 20, 2)->default(0);
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
             $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('payment_id')->references('id')->on('payments');
+            $table->foreign('shipping_id')->references('id')->on('shippings');
         });
     }
 

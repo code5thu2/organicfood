@@ -1,35 +1,29 @@
 @extends('layouts.admin')
 @section('title','Chi tiết đơn hàng')
 @section('main')
-<div class="row mt-2">
+<div class=" mt-2 card-group">
     <div class="col-12 mb-2">
         <a href="{{route('admin.orders.index')}}" type="button" class="btn btn-outline-primary">Back</a>
     </div>
-    <div class="col-md-4">
-        <h5>Địa chỉ người nhận</h5>
-        <div class="card text-left bg-white">
-            <div class="card-body">
-                <h4 class="card-title">{{$order->name}}</h4>
-                <p class="card-text">Địa chỉ: {{$order->address}}</p>
-                <span>Điện thoại: <strong>{{$order->phone}}</strong></span>
-            </div>
+    <div class="col-md-4 card text-left bg-white mb-2 pt-2">
+        <h3 class="m-0">Địa chỉ người nhận:</h3>
+        <div class="card-body">
+            <h4 class="card-title">{{$order->name}}</h4>
+            <p class="card-text">Địa chỉ: {{$order->address}}</p>
+            <span>Điện thoại: <strong>{{$order->phone}}</strong></span>
         </div>
     </div>
-    <div class="col-md-4">
-        <h5>Hình thức giao hàng</h5>
-        <div class="card text-left bg-white">
-            <div class="card-body">
-                <p>{{$order->shipping}}</p>
-                <p>Phí vận chuyển: <strong>{{$order->shipping_cost}} đ</strong></p>
-            </div>
+    <div class="col-md-4 card text-left bg-white mb-2 pt-2">
+        <h3 class="m-0">Hình thức giao hàng:</h3>
+        <div class="card-body">
+            <p>{{$order->shipping->name}}</p>
+            <p>Phí vận chuyển: <strong>{{$order->shipping_cost}} đ</strong></p>
         </div>
     </div>
-    <div class="col-md-4">
-        <h5>Hình thức thanh toán</h5>
-        <div class="card text-left bg-white">
-            <div class="card-body">
-                <p>{{$order->payment}}</p>
-            </div>
+    <div class="col-md-4 card text-left bg-white mb-2 pt-2">
+        <h3 class="m-0">Hình thức thanh toán:</h3>
+        <div class="card-body">
+            <p>{{$order->payment->name}}</p>
         </div>
     </div>
     <div class="col-12 table-responsive p-3 bg-white">
@@ -61,8 +55,11 @@
             </tbody>
         </table>
     </div>
-    <div class="col-8 pull-right bg-white mt-2 p-2"></div>
-    <div class="col-4 pull-right bg-white mt-2 p-2">
+    <div class="col-8 pull-right bg-white p-2">
+        <h5 class="ml-2 p-0">Ghi chú của khách hàng</h5>
+        <p class="ml-2">{{$order->note}}</p>
+    </div>
+    <div class="col-4 pull-right bg-white p-2">
         <table class="table">
             <tbody>
                 <tr>
@@ -134,8 +131,7 @@
         <span class="badge {{$bg}}">{{$status_name}}</span>
     </div>
     <div class="col-4 bg-white mt-2 p-2">
-        <h5>Ghi chú của khách hàng</h5>
-        <p>{{$order->note}}</p>
+
     </div>
 
 </div>

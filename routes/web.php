@@ -55,6 +55,7 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
         'users' => 'UserController',
         'blogs' => 'BlogController',
         'tags' => 'TagController',
+        'contact' => 'ContactController',
     ]);
     Route::get('/orders', 'OrderController@index')->name('orders.index');
     Route::get('/orders/{id}', 'OrderController@show')->name('orders.show');
@@ -68,10 +69,17 @@ route::get('admin/login', 'Admin\AdminController@login')->name('admin.login');
 route::get('admin/logout', 'Admin\AdminController@logout')->name('admin.logout');
 Route::get('admin/error', 'Admin\AdminController@error')->name('admin.error');
 
-Route::get('/customer/login', 'CustomerController@login')->name('customer.login');
-Route::post('/customer/login', 'CustomerController@post_login')->name('customer.post_login');
-Route::post('/customer/register', 'CustomerController@register')->name('customer.register');
-Route::get('/customer/verify-account', 'CustomerController@verify_account')->name('customer.verify_account');
+Route::group(['prefix' => 'customer'], function () {
+    Route::get('/login', 'CustomerController@login')->name('customer.login');
+    Route::post('/login', 'CustomerController@post_login')->name('customer.post_login');
+    Route::post('/register', 'CustomerController@register')->name('customer.register');
+    Route::get('/verify-account', 'CustomerController@verify_account')->name('customer.verify_account');
+    Route::get('/forgot-password', 'CustomerController@forgot_password')->name('customer.forgot_password');
+    Route::post('/send-code', 'CustomerController@send_code')->name('customer.send_code');
+    Route::get('/reset-password', 'CustomerController@reset_password')->name('customer.reset_password');
+    Route::post('/confirm_reset-password', 'CustomerController@confirm_reset_password')->name('customer.confirm_reset_password');
+});
+
 Route::group(['prefix' => 'customer', 'middleware' => 'cus'], function () {
     Route::get('logout', 'CustomerController@logout')->name('customer.logout');
     Route::get('profile', 'CustomerController@profile')->name('customer.profile');

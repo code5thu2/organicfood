@@ -284,6 +284,7 @@
                 </div>
             </div>
         </footer>
+        <a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top shadow-lg" role="button"><i class="fas fa-chevron-up"></i></a>
     </div>
     <script src="{{url('public')}}/app/js/jquery-3.3.1.min.js"></script>
     <script src="{{url('public')}}/app/lib/angular.min.js"></script>
@@ -312,6 +313,25 @@
         function closeCartBox() {
             document.getElementById('cartBox').style.display = 'none';
         }
+
+        // back to top
+
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 50) {
+                    $('#back-to-top').fadeIn();
+                } else {
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            // scroll body to 0px on click
+            $('#back-to-top').click(function() {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
+        });
 
         //lazy load image
         $(function() {
