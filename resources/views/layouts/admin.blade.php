@@ -18,36 +18,6 @@
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/fonts/flag-icon-css/flag-icon.min.css"> -->
     @yield('css')
-    <style>
-        body {
-            font-family: "montserratRegular";
-            font-weight: 700;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: "montserratMedium";
-            font-weight: 600;
-        }
-
-        .table thead th,
-        .table th {
-            font-family: "montserratMedium";
-            font-weight: 700;
-        }
-
-        tr.group:hover {
-            font-family: "montserratMedium";
-        }
-
-        .ribbons {
-            font-family: "montserratMedium";
-        }
-    </style>
     <script type="text/javascript">
         var base_url = function() {
             return "{{url('')}}";
@@ -72,17 +42,12 @@
         <!-- ============================================================== -->
         <div class="dashboard-header">
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="{{route('admin.index')}}">Concept</a>
+                <a class="navbar-brand" href="{{route('admin.index')}}">NOGNIC</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="pr-2 navbar-toggler-icon"><i style="color: #0E0C28;" class="fas fa-user-shield"></i></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto navbar-right-top">
-                        <li class="nav-item">
-                            <div id="custom-search" class="top-search-bar">
-                                <input class="form-control" type="text" placeholder="Search..">
-                            </div>
-                        </li>
                         <li class="nav-item dropdown nav-user">
                             <a class="nav-link nav-user-img" href="" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{url('public/backend/assets')}}/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
                             <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
@@ -201,28 +166,28 @@
                 </div>
             </div>
             <!-- ============================================================== -->
-            <!-- footer -->
             <!-- ============================================================== -->
-            <div class="footer" style="position:absolute;">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
-                        </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <div class="text-md-right footer-links d-none d-sm-block">
-                                <a href="javascript: void(0);">About</a>
-                                <a href="javascript: void(0);">Support</a>
-                                <a href="javascript: void(0);">Contact Us</a>
-                            </div>
+        </div>
+        <!-- footer -->
+        <!-- ============================================================== -->
+        <div class="footer" style="position:absolute;background-color:#0E0C28;color:#fff;border:0;">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="javascript: void(0);">About</a>
+                            <a href="javascript: void(0);">Support</a>
+                            <a href="javascript: void(0);">Contact Us</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- end footer -->
-            <!-- ============================================================== -->
         </div>
+        <!-- ============================================================== -->
+        <!-- end footer -->
         <!-- ============================================================== -->
         <!-- end wrapper  -->
         <!-- ============================================================== -->

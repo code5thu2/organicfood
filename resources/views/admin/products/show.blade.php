@@ -34,25 +34,25 @@
                                 <h5>Price:</h5>
                             </div>
                             <div class="col-6">
-                                <p style="margin-top: 2px;">{{number_format($product->price)}}đ / {{$product->unit->name}}</p>
+                                <p style="margin-top: 2px;">{{number_format($product->price)}}đ / {{$product->unit ? $product->unit->name : ''}}</p>
                             </div>
                             <div class="col-6">
                                 <h5>Sale:</h5>
                             </div>
                             <div class="col-6">
-                                <p style="margin-top: 2px;">{{number_format($product->sale)}}đ / {{$product->unit->name}}</p>
+                                <p style="margin-top: 2px;">{{number_format($product->sale)}}đ / {{$product->unit ? $product->unit->name : ''}}</p>
                             </div>
                             <div class="col-6">
                                 <h5>Danh mục:</h5>
                             </div>
                             <div class="col-6">
-                                <p style="margin-top: 2px;">{{$product->cat->name}}</p>
+                                <p style="margin-top: 2px;">{{$product->cat ? $product->cat->name : 'Không rõ'}}</p>
                             </div>
                             <div class="col-6">
                                 <h5>Nhà cung cấp:</h5>
                             </div>
                             <div class="col-6">
-                                <p style="margin-top: 2px;">{{$product->sup->name}}</p>
+                                <p style="margin-top: 2px;">{{$product->sup ? $product->sup->name : 'Không rõ'}}</p>
                             </div>
                             <div class="col-6">
                                 <h5>Trạng thái:</h5>
@@ -70,10 +70,12 @@
                             <div class="col-6">
                                 <h5>Tab thịnh hành:</h5>
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 mb-2">
+                                @if($product->tags->count())
                                 @foreach($product->tags as $tag_name)
                                 <p class="badge badge-pill badge-secondary">{{$tag_name->name}}</p>
                                 @endforeach
+                                @endif
                             </div>
                             <a href="{{route('admin.products.index',$product->id)}}" class="btn btn-outline-primary mr-2">Back to list</a>
                             <a href="{{route('admin.products.edit',$product->id)}}" class="btn btn-primary">Update</a>

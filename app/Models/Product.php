@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    protected $fillable = ['name', 'slug', 'price', 'sale', 'description', 'content', 'status', 'category_id', 'supplier_id', 'unit_id', 'image'];
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+    protected $fillable = ['name', 'slug', 'price', 'sale', 'description', 'content', 'status', 'category_id', 'supplier_id', 'unit_id', 'image', 'deleted_at'];
 
     public function createPro($request)
     {
@@ -138,5 +141,22 @@ class Product extends Model
     public function ratings()
     {
         return $this->hasMany(Rating::class, 'product_id', 'id');
+    }
+    public function scopeSearch($query)
+    {
+        $filter  = request()->key;
+        if (request()->key != null) {
+            if (request()->filter == 'id_f') {
+                $query->where('id', $filter);
+            }
+            if (request()->filter == 'name_f') {
+                $query->where('name', 'LIKE', '%' . $filter . '%');
+            }
+        }
+        if (request()->status != null) {
+            $status  = request()->status;
+            $query->where('status', $status - 1);
+        }
+        return $query;
     }
 }

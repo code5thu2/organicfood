@@ -6,7 +6,7 @@
 use Carbon\Carbon; ?>
 <div class="row">
     <div class="col-12 table-responsive p-3 bg-white">
-        <div class="row pb-2">
+        <!-- <div class="row pb-2">
             <div class="col-6">
             </div>
             <div class="col-6">
@@ -28,6 +28,28 @@ use Carbon\Carbon; ?>
                         </div>
                     </div>
                 </form>
+            </div>
+        </div> -->
+        <?php
+        $filter = [
+            0 => [
+                'value' => 'id_f',
+                'name' => 'Mã đơn hàng'
+            ],
+        ];
+        $status_query = [
+            1 => 'Chờ duyệt',
+            2 => 'Đã xác nhận',
+            3 => 'Đang vận chuyển',
+            4 => 'Hoàn thành',
+            5 => 'Hủy'
+        ];
+        ?>
+        <div class="row pb-2">
+            <div class="col-4">
+            </div>
+            <div class="col-8">
+                @include('filter_box',['filter' => $filter,'status_query' => $status_query])
             </div>
         </div>
         <table class="table table-hover">
@@ -73,7 +95,7 @@ use Carbon\Carbon; ?>
                         $status = 4;
                         $bg = 'table-danger';
                         $status_name = 'Hủy';
-                        continue;
+                        break;
                 }
                 ?>
                 <tr class="{{$bg}} text-dark">

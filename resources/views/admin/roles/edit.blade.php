@@ -49,13 +49,13 @@
         var permissions = '<?php echo json_encode($permissions); ?>';
         $scope.roles = angular.fromJson(roles);
         $scope.role = angular.fromJson(permissions);
+        // console.log(permissions);
         $scope.set_checked = function(r) {
             console.log(r);
             for (var i = 0; i < $scope.role.length; i++) {
                 if ($scope.role[i] == r) {
                     return true;
                 }
-
             }
             return false;
         }

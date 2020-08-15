@@ -23,11 +23,11 @@ class unitRequest extends FormRequest
      */
     public function rules()
     {
-         return [
-             'name' => 'required',
+        return [
+            'name' => 'required',
         ];
     }
-         public function messages()
+    public function messages()
     {
         return [
             'name.required' => 'Tên đơn vị không được để trống',

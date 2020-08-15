@@ -18,6 +18,7 @@ class CreateSuppliersTable extends Migration
             $table->string('name', 255);
             $table->string('image');
             $table->string('address')->nullable();
+            $table->date('deleted_at')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

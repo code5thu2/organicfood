@@ -6,6 +6,7 @@
         <div class="row pb-2">
             <div class="col-8">
                 <a href="{{route('admin.suppliers.create')}}" class="btn btn-outline-primary float-left"><i class="fas fa-plus"></i> ADD NEW</a>
+                <a href="{{route('admin.suppliers.trash')}}" class="btn btn-warning float-left ml-2"><i class="fas fa-trash"></i> Thùng rác</a>
             </div>
             <div class="col-4">
                 <div class="form-group">

@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('supplier_id');
             $table->unsignedInteger('unit_id');
+            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('supplier_id')->references('id')->on('suppliers');

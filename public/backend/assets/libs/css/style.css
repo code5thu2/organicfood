@@ -8,6 +8,8 @@ body {
     color: #71748d;
     background-color: #efeff6;
     -webkit-font-smoothing: antialiased;
+    font-family: "montserratRegular";
+    font-weight: 700;
 }
 
 h1,
@@ -18,7 +20,8 @@ h5,
 h6 {
     color: #3d405c;
     margin: 0px 0px 15px 0px;
-    font-family: "Circular Std Medium";
+    font-family: "montserratMedium";
+    font-weight: 600;
 }
 
 h1 {
@@ -2208,7 +2211,7 @@ Pageheader
     padding: 31px 15px;
     text-align: center;
     left: 10px;
-    font-family: "Circular Std Medium";
+    font-family: "montserratMedium";
     color: #fff;
 }
 
@@ -4424,7 +4427,8 @@ Pills vertical
 .table thead th,
 .table th {
     color: #3d405c;
-    font-family: "Circular Std Medium";
+    font-family: "montserratMedium";
+    font-weight: 700;
 }
 
 .table-bordered {
@@ -4454,7 +4458,7 @@ tr.group,
 tr.group:hover {
     background-color: #5969ff !important;
     color: #fff;
-    font-family: "Circular Std Medium";
+    font-family: "montserratMedium";
     font-size: 18px;
 }
 

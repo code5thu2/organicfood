@@ -89,8 +89,8 @@ class UnitController extends Controller
     public function destroy(Unit $unit)
     {
         if ($unit->delete()) {
-            return redirect()->back()->with('yes', 'Successfully deleted the supplier');
+            return redirect()->back()->with('yes', 'Xóa đơn vị tính thành công');
         }
-        return redirect()->back()->with('no', 'cannot deleted the supplier');
+        return redirect()->back()->with('no', 'Không thể xóa đơn vị tính');
     }
 }

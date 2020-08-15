@@ -32,8 +32,8 @@ class Order extends Model
     public function scopeSearch($query)
     {
         // dd(request()->all());
-        if (request()->id) {
-            $id  = request()->id;
+        if (request()->key) {
+            $id  = request()->key;
             $query->where('id', $id);
         }
         if (request()->status != null) {

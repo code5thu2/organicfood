@@ -2,7 +2,10 @@
 
 use App\Models\Product;
 use App\Models\Image;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 // Tạo hàm upload ảnh và thay đổi tên ảnh
 if (!function_exists('uploadImg')) {
     function uploadImg($field_name)
@@ -35,5 +38,28 @@ if (!function_exists('adminRoute')) {
             }
         }
         return $routes;
+    }
+}
+if (!function_exists('filter')) {
+    function filter($table, $Number_page)
+    {
+        $filter  = request()->key;
+        $query =  DB::table($table);
+        if (request()->key != null) {
+            if (request()->filter == 'id_f') {
+                $query =  $query->where('id', $filter);
+            }
+            if (request()->filter == 'name_f') {
+                $query =  $query->where('name', 'LIKE', '%' . $filter . '%');
+            }
+            if (request()->filter == 'email_f') {
+                $query =  $query->where('email', $filter);
+            }
+        }
+        if (request()->status != null) {
+            $status  = request()->status;
+            $query =  $query->where('status', $status - 1);
+        }
+        return  $query->paginate($Number_page);
     }
 }

@@ -40,7 +40,7 @@ class AdminController extends Controller
     }
     public function customer_list()
     {
-        $customers = Customer::paginate(15);
+        $customers = Customer::Search()->paginate(15);
         return view('admin.customers.customer_list', compact('customers'));
     }
     public function customer_update_status($id)

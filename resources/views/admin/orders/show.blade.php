@@ -107,7 +107,7 @@
                 $status = 4;
                 $bg = 'badge-danger';
                 $status_name = 'Hủy';
-                continue;
+                break;
         }
         ?>
         <form action="{{route('admin.orders.status_update',['id' => $order->id,'status' => $status])}}" method="post">

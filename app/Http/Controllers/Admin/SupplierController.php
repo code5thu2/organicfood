@@ -111,4 +111,20 @@ class SupplierController extends Controller
         Alert::toast('Không thể xóa nhà cung cấp', 'error');
         return redirect()->back();
     }
+    public function trash(Request $request)
+    {
+        $supplier = Supplier::onlyTrashed()->paginate(5);
+        return view('admin.suppliers.trash', compact('supplier'));
+    }
+    public function restore($id)
+    {
+        $supplier = Supplier::withTrashed()->find($id);
+        if ($supplier->restore()) {
+            Alert::toast('Khôi phục nhà cung cấp thành công', 'success');
+            return redirect()->back();
+        } else {
+            Alert::toast('Không thể khôi phục nhà cung cấp', 'error');
+            return redirect()->back();
+        }
+    }
 }

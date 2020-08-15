@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Models\Category;
 use App\Models\Supplier;
 use App\Models\Unit;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\productAddRequest;
+use App\Http\Requests\productEditRequest;
 use App\Models\Tag;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -24,7 +24,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::paginate(5);
+        $product = Product::Search()->paginate(5);
         return view('admin.products.index', compact('product'));
     }
 
@@ -35,11 +35,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $category = Category::all();
+        $product = product::all();
         $supplier = Supplier::all();
         $unit = Unit::all();
         $tag = Tag::all();
-        return view('admin.products.create', compact('category', 'supplier', 'unit', 'tag'));
+        return view('admin.products.create', compact('product', 'supplier', 'unit', 'tag'));
     }
 
     /**
@@ -80,12 +80,12 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $category = Category::all();
+        $product = product::all();
         $supplier = Supplier::all();
         $unit = Unit::all();
         $tag = Tag::all();
         $tag_assignment = $product->tags->pluck('name', 'id')->toArray();
-        return view('admin.products.edit', compact('category', 'supplier', 'unit', 'tag', 'product', 'tag_assignment'));
+        return view('admin.products.edit', compact('product', 'supplier', 'unit', 'tag', 'product', 'tag_assignment'));
     }
 
     /**
@@ -95,7 +95,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(productEditRequest $request, Product $product)
     {
 
         $editPro = new Product;
@@ -124,5 +124,21 @@ class ProductController extends Controller
             Alert::toast('Xóa sản phẩm thành công', 'success');
             return redirect()->back();
         };
+    }
+    public function trash(Request $request)
+    {
+        $product = Product::onlyTrashed()->Search()->paginate(5);
+        return view('admin.products.trash', compact('product'));
+    }
+    public function restore($id)
+    {
+        $product = Product::withTrashed()->find($id);
+        if ($product->restore()) {
+            Alert::toast('Khôi phục danh mục thành công', 'success');
+            return redirect()->back();
+        } else {
+            Alert::toast('Không thể khôi phục danh mục', 'error');
+            return redirect()->back();
+        }
     }
 }

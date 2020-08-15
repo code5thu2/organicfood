@@ -119,4 +119,21 @@ class CategoryController extends Controller
         Alert::toast('Error', 'error');
         return Redirect()->back();
     }
+
+    public function trash(Request $request)
+    {
+        $category = Category::onlyTrashed()->paginate(5);
+        return view('admin.categories.trash', compact('category'));
+    }
+    public function restore($id)
+    {
+        $category = Category::withTrashed()->find($id);
+        if ($category->restore()) {
+            Alert::toast('Khôi phục danh mục thành công', 'success');
+            return redirect()->back();
+        } else {
+            Alert::toast('Không thể khôi phục danh mục', 'error');
+            return redirect()->back();
+        }
+    }
 }

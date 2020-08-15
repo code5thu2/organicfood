@@ -79,6 +79,26 @@ class Customer extends Authenticatable
             return false;
         }
     }
+    public function scopeSearch($query)
+    {
+        $filter  = request()->key;
+        if (request()->key != null) {
+            if (request()->filter == 'id_f') {
+                $query->where('id', $filter);
+            }
+            if (request()->filter == 'name_f') {
+                $query->where('name', 'LIKE', '%' . $filter . '%');
+            }
+            if (request()->filter == 'email_f') {
+                $query->where('email', $filter);
+            }
+        }
+        if (request()->status != null) {
+            $status  = request()->status;
+            $query->where('status', $status - 1);
+        }
+        return $query;
+    }
     public function saveCode($cus)
     {
         $code =  bcrypt(md5(time() . $cus->email));

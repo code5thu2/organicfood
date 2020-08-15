@@ -57,9 +57,21 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
         'tags' => 'TagController',
         'contact' => 'ContactController',
     ]);
+
+    //Route thùng rác và khôi phục
+    Route::get('/category-trash', 'CategoryController@trash')->name('categories.trash');
+    Route::get('/category-restore/{id}', 'CategoryController@restore')->name('categories.restore');
+    Route::get('/product-trash', 'ProductController@trash')->name('products.trash');
+    Route::get('/product-restore/{id}', 'ProductController@restore')->name('products.restore');
+    Route::get('/supplier-trash', 'SupplierController@trash')->name('suppliers.trash');
+    Route::get('/supplier-restore/{id}', 'SupplierController@restore')->name('suppliers.restore');
+
+    // Route quản lý đơn hàng
     Route::get('/orders', 'OrderController@index')->name('orders.index');
     Route::get('/orders/{id}', 'OrderController@show')->name('orders.show');
     Route::put('/orders/status-update/{id}-{status}', 'OrderController@status_update')->name('orders.status_update');
+
+    //Route quản lý người dùng
     route::get('/customer-list', 'AdminController@customer_list')->name('customers.customer_list');
     route::put('/customer-update-status/{id}', 'AdminController@customer_update_status')->name('customers.customer_update_status');
 });

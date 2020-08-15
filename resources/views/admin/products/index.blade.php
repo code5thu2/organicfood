@@ -4,8 +4,32 @@
 <div class="row">
     <div class="col-12 table-responsive p-3 bg-white">
         <div class="row pb-2">
-            <div class="col-8">
+            <div class="col-md-4">
                 <a href="{{route('admin.products.create')}}" class="btn btn-outline-primary float-left"><i class="fas fa-plus"></i> ADD NEW</a>
+                <a href="{{route('admin.products.trash')}}" class="btn btn-warning float-left ml-2"><i class="fas fa-trash"></i> Thùng rác</a>
+            </div>
+            <div class="col-md-8">
+                <?php
+                $filter = [
+                    0 => [
+                        'value' => 'id_f',
+                        'name' => 'Mã sản phẩm'
+                    ],
+                    1 => [
+                        'value' => 'name_f',
+                        'name' => 'Tên sản phẩm'
+                    ],
+                ];
+                $status_query = [
+                    1 => 'Ẩn',
+                    2 => 'Hết hàng',
+                    3 => 'Còn hàng',
+                    4 => 'New',
+                    5 => 'Hot',
+                    6 => 'Sale'
+                ];
+                ?>
+                @include('filter_box',['filter' => $filter,'status_query' => $status_query])
             </div>
         </div>
         <table class="table table-bordered table-hover text-center">
@@ -33,7 +57,7 @@
                             </div>
                     </td>
                     <td>đ {{$model->sale > 0 ? number_format($model->sale):number_format($model->price)}}</td>
-                    <td>{{$model->cat->name}}</td>
+                    <td>{{$model->cat ? $model->cat->name : 'Không rõ'}}</td>
                     <td>
                         <div class="form-group">
                             <select class="form-control" style="background-color: #fff;border:0;" disabled>
@@ -66,7 +90,11 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="">{{$product->links()}}</div>
+        <div class="row justify-content-end mt-2">
+            <div class="mt-3 col-12">
+                {{$product->withQueryString()->links()}}
+            </div>
+        </div>
     </div>
 </div>
 @stop()

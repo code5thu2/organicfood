@@ -6,26 +6,36 @@
 use Carbon\Carbon; ?>
 <div class="row">
     <div class="col-12 table-responsive p-3 bg-white text-center">
+        <?php
+        $filter = [
+            0 => [
+                'value' => 'id_f',
+                'name' => 'Mã khách hàng'
+            ],
+            1 => [
+                'value' => 'name_f',
+                'name' => 'Tên khách hàng'
+            ],
+            2 => [
+                'value' => 'email_f',
+                'name' => 'Email'
+            ],
+            3 => [
+                'value' => 'phone_f',
+                'name' => 'phone'
+            ],
+        ];
+        $status_query = [
+            1 => 'Chưa kích hoạt',
+            2 => 'Hoạt động',
+            3 => 'Bị chặn'
+        ];
+        ?>
         <div class="row pb-2">
-            <div class="col-6">
+            <div class="col-4">
             </div>
-            <div class="col-6">
-                <form action="" method="get">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <select class="mr-2" name="status" id="">
-                                <option value="0">All</option>
-                                <option {{Request::get('status') == 1 ? 'selected' : ''}} value="1">Kích hoạt</option>
-                                <option {{Request::get('status') == 2 ? 'selected' : ''}} value="2">Chưa kích hoạt</option>
-                                <option {{Request::get('status') == 3 ? 'selected' : ''}} value="3">Bị chặn</option>
-                            </select>
-                            <input type="text" name="key" placeholder="Nhập tên khách hàng..." class="form-control">
-                            <div class="input-group-append">
-                                <button type="submit" class="btn btn-primary">Go!</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+            <div class="col-8">
+                @include('filter_box',['filter' => $filter,'status_query' => $status_query])
             </div>
         </div>
         <table class="table table-hover">

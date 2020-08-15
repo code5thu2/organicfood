@@ -9,6 +9,7 @@ use App\Http\Requests\faqAddRequest;
 use App\Http\Requests\faqEditRequest;
 
 use RealRashid\SweetAlert\Facades\Alert;
+
 class FaqController extends Controller
 {
     /**
@@ -40,12 +41,12 @@ class FaqController extends Controller
      */
     public function store(faqAddRequest $request)
     {
-        if  (Faq::create($request->all())) {
+        if (Faq::create($request->all())) {
             Alert::toast('Tạo mới thành công', 'success');
             return redirect()->route('admin.faqs.index');
         }
-            Alert::toast('Có lỗi xảy ra', 'error'); 
-            return redirect()->back();
+        Alert::toast('Có lỗi xảy ra', 'error');
+        return redirect()->back();
     }
 
     /**
@@ -79,7 +80,7 @@ class FaqController extends Controller
      */
     public function update(faqEditRequest $request, Faq $faq)
     {
-         if ($faq->update($request->all())) {
+        if ($faq->update($request->all())) {
             Alert::toast('Cập nhật thành công', 'success');
             return Redirect()->route('admin.faqs.index');
         }
@@ -95,11 +96,11 @@ class FaqController extends Controller
      */
     public function destroy(Faq $faq)
     {
-        if ($faq->delete()){
-            Alert::toast('Xóa thành công','success');
+        if ($faq->delete()) {
+            Alert::toast('Xóa thành công', 'success');
             return redirect()->Route('admin.faqs.index');
         }
-            Alert::toast('Có lỗi xảy ra','error');
-            return redirect()->back();
+        Alert::toast('Có lỗi xảy ra', 'error');
+        return redirect()->back();
     }
 }
