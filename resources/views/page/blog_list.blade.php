@@ -5,20 +5,10 @@
 use Carbon\Carbon;
 ?>
 <section>
-    <div class="container-fluid sub-banner">
-        <img src="images/banner/adli-wahid-nmF_6DxByAw-unsplash.jpg" class="img-fluid" alt="" />
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="breadcrumb-main">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">home</a></li>
-                    <li class="breadcrumb-item active">vegetables</li>
-                </ol>
-                <h1>vegetables</h1>
-            </div>
-        </div>
-    </div>
+    <?php
+    $br_item = 'Danh sách bài viết';
+    ?>
+    @include('page.breadcrumb',['br_item' => $br_item,'data' => ''])
     <!-- bắt đầu phần blog -->
     <div class="container blog-page">
         <div class="row">
@@ -144,55 +134,6 @@ use Carbon\Carbon;
         </div>
     </div>
     <!-- kết thúc phần blog -->
-    <!-- bắt đầu phần help box -->
-    <div class="container help-box mt-4">
-        <div class="row align-items-center">
-            <div class="col-sm-3 p-0">
-                <div class="row align-items-center">
-                    <div class="col-4 help-icon">
-                        <i class="fas fa-shipping-fast"></i>
-                    </div>
-                    <div class="col-8 help-content">
-                        <h3>free shipping</h3>
-                        <p>worldwide</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 p-0">
-                <div class="row align-items-center">
-                    <div class="col-4 help-icon">
-                        <i class="fas fa-headphones-alt"></i>
-                    </div>
-                    <div class="col-8 help-content">
-                        <h3>24x7</h3>
-                        <p>customer support</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 p-0">
-                <div class="row align-items-center">
-                    <div class="col-4 help-icon">
-                        <i class="fas fa-headphones-alt"></i>
-                    </div>
-                    <div class="col-8 help-content">
-                        <h3>returns</h3>
-                        <p>and exchange</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 p-0">
-                <div class="row align-items-center">
-                    <div class="col-4 help-icon">
-                        <i class="fas fa-phone-volume"></i>
-                    </div>
-                    <div class="col-8 help-content">
-                        <h3>hotline</h3>
-                        <p>0969906925</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- kết thúc phần help box -->
+    @include('page.help_box')
 </section>
 @stop()

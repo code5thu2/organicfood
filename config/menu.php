@@ -70,6 +70,24 @@ return [
         'route' => 'admin.customers.customer_list'
     ],
     [
+        'id' => 'blog_manager',
+        'name' => 'Bài viết & bình luận',
+        'icon' => 'fas fa-user-cog',
+        'route' => 'admin.blogs.index',
+        'items' => [
+            [
+                'name' => 'Bài viết',
+                'icon' => 'fas fa-user-cog',
+                'route' => 'admin.blogs.index'
+            ],
+            [
+                'name' => 'Danh sách bình luận',
+                'icon' => 'fas fa-shield-alt',
+                'route' => 'admin.comment_list'
+            ]
+        ]
+    ],
+    [
         'id' => 'admin_manager',
         'name' => 'Tài khoản Admin',
         'icon' => 'fas fa-user-cog',

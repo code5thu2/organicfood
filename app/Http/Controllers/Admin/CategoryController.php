@@ -43,18 +43,13 @@ class CategoryController extends Controller
      */
     public function store(categoryAddRequest $request, Category $category)
     {
-        if ($request->hasFile('upload')) {
-            $file_name = uploadImg('upload');
-            $request->merge(['image' => $file_name]);
-        }
-        $slug =  slugName('name');
-        $request->merge(['slug' => $slug]);
-        // dd($request->all());
-        if (Category::create($request->all())) {
-            Alert::toast('successfully completed', 'success');
+        $cats = new Category;
+        $addCat = $cats->createCat($request);
+        if ($addCat) {
+            Alert::toast('Thêm danh mục thành công', 'success');
             return redirect()->route('admin.categories.index');
         }
-        Alert::toast('Error', 'error');
+        Alert::toast('Không thể thêm danh mục', 'error');
         return redirect()->back();
     }
 
@@ -90,18 +85,15 @@ class CategoryController extends Controller
      */
     public function update(categoryEditRequest $request, Category $category)
     {
-        if ($request->hasFile('upload')) {
-            $file_name = uploadImg('upload');
-            $request->merge(['image' => $file_name]);
-        }
-        $slug =  slugName('name');
-        $request->merge(['slug' => $slug]);
-        if ($category->update($request->all())) {
-            Alert::toast('successfully completed', 'success');
+        $cats = new Category;
+        $up_cat = $cats->updateCat($category);
+        if ($up_cat) {
+            Alert::toast('Cập nhật danh mục thành công', 'success');
             return Redirect()->route('admin.categories.index');
+        } else {
+            Alert::toast('Không thể cập nhật danh mục', 'error');
+            return  redirect()->back();
         }
-        Alert::toast('Error', 'error');
-        return  redirect()->back();
     }
 
     /**

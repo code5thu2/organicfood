@@ -40,26 +40,15 @@ class SupplierController extends Controller
      */
     public function store(supplierAddRequest $request)
     {
-        // thay doi
-        if ($request->hasFile('upload')) {
-            $file_name = uploadImg('upload');
-            $request->merge(['image' => $file_name]);
+        $sup = new Supplier;
+        $add_sup = $sup->createSup($request);
+        if ($add_sup) {
+            Alert::toast('Thêm nhà cung cấp thành công', 'success');
+            return redirect()->route('admin.suppliers.index');
+        } else {
+            Alert::toast('Không thể thêm nhà cung cấp', 'error');
+            return redirect()->back();
         }
-        if (Supplier::create($request->all())) {
-            return redirect()->route('admin.suppliers.index')->with('yes', 'Add new supplier successfully');
-        }
-        return redirect()->back()->with('no', 'Adding new supplier failed');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Supplier  $supplier
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Supplier $supplier)
-    {
-        //
     }
 
     /**
@@ -84,14 +73,15 @@ class SupplierController extends Controller
     public function update(supplierEditRequest $request, Supplier $supplier)
     {
 
-        if ($request->hasFile('upload')) {
-            $file_name = uploadImg('upload');
-            $request->merge(['image' => $file_name]);
+        $sup = new Supplier;
+        $add_sup = $sup->updateSup($supplier);
+        if ($add_sup) {
+            Alert::toast('Cập nhật thành công', 'success');
+            return redirect()->route('admin.suppliers.index');
+        } else {
+            Alert::toast('Không thể cập nhật, có lỗi xảy ra', 'error');
+            return redirect()->back();
         }
-        if ($supplier->update($request->all())) {
-            return redirect()->route('admin.suppliers.index')->with('yes', 'Update supplier successfully');
-        }
-        return redirect()->back()->with('no', 'Update supplier failed');
     }
 
     /**

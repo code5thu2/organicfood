@@ -32,10 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="">Category image</label>
-                <input type="file" class="form-control-file  @error('upload') is-invalid @enderror" name="upload" placeholder="">
-                @error('upload')
-                <small class="text-danger">{{$message}}</small>
-                @enderror
+                @include('image_box')
             </div>
     </div>
     <div class="col-md-6">
@@ -52,8 +49,12 @@
             <input type="text" name="meta_keyword" value="{{old('meta_keyword')}}" class="form-control">
         </div>
         <div class="form-group">
-            <label for="">Category prioty</label>
-            <input type="text" name="prioty" value="{{old('prioty')}}" class="form-control">
+            <label for="">Vị trí</label>
+            <select class="form-control" name="prioty">
+                <option value="">--- --- ---</option>
+                <option value="1">Thanh menu chính</option>
+                <option value="2">Slide trang home</option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Add</button>
         </form>

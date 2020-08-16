@@ -7,6 +7,7 @@ use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Requests\tagAddRequest;
 use App\Http\Requests\tagEditRequest;
+use App\Models\ProductTag;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class TagController extends Controller
@@ -75,6 +76,9 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
+        if ($tag->products->count()) {
+            ProductTag::where('tag_id', $tag->id)->delete();
+        }
         if ($tag->delete()) {
             toast('Xóa tag thành công', 'success');
             return redirect()->back();

@@ -1,13 +1,10 @@
 @foreach($comments as $comment)
-<div class="media">
-    <div class="avatar-user">
-        <img src="images/unnamed.jpg" class="rounded-circle mr-3 img-fluid" alt="Sample Image">
-    </div>
+<div class="media {{$comment->parent_id > 0 ? 'ml-4' : ''}}">
     <div class="media-body comment-content">
         <h5 class="mt-0"><span class="user-name">{{ $comment->customer->name }}</span> <small><i>Posted on
-                    January 10, 2019</i></small></h5>
-        <p>{{$comment->content}} {{$comment->id}}</p>
-        @if($comment->parent_id === 0)
+                    {{$comment->created_at}}</i></small></h5>
+        <p>{{$comment->content}}</p>
+        @if($comment->parent_id == 0)
         <a data-toggle="collapse" href="#collapseExample{{ $comment->id }}" aria-expanded="false" aria-controls="collapseExample{{ $comment->id }}">
             Reply
         </a>

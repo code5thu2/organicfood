@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\loginRequest;
+use App\Models\Comment;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Customer;
 
@@ -53,5 +54,29 @@ class AdminController extends Controller
         }
         Alert::toast('Lỗi, cập nhật không thành công', 'error');
         return redirect()->back();
+    }
+    public function comment_list()
+    {
+        $comment = Comment::Search()->paginate(10);
+        return view('admin.comments.comment_list', compact('comment'));
+    }
+    public function comment_del($id)
+    {
+        $comment = Comment::find($id);
+        if ($comment->replies->count()) {
+            foreach ($comment->replies as $model) {
+                $model->delete();
+            }
+            $comment->delete();
+            Alert::toast('Xóa bình luận thành công', 'success');
+            return redirect()->back();
+        } elseif (!$comment->replies->count()) {
+            $comment->delete();
+            Alert::toast('Xóa bình luận thành công', 'success');
+            return redirect()->back();
+        } else {
+            Alert::toast('Không thể xóa bình luận', 'error');
+            return redirect()->back();
+        }
     }
 }

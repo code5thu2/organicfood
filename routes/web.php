@@ -81,6 +81,10 @@ route::get('admin/login', 'Admin\AdminController@login')->name('admin.login');
 route::get('admin/logout', 'Admin\AdminController@logout')->name('admin.logout');
 Route::get('admin/error', 'Admin\AdminController@error')->name('admin.error');
 
+//Quản lý comment
+Route::get('admin/comments', 'Admin\AdminController@comment_list')->name('admin.comment_list');
+Route::delete('admin/comments/{id}', 'Admin\AdminController@comment_del')->name('admin.comment_del');
+
 Route::group(['prefix' => 'customer'], function () {
     Route::get('/login', 'CustomerController@login')->name('customer.login');
     Route::post('/login', 'CustomerController@post_login')->name('customer.post_login');

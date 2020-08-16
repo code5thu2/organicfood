@@ -2,15 +2,15 @@
 @section('title','banner create')
 @section('main')
 
-<div class="row justify-content-center">
-    <div class="col-md-6  bg-white p-4">
-        <div class="text-center">
-            <h4>Banner add new</h4>
-        </div>
+<div class="row justify-content-center bg-white p-4">
+    <div class="col-12">
+        <h4>Thêm mới banner</h4>
+    </div>
+    <div class="col-md-6">
         <form action="{{route('admin.banners.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="">Banner name</label>
+                <label for="">Tên banner</label>
                 <input type="text" name="name" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror">
                 @error('name')
                 <small class="text-danger">{{$message}}</small>
@@ -24,16 +24,16 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="">Banner descript</label>
-                <input type="text" name="descript" value="{{old('descript')}}" class="form-control @error('descript') is-invalid @enderror">
-                @error('descript')
+                <label for="">Mô tả chính</label>
+                <input type="text" name="description" value="{{old('description')}}" class="form-control @error('description') is-invalid @enderror">
+                @error('description')
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="">Banner prioty</label>
-                <input type="text" name="prioty" value="{{old('prioty')}}" class="form-control  @error('prioty') is-invalid @enderror">
-                @error('prioty')
+                <label for="">Mô tả phụ</label>
+                <input type="text" name="sub_description" value="{{old('sub_description')}}" class="form-control @error('sub_description') is-invalid @enderror">
+                @error('sub_description')
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
@@ -41,8 +41,8 @@
                 <label for="">Banner position</label>
                 <select class="form-control" name="position" value="{{old('position')}}" class="form-control">
                     <option value="0">Top</option>
-                    <option value="1">Mid</option>
-                    <option value="2">Bottom</option>
+                    <option value="1">Mid-left</option>
+                    <option value="2">mid-right</option>
                 </select>
             </div>
             <div class="form-group">
@@ -54,14 +54,29 @@
                 </label>
             </div>
             <div class="form-group">
-                <label for="">Banner image</label>
-                <input type="file" class="form-control-file  @error('upload') is-invalid @enderror" name="upload" value="{{old('upload')}}">
-                @error('upload')
-                <small class="text-danger">{{$message}}</small>
-                @enderror
+                <label for="">Vị trí hiển thị: </label>
+                <label class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" name="prioty" checked="" class="custom-control-input" value="1"><span class="custom-control-label">Active</span>
+                </label>
+                <label class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" name="prioty" checked="" class="custom-control-input" value="0"><span class="custom-control-label">Normal</span>
+                </label>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Add</button>
-        </form>
+            <div class="row">
+                <div class="col-6">
+                    <a href="{{route('admin.banners.index')}}" type="btn" class="btn btn-outline-primary btn-block">Cancle</a>
+                </div>
+                <div class="col-6">
+                    <button type="submit" class="btn btn-primary btn-block">Add</button>
+                </div>
+            </div>
     </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="">Banner image</label>
+            @include('image_box',['image' => ''])
+        </div>
+    </div>
+    </form>
 </div>
 @stop()

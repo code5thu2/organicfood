@@ -15,7 +15,7 @@
 
                                     <ul class="open-lv1">
                                         <li class="icon-list">
-                                            <a href="{{route('home.view',['id' => $model -> id,'slug' => $model -> slug])}}" class="card-link lv1 w-75">{{$model->name}}</a>
+                                            <a href="{{route('home.view',['id' => $model -> id,'slug' => $model -> slug])}}" class="card-link lv1 w-75 text-left">{{$model->name}}</a>
                                             <a class="card-link lv1" data-toggle="collapse" href="#collapse-{{$model->id}}"><i class="fas fa-chevron-right float-right"></i></a>
                                         </li>
                                     </ul>

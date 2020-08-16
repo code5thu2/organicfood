@@ -3,8 +3,25 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Banner extends Model
 {
-    protected $fillable= ['name','image','link','prioty','position','descript','status'];
+    use SoftDeletes;
+    protected $fillable = ['name', 'image', 'link', 'position', 'description', 'sub_description', 'status', 'prioty'];
+    public function createBan($request)
+    {
+        $img = str_replace(url('uploads') . '/', '', $request->image);
+        $request->merge(['image' => $img]);
+        $ban = Banner::create($request->all());
+        return  $ban;
+    }
+    public function updateBan($banner)
+    {
+        if (request()->image) {
+            $img = str_replace(url('uploads') . '/', '', request()->image);
+            request()->merge(['image' => $img]);
+        }
+        return $banner->update(request()->all());
+    }
 }

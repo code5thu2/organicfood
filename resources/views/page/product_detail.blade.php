@@ -1,20 +1,10 @@
 @extends('layouts.app')
 @section('main')
 <section>
-    <div class="container-fluid sub-banner">
-        <img src="{{url('public')}}/app/images/banner/adli-wahid-nmF_6DxByAw-unsplash.jpg" class="img-fluid" alt="" />
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="breadcrumb-main">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">home</a></li>
-                    <li class="breadcrumb-item active">vegetables</li>
-                </ol>
-                <h1>vegetables</h1>
-            </div>
-        </div>
-    </div>
+    <?php
+    $br_item = $product_detail->cat->name;
+    ?>
+    @include('page.breadcrumb',['br_item' => $br_item,'data' => $product_detail])
     <div class="product-detail-page">
         <div class="container">
             <div class="row">
@@ -140,9 +130,9 @@
                                     <div class="col-sm-4 text-center p-4 align-items-center">
                                         <div class="">
                                             @if(Auth::guard('cus')->check())
-                                            <button class="btn btn-danger" data-toggle="collapse" data-target="#collapserating" aria-expanded="false" aria-controls="collapserating">Viết nhận xét của bạn</button>
+                                            <button class="btn btn-danger" style="border-radius: 0;" data-toggle="collapse" data-target="#collapserating" aria-expanded="false" aria-controls="collapserating">Viết nhận xét của bạn</button>
                                             @else
-                                            <button class="btn btn-primary" data-toggle="collapse" data-target="#collapserating" aria-expanded="false" aria-controls="collapserating">Đăng nhập để đánh giá</button>
+                                            <button class="btn btn-primary" style="border-radius: 0;" data-toggle="collapse" data-target="#collapserating" aria-expanded="false" aria-controls="collapserating">Đăng nhập để đánh giá</button>
                                             @endif
                                         </div>
                                     </div>
@@ -190,6 +180,19 @@
                                     </form>
                                     @endif
                                 </div>
+                                <div class="review-list">
+                                    @if(isset($product_detail->ratings))
+                                    @foreach($product_detail->ratings as $rate)
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h5 class="mt-0">{{$rate->customer->name}} <small style="color:#549843;">{{date('d-m-Y',strtotime($rate->created_at))}}</small></h5>
+                                            <div class="product-rated" data-rating="{{$rate->number}}"></div>
+                                            <p>{{$rate->content}}</p>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -197,56 +200,7 @@
             </div>
         </div>
     </div>
-    <!-- bắt đầu phần help box -->
-    <div class="container help-box mt-4">
-        <div class="row align-items-center">
-            <div class="col-sm-3 p-0">
-                <div class="row align-items-center">
-                    <div class="col-4 help-icon">
-                        <i class="fas fa-shipping-fast"></i>
-                    </div>
-                    <div class="col-8 help-content">
-                        <h3>free shipping</h3>
-                        <p>worldwide</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 p-0">
-                <div class="row align-items-center">
-                    <div class="col-4 help-icon">
-                        <i class="fas fa-headphones-alt"></i>
-                    </div>
-                    <div class="col-8 help-content">
-                        <h3>24x7</h3>
-                        <p>customer support</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 p-0">
-                <div class="row align-items-center">
-                    <div class="col-4 help-icon">
-                        <i class="fas fa-headphones-alt"></i>
-                    </div>
-                    <div class="col-8 help-content">
-                        <h3>returns</h3>
-                        <p>and exchange</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 p-0">
-                <div class="row align-items-center">
-                    <div class="col-4 help-icon">
-                        <i class="fas fa-phone-volume"></i>
-                    </div>
-                    <div class="col-8 help-content">
-                        <h3>hotline</h3>
-                        <p>0969906925</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- kết thúc phần help box -->
+    @include('page.help_box')
 </section>
 
 @stop()

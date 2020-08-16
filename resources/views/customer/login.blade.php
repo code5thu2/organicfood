@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('main')
 <div class="container-fluid sub-banner">
-    <img src="{{url('uploads')}}app/images/banner/adli-wahid-nmF_6DxByAw-unsplash.jpg" class="img-fluid" alt="" />
+    <img src="{{url('public')}}/app/images/banner/adli-wahid-nmF_6DxByAw-unsplash.jpg" class="img-fluid" alt="" />
 </div>
 <div class="container">
     <div class="row">

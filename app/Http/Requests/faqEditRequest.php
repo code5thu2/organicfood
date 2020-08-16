@@ -23,12 +23,12 @@ class faqEditRequest extends FormRequest
      */
     public function rules()
     {
-         return [
-             'name' => 'required|unique:faqs,name,'  . request()->id,
+        return [
+            'name' => 'required|unique:faqs,name,'  . request()->id,
             'content' => 'required',
         ];
     }
-     public function messages()
+    public function messages()
     {
         return [
             'name.required' => 'Tên faq không được để trống',

@@ -2,18 +2,16 @@
 @section('title','banner update')
 @section('main')
 
-<form action="{{route('admin.banners.update', $banner->id)}}" method="post" enctype="multipart/form-data">
-
-    <div class="row justify-content-center bg-white p-4">
-        <div class="col-12 ">
-            <h4>Edit banner</h4>
-        </div>
-        <div class="col-md-6">
+<div class="row justify-content-center bg-white p-4">
+    <div class="col-12">
+        <h4>Thêm mới banner</h4>
+    </div>
+    <div class="col-md-6">
+        <form action="{{route('admin.banners.update',$banner->id)}}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <input type="hidden" name="id" value="{{$banner->id}}">
             <div class="form-group">
-                <label for="">Banner name</label>
+                <label for="">Tên banner</label>
                 <input type="text" name="name" value="{{$banner->name}}" class="form-control @error('name') is-invalid @enderror">
                 @error('name')
                 <small class="text-danger">{{$message}}</small>
@@ -27,49 +25,60 @@
                 @enderror
             </div>
             <div class="form-group">
-                <label for="">Banner descript</label>
-                <input type="text" name="descript" value="{{$banner->descript}}" class="form-control @error('descript') is-invalid @enderror">
-                @error('descript')
+                <label for="">Mô tả chính</label>
+                <input type="text" name="description" value="{{$banner->description}}" class="form-control @error('description') is-invalid @enderror">
+                @error('description')
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group">
-                <label for="">Banner prioty</label>
-                <input type="text" name="prioty" value="{{$banner->prioty}}" class="form-control @error('prioty') is-invalid @enderror">
-                @error('prioty')
+                <label for="">Mô tả phụ</label>
+                <input type="text" name="sub_description" value="{{$banner->sub_description}}" class="form-control @error('sub_description') is-invalid @enderror">
+                @error('sub_description')
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="">Banner position</label>
                 <select class="form-control" name="position" value="{{$banner->position}}" class="form-control">
-                    <option value="0">Top</option>
-                    <option value="1">Mid</option>
-                    <option value="2">Bottom</option>
+                    <option value="">--- --- ---</option>
+                    <option value="0" {{$banner->position == 0 ? 'selected' : ''}}>Top</option>
+                    <option value="1" {{$banner->position == 1 ? 'selected' : ''}}>Mid-left</option>
+                    <option value="2" {{$banner->position == 2 ? 'selected' : ''}}>mid-right</option>
                 </select>
             </div>
             <div class="form-group">
                 <label class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" name="status" {{$banner->status == 1 ? 'checked' : ''}} class="custom-control-input" value="1"><span class="custom-control-label">Enable</span>
+                    <input type="radio" name="status" class="custom-control-input" value="1" {{$banner->status == 1 ? 'checked' : ''}}><span class="custom-control-label">Enable</span>
                 </label>
                 <label class="custom-control custom-radio custom-control-inline">
                     <input type="radio" name="status" class="custom-control-input" value="0" {{$banner->status == 0 ? 'checked' : ''}}><span class="custom-control-label">Disable</span>
                 </label>
             </div>
-        </div>
-        <div class="col-md-6">
             <div class="form-group">
-                <label for="">Banner image</label>
-                <input type="file" class="form-control-file  @error('upload') is-invalid @enderror" name="upload">
-                @error('upload')
-                <small class="text-danger">{{$message}}</small>
-                @enderror
-                <div class="mt-5 text-center">
-                    <img src="{{url('uploads')}}/{{$banner->image}}" alt="" class="img-fluid">
+                <label for="">Vị trí hiển thị: </label>
+                <label class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" name="prioty" checked="" class="custom-control-input" value="1"><span class="custom-control-label">Active</span>
+                </label>
+                <label class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" name="prioty" checked="" class="custom-control-input" value="0"><span class="custom-control-label">Normal</span>
+                </label>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <a href="{{route('admin.banners.index')}}" type="btn" class="btn btn-outline-primary btn-block">Cancle</a>
+                </div>
+                <div class="col-6">
+                    <button type="submit" class="btn btn-primary btn-block">Update</button>
                 </div>
             </div>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">update</button>
     </div>
-</form>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="">Banner image</label>
+            @include('image_box',['image' => $banner->image])
+        </div>
+    </div>
+    </form>
+</div>
 @stop()

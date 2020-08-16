@@ -10,6 +10,7 @@ use App\Models\Image;
 use Illuminate\Http\Request;
 use App\Http\Requests\productAddRequest;
 use App\Http\Requests\productEditRequest;
+use App\Models\Category;
 use App\Models\Tag;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -39,7 +40,8 @@ class ProductController extends Controller
         $supplier = Supplier::all();
         $unit = Unit::all();
         $tag = Tag::all();
-        return view('admin.products.create', compact('product', 'supplier', 'unit', 'tag'));
+        $category = Category::all();
+        return view('admin.products.create', compact('product', 'supplier', 'unit', 'tag', 'category'));
     }
 
     /**
@@ -80,12 +82,13 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $product = product::all();
+
+        $category = Category::all();
         $supplier = Supplier::all();
         $unit = Unit::all();
         $tag = Tag::all();
         $tag_assignment = $product->tags->pluck('name', 'id')->toArray();
-        return view('admin.products.edit', compact('product', 'supplier', 'unit', 'tag', 'product', 'tag_assignment'));
+        return view('admin.products.edit', compact('product', 'supplier', 'unit', 'tag', 'category', 'tag_assignment'));
     }
 
     /**
@@ -119,6 +122,9 @@ class ProductController extends Controller
     {
         if ($product->images->count()) {
             Image::where('product_id', $product->id)->delete();
+        }
+        if ($product->tags->count()) {
+            Tag::where('product_id', $product->id)->delete();
         }
         if ($product->delete()) {
             Alert::toast('Xóa sản phẩm thành công', 'success');

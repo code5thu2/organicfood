@@ -3,52 +3,38 @@
 @section('main')
 <section>
     <!-- bắt đầu top banner -->
-    <div id="carouselId" class="carousel slide banner-top" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carouselId" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselId" data-slide-to="1"></li>
-            <li data-target="#carouselId" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active text-center">
-                <img src="{{url('public')}}/app/images/banner/banner-img.jpg" alt="First slide" class="img-fluid" />
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Tifsdftle</h3>
-                    <p>Description</p>
+    <div class="container-fluid banner-top">
+        <div id="carouselId" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                @foreach($banner_top as $bt)
+                <div class="carousel-item {{$bt->prioty == 1 ? 'active' : ''}} text-center">
+                    <img src="{{url('uploads')}}/{{$bt->image}}" alt="First slide" class="img-fluid" />
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>{{$bt->sub_description}}</h5>
+                        <h3>{{$bt->description}}</h3>
+                        <a href="{{$bt->link}}" type="button" class="btn btn-outline-light">Learn more</a>
+                    </div>
                 </div>
+                @endforeach
             </div>
-            <div class="carousel-item">
-                <img src="{{url('public')}}/app/images/banner/banner-img.jpg" alt="Second slide" class="img-fluid" />
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Title</h3>
-                    <p>Description</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="{{url('public')}}/app/images/banner/banner-img.jpg" alt="Third slide" class="img-fluid" />
-                <div class="carousel-caption d-none d-md-block">
-                    <h3>Title</h3>
-                    <p>Description</p>
-                </div>
-            </div>
+            <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
+                <span class="prev-btn" aria-hidden="true"><i class="fas fa-angle-left"></i></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
+                <span class="next-btn" aria-hidden="true"><i class="fas fa-angle-right"></i></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-        <a class="carousel-control-prev" href="#carouselId" role="button" data-slide="prev">
-            <span class="prev-btn" aria-hidden="true"><i class="fas fa-angle-left"></i></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselId" role="button" data-slide="next">
-            <span class="next-btn" aria-hidden="true"><i class="fas fa-angle-right"></i></span>
-            <span class="sr-only">Next</span>
-        </a>
     </div>
     <!-- kết thúc top banner -->
     <!-- bắt đầu danh sách danh mục theo dạng carousel -->
     <div class="container category-banner">
         <div class="category-carousel owl-carousel owl-theme text-center">
-            @foreach($parentCat as $p)
+            @foreach($cat_slide as $cs)
             <div class="item">
-                <img data-src="{{url('uploads')}}/{{$p->image}}" class="lazy img-fluid" alt="" />
-                <h2><span>{{$p->name}}</span> fruits</h2>
+                <img src="{{url('uploads')}}/{{$cs->image}}" class="img-fluid" alt="" />
+                <h2><a href="{{route('home.view',['id' => $cs -> id,'slug' => $cs -> slug])}}">{{$cs->name}}</a></h2>
             </div>
             @endforeach
         </div>
@@ -76,40 +62,17 @@
                 </div>
             </div>
         </div>
+        @if(isset($pro_new))
         <div class="container">
             <div class="product-carousel owl-carousel owl-theme text-center">
+                @foreach($pro_new as $model)
                 <div class="item">
-                    <div class="card shadow card-pro">
-                        <div class="img-pro">
-                            <img class="card-img-top" src="{{url('public')}}/app/images/background-img/bg-category.jpg" alt="Card image">
-                            <div class="overlay-pro">
-                                <ul class="icon-content">
-                                    <li><a href="#" class="icon-pro">
-                                            <i class="far fa-eye"></i>
-                                        </a></li>
-                                    <li><a href="#" class="icon-pro">
-                                            <i class="far fa-heart"></i>
-                                        </a></li>
-                                    <li><a href="#" class="icon-pro">
-                                            <i class="far fa-heart"></i>
-                                        </a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body text-center body-pro">
-                            <span class="card-title title-pro">Lee Uniforms Vegetable's Short-Sleeve</span>
-                            <div class="price-pro">
-                                <span>$ 23.00</span>
-                                <span><del>$ 12.00</del></span>
-                            </div>
-                            <div class="buy-now">
-                                <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
-                            </div>
-                        </div> <!-- end-card-body -->
-                    </div>
+                    @include('page.product_box_vertical',$model)
                 </div>
+                @endforeach
             </div>
         </div>
+        @endif
     </div>
     <!-- kết thúc show sản phẩm theo new arrivals -->
     <!-- bắt đầu phần main show sản phẩm -->
@@ -444,47 +407,6 @@
         </div>
     </div>
     <!-- kết thúc phầnphần brand -->
-    <!-- bắt đầu phần help box -->
-    <div class="container help-box mt-4">
-        <div class="row align-items-center">
-            <div class="col-sm-3 p-0">
-                <div class="row align-items-center">
-                    <div class="col-4 help-icon"><i class="fas fa-shipping-fast"></i></div>
-                    <div class="col-8 help-content ">
-                        <h3>free shipping</h3>
-                        <p>worldwide</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 p-0">
-                <div class="row align-items-center">
-                    <div class="col-4 help-icon"><i class="fas fa-headphones-alt"></i></div>
-                    <div class="col-8 help-content ">
-                        <h3>24x7</h3>
-                        <p>customer support</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 p-0">
-                <div class="row align-items-center">
-                    <div class="col-4 help-icon"><i class="fas fa-headphones-alt"></i></div>
-                    <div class="col-8 help-content ">
-                        <h3>returns</h3>
-                        <p>and exchange</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3 p-0">
-                <div class="row align-items-center">
-                    <div class="col-4 help-icon"><i class="fas fa-phone-volume"></i></div>
-                    <div class="col-8 help-content ">
-                        <h3>hotline</h3>
-                        <p>0969906925</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- kết thúc phần help box -->
+    @include('page.help_box')
 </section>
 @stop()

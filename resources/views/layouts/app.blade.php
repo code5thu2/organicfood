@@ -127,12 +127,9 @@
                         <h5>Total: {{number_format($cart->total_price)}} đ</h5>
                         <div class="">
                             <a href="{{route('cart.view')}}" type="button" class="view-cart btn btn-outline-primary"> view cart</a>
-                            <!-- <button type="button" class="view-cart btn btn-outline-primary">
-                                view cart
-                            </button> -->
-                            <button type="button" class="checkout btn btn-primary float-right">
+                            <a href="{{route('checkout')}}" type="button" class="checkout btn btn-primary float-right">
                                 checkout
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -149,11 +146,10 @@
                         <div class="navbar-collapse collapse" id="navbar">
                             <ul class="navbar-nav nav-fill w-100">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#">home</a>
-                                    <!-- <img src="images/background-img/bg-img-2.png" alt="" /> -->
+                                    <a class="nav-link active" style="color: #88C442;" href="{{route('home')}}">home</a>
                                 </li>
                                 <li class="dropdown menu-large position-static nav-item">
-                                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">Shop</a>
+                                    <a href="{{route('home.product_list')}}" class="shop dropdown-toggle nav-link" data-toggle="dropdown">Shop</a>
                                     <ul class="dropdown-menu megamenu dropdown_menu-7">
                                         <div class="row">
                                             @foreach($parentCat as $c)
@@ -163,7 +159,7 @@
                                                     @if($c->childCat)
                                                     @foreach($c->childCat as $sc)
                                                     <li>
-                                                        <a href="#" class="sub-menu-item">{{$sc->name}}</a>
+                                                        <a href="{{route('home.view',['id' => $sc -> id,'slug' => $sc -> slug])}}" class="sub-menu-item">{{$sc->name}}</a>
                                                     </li>
                                                     @endforeach
                                                     @endif
@@ -174,7 +170,7 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">vegetables</a>
+                                    <a class="nav-link" href="{{route('home.product_list')}}">sản phẩm</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">fruits</a>
@@ -183,16 +179,13 @@
                                     <a class="nav-link" href="#">organic fruits</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"> sprouts</a>
+                                    <a class="nav-link" href="{{route('blogs.blog_list')}}">blog</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">custom</a>
+                                    <a class="nav-link" href="#">about us</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">blog</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">contact </a>
+                                    <a class="nav-link" href="#">contact</a>
                                 </li>
                             </ul>
                         </div>
@@ -328,7 +321,7 @@
             $('#back-to-top').click(function() {
                 $('body,html').animate({
                     scrollTop: 0
-                }, 400);
+                }, 1500);
                 return false;
             });
         });
@@ -369,7 +362,7 @@
                 },
 
                 993: {
-                    items: 3,
+                    items: 4,
                 },
             },
         });

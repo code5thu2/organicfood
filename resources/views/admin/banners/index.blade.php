@@ -31,7 +31,6 @@
                 @foreach($banner as $model)
                 <tr>
                     <td scope="row">{{$model->id}}</td>
-
                     <td>
                         <div class="media">
                             <img src="{{url('uploads')}}/{{$model->image}}" alt="" width="50px">

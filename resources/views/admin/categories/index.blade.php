@@ -22,12 +22,13 @@
         <table class="table table-bordered table-hover">
             <thead class=" thead-light">
                 <tr>
-                    <th>#</th>
+                    <th>Mã</th>
                     <th>Name</th>
                     <th>số sản phẩm</th>
-                    <th>Create date</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th>Vị trí</th>
+                    <th>Ngày tạo</th>
+                    <th>Trạng thái</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -51,10 +52,13 @@ function tableCategory($category, $parent_id = 0, $char = '')
 
         $statusColor = $item->status == 1 ? 'text-success' : 'text-danger';
         $status = $item->status == 1 ? 'Enable' : 'Disable';
+        $prioty = $item->prioty == 1 ? 'Menu' : 'Slide';
+        $check_pr = $item->prioty == '' ? '-- -- --' : $prioty;
         echo '<tr>';
-        echo ' <td scope="row">' . $item->id . '</td>';
+        echo ' <td scope="row">#' . $item->id . '</td>';
         echo ' <td class="text-left">' . $char . $item->name . '</td>';
         echo ' <td >' . $item->products->count() . '</td>';
+        echo ' <td >' . $check_pr  . '</td>';
         echo ' <td>' . date_format($item->created_at, 'd-m-Y') . '</td>';
         echo '  <td class="' . $statusColor . '">' . $status . '</td>';
         echo ' <td>';
