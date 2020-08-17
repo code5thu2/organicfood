@@ -22,6 +22,10 @@ class Customer extends Authenticatable
     {
         return $this->hasMany(Rating::class, 'customer_id', 'id');
     }
+    public function wishlist()
+    {
+        return $this->hasMany(Wishlist::class, 'customer_id', 'id');
+    }
     public function orders()
     {
         return $this->hasMany(Order::class);

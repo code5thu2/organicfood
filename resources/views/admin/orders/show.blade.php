@@ -44,7 +44,7 @@
                 <tr>
                     <td>{{$stt}}</td>
                     <td>
-                        <p>{{$model->product_name}}</p>
+                        <p>{{$model->product->name}}</p>
                     </td>
                     <td>{{number_format($model->price)}}đ</td>
                     <td>{{$model->quantity}}</td>

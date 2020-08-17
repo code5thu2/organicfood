@@ -24,7 +24,7 @@ class tagAddRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:tags'
+            'name' => 'required|max:100|unique:tags',
         ];
     }
     public function messages()
@@ -32,6 +32,7 @@ class tagAddRequest extends FormRequest
         return [
             'name.required' => 'Tên tag không được để trống',
             'name.unique' => 'Tên tag đã được sử dụng',
+            'name.max' => 'Tên tag quá dài',
         ];
     }
 }

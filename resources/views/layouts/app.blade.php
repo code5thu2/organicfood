@@ -84,10 +84,14 @@
             <div class="mid-nav container-fluid">
                 <div class="row align-items-center">
                     <div class="col-4 text-left">
-                        <button class="btn btn-circle wish-list">
-                            <i class="far fa-heart"></i>
-                            <span class="badge badge-secondary">01</span>
-                        </button>
+                        <form action="{{route('customer.wishlist_list')}}" method="get">
+                            <button class="btn btn-circle wish-list">
+                                <i class="far fa-heart"></i>
+                                @if(Auth::guard('cus')->check())
+                                <span class="badge badge-secondary">{{Auth::guard('cus')->user()->wishlist->count()}}</span>
+                                @endif
+                            </button>
+                        </form>
                     </div>
                     <div class="col-4 text-center p-0">
                         <a id="logo" href=""><img src="{{url('public')}}/app/images/logo/main-logo.png" alt="" /></a>

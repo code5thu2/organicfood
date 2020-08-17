@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('main')
+<?php
+
+use Carbon\Carbon;
+?>
 <section>
     <!-- bắt đầu top banner -->
     <div class="container-fluid banner-top">
@@ -106,126 +110,29 @@
             </ol>
         </nav>
         <div class="product-show container">
-            <div class="row">
-                <div class="col-md-3">
-                    <ul>
-                        <li>
-                            <div class="card product-item w-100">
-                                <div class="row no-gutters">
-                                    <div class="col-sm-5">
-                                        <img src="{{url('public')}}/app/images/product/product-img.jpg" class="card-img-top img-fluid" alt="..." />
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <div class="text-left card-body">
-                                            <h5>jessica simpon</h5>
-                                            <div class="product-rated"></div>
-                                            <span>$ 23.00</span>
-                                            <span><del>$ 12.00</del></span>
-                                            <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
-                                        </div>
-                                    </div>
+            <div class="row justify-content-around">
+                @if($pro_sell)
+                @foreach($pro_sell as $ps)
+                <div class="col-md-4 pt-3 pb-3">
+                    <div class="card product-item w-100">
+                        <div class="row no-gutters">
+                            <div class="col-sm-5">
+                                <img data-src="{{url('uploads')}}/{{$ps->image}}" class="lazy card-img-top img-fluid" alt="..." />
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="text-left card-body">
+                                    <h5 class="">{{$ps->name}}</h5>
+                                    <div class="product-rated" data-rating="{{$ps->ratings->avg('number')}}"></div>
+                                    <span>{{$ps->sale >0 ? number_format($ps->sale) : number_format($ps->price)}} đ</span>
+                                    <span><del>{{$ps->sale > 0 ? number_format($ps->price) : '0.00'}} đ</del></span>
+                                    <a href="{{route('home.view',['id'=> $ps->id,'slug' => $ps->slug])}}" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
                                 </div>
                             </div>
-                        </li>
-                        <li>
-                            <div class="card product-item w-100">
-                                <div class="row no-gutters">
-                                    <div class="col-sm-5">
-                                        <img src="{{url('public')}}/app/images/product/product-img.jpg" class="card-img-top img-fluid" alt="..." />
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <div class="text-left card-body">
-                                            <h5 class="">jessica simpon</h5>
-                                            <div class="product-rated" data-rating="4"></div>
-                                            <span>$ 23.00</span>
-                                            <span><del>$ 12.00</del></span>
-                                            <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="card product-item w-100">
-                                <div class="row no-gutters">
-                                    <div class="col-sm-5">
-                                        <img src="{{url('public')}}/app/images/product/product-img.jpg" class="card-img-top img-fluid" alt="..." />
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <div class="text-left card-body">
-                                            <h5 class="">jessica simpon</h5>
-                                            <div class="product-rated" data-rating="4"></div>
-                                            <span>$ 23.00</span>
-                                            <span><del>$ 12.00</del></span>
-                                            <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <img class="img-fluid" src="{{url('public')}}/app/images/background-img/gradient-large-bg-img.png" alt="">
-                </div>
-                <div class="col-md-3">
-                    <ul>
-                        <li>
-                            <div class="card product-item w-100">
-                                <div class="row no-gutters">
-                                    <div class="col-sm-5">
-                                        <img src="{{url('public')}}/app/images/product/product-img.jpg" class="card-img-top img-fluid" alt="..." />
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <div class="text-left card-body">
-                                            <h5 class="">jessica simpon</h5>
-                                            <div class="product-rated" data-rating="4"></div>
-                                            <span>$ 23.00</span>
-                                            <span><del>$ 12.00</del></span>
-                                            <a href="#" class="{{url('public')}}/app/btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="card product-item w-100">
-                                <div class="row no-gutters">
-                                    <div class="col-sm-5">
-                                        <img src="{{url('public')}}/app/images/product/product-img.jpg" class="card-img-top img-fluid" alt="..." />
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <div class="text-left card-body">
-                                            <h5 class="">jessica simpon</h5>
-                                            <div class="product-rated" data-rating="4"></div>
-                                            <span>$ 23.00</span>
-                                            <span><del>$ 12.00</del></span>
-                                            <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="card product-item w-100">
-                                <div class="row no-gutters">
-                                    <div class="col-sm-5">
-                                        <img src="{{url('public')}}/app/images/product/product-img.jpg" class="card-img-top img-fluid" alt="..." />
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <div class="text-left card-body">
-                                            <h5 class="">jessica simpon</h5>
-                                            <div class="product-rated" data-rating="4"></div>
-                                            <span>$ 23.00</span>
-                                            <span><del>$ 12.00</del></span>
-                                            <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                @endforeach
+                @endif
             </div>
         </div>
     </div>
@@ -233,21 +140,24 @@
     <!-- bắt đầu mid banner -->
     <div class="container mid-banner">
         <div class="row justify-content-between">
+            @if(isset($banner_mid_l))
             <div class="col-md-8 mr-1 p-0">
-                <img src="{{url('public')}}/app/images/banner/blueberries-2278921_1920.jpg" class="img-banner" alt="">
+                <img src="{{url('uploads')}}/{{$banner_mid_l->image}}" class="img-banner" alt="">
                 <div class="banner-title">
-                    <h1>fresh fruit</h1>
-                    <a name="" id="" class="btn btn-outline-primary" href="#" role="button">shop now</a>
+                    <h1>{{$banner_mid_l->description}}</h1>
+                    <a class="btn btn-outline-primary" href="{{$banner_mid_l->link}}" role="button">shop now</a>
                 </div>
             </div>
+            @endif
+            @if(isset($banner_mid_r))
             <div class="col-md-4 ml-1 p-0">
-                <img src="{{url('public')}}/app/images/banner/yogurt-1442034_1920.jpg" class="img-banner" alt="">
+                <img src="{{url('uploads')}}/{{$banner_mid_r->image}}" class="img-banner" alt="">
                 <div class="banner-title">
-                    <h5>free shipping</h5>
-                    <p>lorwfsa</p>
-                    <a name="" id="" class="btn btn-outline-primary" href="#" role="button">shop now</a>
+                    <h5>{{url('uploads')}}/{{$banner_mid_r->description}}</h5>
+                    <a class="btn btn-outline-primary" href="{{$banner_mid_r->link}}" role="button">shop now</a>
                 </div>
             </div>
+            @endif
         </div>
     </div>
     <!-- kết thúc mid banner -->
@@ -274,42 +184,16 @@
             </div>
         </div>
         <div class="blog-carousel owl-carousel owl-theme">
-            <div class="item"><img src="{{url('public')}}/app/images/blog/anna-tukhfatullina-food-photographer-stylist-9nKSSII7B5E-unsplash.jpg" class="img-fluid" alt="">
+            @if(isset($new_blog))
+            @foreach($new_blog as $nb )
+            <div class="item"><img data-src="{{url('uploads')}}/{{$nb->image}}" class="lazy img-fluid" alt="">
                 <div class="blog-content">
-                    <strong>march 4,2020</strong>
-                    <p>quick dinner, healthy recipes, and more</p>
+                    <strong>{{$nb->created_at->toFormattedDateString()}}</strong>
+                    <p>{{$nb->name}}</p>
                 </div>
             </div>
-            <div class="item"><img src="{{url('public')}}/app/images/blog/anna-tukhfatullina-food-photographer-stylist-9nKSSII7B5E-unsplash.jpg" class="img-fluid" alt="">
-                <div class="blog-content">
-                    <strong>march 4,2020</strong>
-                    <p>quick dinner, healthy recipes, and more</p>
-                </div>
-            </div>
-            <div class="item"><img src="{{url('public')}}/app/images/blog/anna-tukhfatullina-food-photographer-stylist-9nKSSII7B5E-unsplash.jpg" class="img-fluid" alt="">
-                <div class="blog-content">
-                    <strong>march 4,2020</strong>
-                    <p>quick dinner, healthy recipes, and more</p>
-                </div>
-            </div>
-            <div class="item"><img src="{{url('public')}}/app/images/blog/anna-tukhfatullina-food-photographer-stylist-9nKSSII7B5E-unsplash.jpg" class="img-fluid" alt="">
-                <div class="blog-content">
-                    <strong>march 4,2020</strong>
-                    <p>quick dinner, healthy recipes, and more</p>
-                </div>
-            </div>
-            <div class="item"><img src="{{url('public')}}/app/images/blog/anna-tukhfatullina-food-photographer-stylist-9nKSSII7B5E-unsplash.jpg" class="img-fluid" alt="">
-                <div class="blog-content">
-                    <strong>march 4,2020</strong>
-                    <p>quick dinner, healthy recipes, and more</p>
-                </div>
-            </div>
-            <div class="item"><img src="{{url('public')}}/app/images/blog/anna-tukhfatullina-food-photographer-stylist-9nKSSII7B5E-unsplash.jpg" class="img-fluid" alt="">
-                <div class="blog-content">
-                    <strong>march 4,2020</strong>
-                    <p>quick dinner, healthy recipes, and more</p>
-                </div>
-            </div>
+            @endforeach
+            @endif
         </div>
     </div>
 
@@ -391,7 +275,7 @@
         <div class="letter-form">
             <form action="{{route('subscribe.sign')}}" method="GET">
                 @csrf
-                <input class="newsletter-input" name="email_subscribe" type="text" placeholder="Enter your email here">
+                <input class="newsletter-input" name="email_subscribe" type="email" required placeholder="Enter your email here">
                 <button class="newsletter-btn">subscribe</button>
             </form>
         </div>

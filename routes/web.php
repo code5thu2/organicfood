@@ -116,6 +116,8 @@ Route::group(['prefix' => 'customer'], function () {
 Route::group(['prefix' => 'customer', 'middleware' => 'cus'], function () {
     Route::get('logout', 'CustomerController@logout')->name('customer.logout');
     Route::get('profile', 'CustomerController@profile')->name('customer.profile');
+    Route::get('wishlist/{pro_id}', 'CustomerController@wishlist')->name('customer.wishlist');
+    Route::get('wishlist-list', 'CustomerController@wishlist_list')->name('customer.wishlist_list');
     Route::get('order', 'CustomerController@order')->name('customer.order');
     Route::get('change_password', 'CustomerController@change_password')->name('customer.change_password');
     Route::post('comment/store', 'CommentController@store')->name('comment.store');

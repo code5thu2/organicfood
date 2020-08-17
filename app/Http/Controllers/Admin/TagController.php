@@ -31,7 +31,9 @@ class TagController extends Controller
      */
     public function store(tagAddRequest $request)
     {
-        if (Tag::create($request->only('name'))) {
+        $tag = new Tag;
+        $add_tag = $tag->createTag($request);
+        if ($add_tag) {
             toast('Thêm tag mới thành công', 'success');
             return redirect()->back();
         }
@@ -60,7 +62,9 @@ class TagController extends Controller
      */
     public function update(tagEditRequest $request, Tag $tag)
     {
-        if ($tag->update($request->only('name'))) {
+        $tags = new Tag;
+        $up_tag = $tags->updateTag($tag);
+        if ($up_tag) {
             toast('Update tag thành công', 'success');
             return redirect()->route('admin.tags.index');
         }

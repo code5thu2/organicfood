@@ -71,58 +71,29 @@
         <div class="top-seller shadow">
             <div class="card text-left">
                 <div class="cat-title card-header">
-                    <h2 class="card-title">top seller</h2>
+                    <h2 class="card-title">SẢn phẩm Hot</h2>
                 </div>
                 <div class="card-body">
                     <div class="col-md-12">
+                        @if(isset($pro_hot))
+                        @foreach($pro_hot as $ph)
                         <div class="card product-sale w-100">
                             <div class="row no-gutters">
-                                <div class="col-sm-5">
-                                    <img src="images/product/product-img.jpg" class="card-img-top img-sale" alt="..." />
+                                <div class="col-4">
+                                    <img src="{{url('uploads')}}/{{$ph->image}}" class="card-img-top img-sale img-fluid" alt="..." />
                                 </div>
-                                <div class="col-sm-7">
+                                <div class="col-8">
                                     <div class="text-left card-body name-pro">
-                                        <span class="name-pro-sale">jessica simpon</span>
-                                        <div class="product-rating" data-rating="4"></div>
-                                        <span>$ 23.00</span>
+                                        <a href="{{route('home.view',['id'=> $ph->id,'slug' => $ph->slug])}}">{{$ph->name}}</a>
+                                        <div class="product-rated" data-rating="{{$ph->ratings->avg('number')}}"></div>
+                                        <span>{{number_format($ph->price)}} đ</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
+                        @endif
                     </div>
-                    <div class="col-md-12">
-                        <div class="card product-sale w-100">
-                            <div class="row no-gutters">
-                                <div class="col-sm-5">
-                                    <img src="images/product/product-img.jpg" class="card-img-top img-sale" alt="..." />
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="text-left card-body name-pro">
-                                        <span class="name-pro-sale">jessica simpon</span>
-                                        <div class="product-rating" data-rating="4"></div>
-                                        <span>$ 23.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card product-sale w-100">
-                            <div class="row no-gutters">
-                                <div class="col-sm-5">
-                                    <img src="images/product/product-img.jpg" class="card-img-top img-sale" alt="..." />
-                                </div>
-                                <div class="col-sm-7">
-                                    <div class="text-left card-body name-pro">
-                                        <span class="name-pro-sale">jessica simpon</span>
-                                        <div class="product-rating" data-rating="4"></div>
-                                        <span>$ 23.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -135,8 +106,8 @@
                     <div class="widget-contian" id="tag">
                         <div class="tag-div">
                             @if(isset($Tag))
-                            @foreach($Tag as $model)
-                            <a class="tag-btn" href="#">{{$model->name}}</a>
+                            @foreach($Tag as $t)
+                            <a class="tag-btn" href="{{route('home.view',['id' => $t -> id,'slug' => $t -> slug])}}">{{$t->name}}</a>
                             @endforeach
                             @endif
                         </div>

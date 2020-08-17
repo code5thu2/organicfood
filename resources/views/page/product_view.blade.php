@@ -8,11 +8,12 @@
     @include('page.breadcrumb',['br_item' => $br_item,'data' => $category])
     <!-- bắt đầu phần product list -->
     <div class="product-list-content">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 @include('page.category_widget')
                 <div class="col-md-8 col-sm-12 col xs-12">
                     <div class="row">
+                        @include('page.filter_pro')
                         @if($category->products->count())
                         @foreach($pro_by_id as $model)
                         <div class="col-md-4">
@@ -21,7 +22,7 @@
                         @endforeach
                         @endif
                     </div>
-                    <div>{{$pro_by_id->links()}}</div>
+                    <div>{{$pro_by_id->withQueryString()->links()}}</div>
                 </div>
             </div>
         </div>

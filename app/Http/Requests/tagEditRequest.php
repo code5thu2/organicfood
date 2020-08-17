@@ -24,7 +24,8 @@ class tagEditRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:tags,name,' . request()->id
+            'name' => 'required|max:100|unique:tags,name,' . request()->id,
+            'slug' => 'max:100|unique:tags,slug,' . request()->id,
         ];
     }
     public function messages()
@@ -32,6 +33,9 @@ class tagEditRequest extends FormRequest
         return [
             'name.required' => 'Tên tag không được để trống',
             'name.unique' => 'Tên tag đã được sử dụng',
+            'name.max' => 'Tên tag quá dài',
+            'slug.max' => 'slug quá dài',
+            'slug.unique' => 'slug đã được sử dụng',
         ];
     }
 }

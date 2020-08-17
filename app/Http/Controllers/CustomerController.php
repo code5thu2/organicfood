@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\customerAddRequest;
 use App\Http\Requests\checkMailRequest;
 use App\Http\Requests\checkPassRequest;
+use App\Models\Wishlist;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -47,6 +48,25 @@ class CustomerController extends Controller
             alert()->warning('Warning', 'Tài khoản của bạn đã bị chặn!');
             return redirect()->back();
         }
+    }
+    public function wishlist($pro_id)
+    {
+        $te = Wishlist::where(['product_id' => $pro_id, 'customer_id' => Auth::guard('cus')->user()->id])->first();
+        if (isset($te)) {
+            Alert::toast('sản phẩm đã có trong danh sách yêu thích');
+            return redirect()->back();
+        } else {
+            $add_wish = Wishlist::create([
+                'product_id' => $pro_id,
+                'customer_id' => Auth::guard('cus')->user()->id,
+            ]);
+            Alert::toast('Thêm sản phẩm yêu thích thành công');
+            return redirect()->back();
+        }
+    }
+    public function wishlist_list()
+    {
+        return view('customer.wishlist_list');
     }
     public function verify_account(Request $request)
     {
