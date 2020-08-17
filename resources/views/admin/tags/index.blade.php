@@ -15,6 +15,14 @@
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
+            <div class="form-group">
+                <label class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" name="status" checked="" class="custom-control-input" value="1"><span class="custom-control-label">Enable</span>
+                </label>
+                <label class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" name="status" class="custom-control-input" value="0"><span class="custom-control-label">Disable</span>
+                </label>
+            </div>
             <button type="submit" class="btn btn-primary btn-block">Add</button>
         </form>
     </div>
@@ -30,7 +38,7 @@
             </thead>
             <tbody>
                 @foreach($tag as $model)
-                <tr>
+                <tr class="{{$model->status == 1 ? 'table-success' : 'table-danger'}}">
                     <td>{{$model->id}}</td>
                     <td>{{$model->name}}</td>
                     <td>{{date("h:m:s - d/m/Y", strtotime($model->created_at))}}</td>

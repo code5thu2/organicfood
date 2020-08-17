@@ -57,7 +57,14 @@
                 <div class="cat-title card-header">
                     <h2 class="card-title">by price</h2>
                 </div>
-                <div class="card-body">
+                <div class="card-body p-2">
+                    <form action="" method="get">
+                        <div class="slidecontainer">
+                            <input type="range" name="price_pro" min="1000" max="500000" value="{{Request::get('price_pro') ? Request::get('price_pro') : 10000}}" class="slider" id="myRange">
+                            <span> Price: <span id="demo"></span>đ</span>
+                            <button type="submit" class="btn float-right filter-price">Filter</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -127,14 +134,11 @@
                 <div class="card-body">
                     <div class="widget-contian" id="tag">
                         <div class="tag-div">
-                            <a class="tag-btn" href="#">Cucumber</a>
-                            <a class="tag-btn" href="#">Vegetables</a>
-                            <a class="tag-btn" href="#">Fruits</a>
-                            <a class="tag-btn" href="#">Organic Food</a>
-                            <a class="tag-btn" href="#">Food</a>
-                            <a class="tag-btn" href="#">True Natural</a>
-                            <a class="tag-btn" href="#">Garden</a>
-                            <a class="tag-btn" href="#">Green</a>
+                            @if(isset($Tag))
+                            @foreach($Tag as $model)
+                            <a class="tag-btn" href="#">{{$model->name}}</a>
+                            @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -143,3 +147,20 @@
 
         <!--  kết thúc category widget -->
 </aside>
+@section('js')
+<script>
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+        output.innerHTML = this.value;
+    }
+
+    $(document).ready(function() {
+        $('.orderBy').change(function() {
+            $("#form_order_by").submit();
+        })
+    })
+</script>
+@stop()

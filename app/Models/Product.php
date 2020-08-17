@@ -157,6 +157,30 @@ class Product extends Model
             $status  = request()->status;
             $query->where('status', $status - 1);
         }
+        if (request()->orderBy) {
+            switch (request()->orderBy) {
+                case 'ASC':
+                    $query->orderBy('name', 'ASC');
+                    break;
+                case 'DESC':
+                    $query->orderBy('name', 'DESC');
+                    break;
+                case 'price_max':
+                    $query->orderBy('price', 'ASC');
+                    break;
+                case 'price_min':
+                    $query->orderBy('price', 'DESC');
+                    break;
+
+                default:
+                case 'ASC':
+                    $query->orderBy('id', 'ASC');
+            }
+        }
+        if (request()->price_pro) {
+            $p = (int)request()->price_pro;
+            $query->where('price', '<', $p);
+        }
         return $query;
     }
 }

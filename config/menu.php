@@ -65,26 +65,61 @@ return [
     ],
     [
         'id' => 'customer_manager',
-        'name' => 'Danh sách khách hàng',
+        'name' => 'Khách hàng',
         'icon' => 'fas fa-child',
-        'route' => 'admin.customers.customer_list'
+        'route' => 'admin.customers.customer_list',
+        'items' => [
+            [
+                'name' => 'Danh sách khách hàng',
+                'icon' => 'fas fa-user',
+                'route' => 'admin.customers.customer_list'
+            ],
+            [
+                'name' => 'Email đăng ký',
+                'icon' => 'far fa-envelope',
+                'route' => 'admin.subscribe_list'
+            ],
+        ],
+    ],
+    [
+        'id' => 'media_sell',
+        'name' => 'Truyền thông',
+        'icon' => 'fas fa-ad',
+        'route' => 'admin.images.index',
+        'items' => [
+            [
+                'name' => 'File',
+                'icon' => 'far fa-folder-open',
+                'route' => 'admin.images.index'
+            ],
+            [
+                'name' => 'Danh sách banner',
+                'icon' => '',
+                'route' => 'admin.banners.index'
+            ],
+        ]
     ],
     [
         'id' => 'blog_manager',
         'name' => 'Bài viết & bình luận',
-        'icon' => 'fas fa-user-cog',
+        'icon' => 'fab fa-blogger',
         'route' => 'admin.blogs.index',
         'items' => [
             [
                 'name' => 'Bài viết',
-                'icon' => 'fas fa-user-cog',
+                'icon' => 'fas fa-blog',
                 'route' => 'admin.blogs.index'
             ],
             [
                 'name' => 'Danh sách bình luận',
-                'icon' => 'fas fa-shield-alt',
+                'icon' => 'far fa-comment-dots',
                 'route' => 'admin.comment_list'
-            ]
+            ],
+            [
+                'name' => 'FAQ',
+                'icon' => 'fas fa-question',
+                'route' => 'admin.faqs.index'
+            ],
         ]
     ],
     [
@@ -123,24 +158,7 @@ return [
             ]
         ]
     ],
-    [
-        'id' => 'filemanager',
-        'name' => 'File manager',
-        'icon' => 'far fa-folder-open',
-        'route' => '',
-        'items' => [
-            [
-                'name' => 'Image',
-                'icon' => '',
-                'route' => 'admin.images.index'
-            ],
-            [
-                'name' => 'Banner list',
-                'icon' => '',
-                'route' => 'admin.banners.index'
-            ],
-        ]
-    ],
+
     [
         'id' => 'usermanager',
         'name' => 'User manager',

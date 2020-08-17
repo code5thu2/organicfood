@@ -9,7 +9,7 @@ class Tag extends Model
 {
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'status'];
 
     public function products()
     {

@@ -112,7 +112,7 @@
     <div class="col-md-12">
         <div class="form-group">
             <label for="">Content</label>
-            <textarea name="content" id="content" class="form-control @error('content') is-invalid @enderror" cols="30" rows="30" value="{{old('content')}}"></textarea>
+            <textarea name="content" id="content" class="form-control @error('content') is-invalid @enderror" cols="30" rows="30" value="{{old('content')}}">{{old('content')}}</textarea>
             @error('content')
             <small class="text-danger">{{$message}}</small>
             @enderror

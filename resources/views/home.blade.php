@@ -389,8 +389,9 @@
             <p>Sign up our newsletter to recieve <span>latest news</span> and <span>greate offers</span>:</p>
         </div>
         <div class="letter-form">
-            <form action="#">
-                <input class="newsletter-input" type="text" placeholder="Enter your email here">
+            <form action="{{route('subscribe.sign')}}" method="GET">
+                @csrf
+                <input class="newsletter-input" name="email_subscribe" type="text" placeholder="Enter your email here">
                 <button class="newsletter-btn">subscribe</button>
             </form>
         </div>

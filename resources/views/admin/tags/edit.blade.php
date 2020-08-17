@@ -17,6 +17,14 @@
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
+            <div class="form-group">
+                <label class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" name="status" class="custom-control-input" value="1" {{$tag->status == 1 ? 'checked' : ''}}><span class="custom-control-label">Enable</span>
+                </label>
+                <label class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" name="status" class="custom-control-input" value="0" {{$tag->status == 0 ? 'checked' : ''}}><span class="custom-control-label">Disable</span>
+                </label>
+            </div>
             <button type="submit" class="btn btn-primary btn-block">Update</button>
         </form>
     </div>

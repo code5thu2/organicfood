@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\Category;
+use App\Models\Feedback;
 use App\Models\Product;
+use App\Http\Requests\feedbackAddRequest;
 use App\Models\Rating;
 use Illuminate\Http\Request;
+use Illuminate\Support\ViewErrorBag;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class HomeController extends Controller
 {
@@ -38,10 +42,23 @@ class HomeController extends Controller
 
     public function product_list()
     {
-        $product = Product::where('status', '>', 0)->paginate(10);
+        $product = Product::Search()->where('status', '>', 0)->paginate(10);
         return view('page.product_list', compact('product'));
     }
-
+    public function contact()
+    {
+        return view('page.contact');
+    }
+    public function submit_feedback(feedbackAddRequest $request)
+    {
+        if (Feedback::create($request->all())) {
+            Alert::toast('Gửi phản hồi thành công', 'success');
+            return view('page.contact');
+        } else {
+            Alert::toast('Gửi phản hồi không thành công', 'warning');
+            return view('page.contact');
+        };
+    }
     public function view($id, $slug)
     {
         $category = Category::where(['slug' => $slug, 'id' => $id])->first();

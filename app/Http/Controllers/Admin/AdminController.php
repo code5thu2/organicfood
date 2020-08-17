@@ -9,6 +9,9 @@ use App\Http\Requests\loginRequest;
 use App\Models\Comment;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Customer;
+use App\Models\Feedback;
+use App\Models\Rating;
+use App\Models\Subscribe;
 
 class AdminController extends Controller
 {
@@ -78,5 +81,59 @@ class AdminController extends Controller
             Alert::toast('Không thể xóa bình luận', 'error');
             return redirect()->back();
         }
+    }
+    public function subscribe_list()
+    {
+        $email = Subscribe::orderBy('id', 'DESC')->paginate(10);
+        return view('admin.subscribe_list', compact('email'));
+    }
+    public function subscribe_del($id)
+    {
+        $email = Subscribe::find($id)->first();
+        if ($email->delete()) {
+            Alert::toast('Xóa email thành công', 'success');
+            return redirect()->back();
+        } else {
+            Alert::toast('Không thể xóa email này', 'error');
+            return redirect()->back();
+        }
+    }
+    public function rating_list()
+    {
+        $rate = Rating::orderBy('id', 'DESC')->paginate(10);
+        return view('admin.rating_list', compact('rate'));
+    }
+    public function rating_up($id)
+    {
+        $rate = Rating::where('id', $id)->first();
+        if ($rate->status == 1) {
+            $up_status = $rate->update(['status' => 0]);
+            Alert::toast('Ẩn đánh giá thành công', 'success');
+        } else {
+            $up_status = $rate->update(['status' => 1]);
+            Alert::toast('Hiện đánh giá thành công', 'success');
+        }
+        if ($up_status) {
+            return redirect()->back();
+        } else {
+            Alert::toast('Error!', 'error');
+            return redirect()->back();
+        }
+    }
+    public function rating_del($id)
+    {
+        $rate = Rating::find($id)->first();
+        if ($rate->delete()) {
+            Alert::toast('Xóa đánh giá thành công', 'success');
+            return redirect()->back();
+        } else {
+            Alert::toast('Không thể xóa đánh giá này', 'error');
+            return redirect()->back();
+        }
+    }
+    public function feedback_list()
+    {
+        $feedback = Feedback::orderBy('id', 'DESC')->paginate(10);
+        return view('admin.feedback_list', compact('feedback'));
     }
 }

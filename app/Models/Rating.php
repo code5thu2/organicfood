@@ -11,4 +11,8 @@ class Rating extends Model
     {
         return $this->hasOne(Customer::class, 'id', 'customer_id');
     }
+    public function product()
+    {
+        return $this->hasOne(Product::class, 'id', 'product_id');
+    }
 }

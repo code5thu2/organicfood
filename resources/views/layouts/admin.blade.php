@@ -168,26 +168,6 @@
             <!-- ============================================================== -->
             <!-- ============================================================== -->
         </div>
-        <!-- footer -->
-        <!-- ============================================================== -->
-        <div class="footer" style="position:absolute;background-color:#0E0C28;color:#fff;border:0;">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                        Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
-                    </div>
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                        <div class="text-md-right footer-links d-none d-sm-block">
-                            <a href="javascript: void(0);">About</a>
-                            <a href="javascript: void(0);">Support</a>
-                            <a href="javascript: void(0);">Contact Us</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- ============================================================== -->
-        <!-- end footer -->
         <!-- ============================================================== -->
         <!-- end wrapper  -->
         <!-- ============================================================== -->
@@ -201,6 +181,8 @@
     <!-- bootstap bundle js -->
     <script src="{{url('public/backend/assets')}}/vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="{{url('public/backend/assets')}}/vendor/bootstrap4-toggle/js/bootstrap4-toggle.min.js"></script>
+    <script src="{{url('public')}}/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="{{url('public')}}/tinymce/config.js" referrerpolicy="origin"></script>
 
     @yield('js')
     @include('sweetalert::alert')
