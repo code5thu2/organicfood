@@ -40,99 +40,33 @@ use Carbon\Carbon;
             <div class="col-md-3">
                 <aside class="blog-sidebar">
                     <div class="search-blog-box">
-                        <form class="form-search">
+                        <form class="form-search" method="get">
                             <div>
-                                <input type="text" name="" id="" placeholder="search here...">
-                                <input type="submit" name="" id="searchSubmit">
+                                <input type="text" name="key" placeholder="search here...">
+                                <input type="submit" id="searchSubmit">
                             </div>
                         </form>
                     </div>
                     <div class="blog-sidebar-title">
                         <h3>recent post</h3>
+                        @if($new_blog)
+                        @foreach($new_blog as $nb)
                         <div class="card blog-box text-left">
                             <div class="row no-gutters">
                                 <div class="col-sm-5">
-                                    <img class="card-img-top img-fluid" src="images/blog/dose-juice-ocnsb17U6FE-unsplash.jpg" alt="">
+                                    <img class="card-img-top img-fluid" src="{{url('uploads')}}/{{$nb->image}}" alt="">
                                 </div>
                                 <div class="col-sm-7 card-body pl-1 m-0">
-                                    <h2 class="card-title"><a href="">Green Tea for Change Your Eating Food</a>
+                                    <h2 class="card-title"><a href="">{{$nb->summary}}</a>
                                     </h2>
                                     <ul class="p-0 m-0">
-                                        <li><a href=""><i class="far fa-clock"></i> april 30, 2018</a></li>
+                                        <li><a href=""><i class="far fa-clock"></i>{{$nb->created_at->toFormattedDateString()}}</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="card blog-box text-left">
-                            <div class="row no-gutters">
-                                <div class="col-sm-5">
-                                    <img class="card-img-top img-fluid" src="images/blog/dose-juice-ocnsb17U6FE-unsplash.jpg" alt="">
-                                </div>
-                                <div class="col-sm-7 card-body pl-1 m-0">
-                                    <h2 class="card-title"><a href="">Green Tea for Change Your Eating Food</a>
-                                    </h2>
-                                    <ul class="p-0 m-0">
-                                        <li><a href=""><i class="far fa-clock"></i> april 30, 2018</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card blog-box text-left">
-                            <div class="row no-gutters">
-                                <div class="col-sm-5">
-                                    <img class="card-img-top img-fluid" src="images/blog/dose-juice-ocnsb17U6FE-unsplash.jpg" alt="">
-                                </div>
-                                <div class="col-sm-7 card-body pl-1 m-0">
-                                    <h2 class="card-title"><a href="">Green Tea for Change Your Eating Food</a>
-                                    </h2>
-                                    <ul class="p-0 m-0">
-                                        <li><a href=""><i class="far fa-clock"></i> april 30, 2018</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card blog-box text-left">
-                            <div class="row no-gutters">
-                                <div class="col-sm-5">
-                                    <img class="card-img-top img-fluid" src="images/blog/dose-juice-ocnsb17U6FE-unsplash.jpg" alt="">
-                                </div>
-                                <div class="col-sm-7 card-body pl-1 m-0">
-                                    <h2 class="card-title"><a href="">Green Tea for Change Your Eating Food</a>
-                                    </h2>
-                                    <ul class="p-0 m-0">
-                                        <li><a href=""><i class="far fa-clock"></i> april 30, 2018</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card blog-box text-left">
-                            <div class="row no-gutters">
-                                <div class="col-sm-5">
-                                    <img class="card-img-top img-fluid" src="images/blog/dose-juice-ocnsb17U6FE-unsplash.jpg" alt="">
-                                </div>
-                                <div class="col-sm-7 card-body pl-1 m-0">
-                                    <h2 class="card-title"><a href="">Green Tea for Change Your Eating Food</a>
-                                    </h2>
-                                    <ul class="p-0 m-0">
-                                        <li><a href=""><i class="far fa-clock"></i> april 30, 2018</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card blog-box text-left">
-                            <div class="row no-gutters">
-                                <div class="col-sm-5">
-                                    <img class="card-img-top img-fluid" src="images/blog/dose-juice-ocnsb17U6FE-unsplash.jpg" alt="">
-                                </div>
-                                <div class="col-sm-7 card-body pl-1 m-0">
-                                    <h2 class="card-title"><a href="">Green Tea for Change Your Eating Food</a>
-                                    </h2>
-                                    <ul class="p-0 m-0">
-                                        <li><a href=""><i class="far fa-clock"></i> april 30, 2018</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
+                        @endif
                     </div>
                 </aside>
             </div>

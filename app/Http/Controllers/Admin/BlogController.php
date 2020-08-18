@@ -24,6 +24,10 @@ class BlogController extends Controller
     public function blog_list()
     {
         $blog = Blog::where('status', 1)->orderBy('created_at', 'DESC')->paginate(3);
+        if (request()->key) {
+            $key = request()->key;
+            $blog = Blog::where('status', 1)->where('summary', 'like', '%' . $key . '%')->orderBy('created_at', 'DESC')->paginate(3);
+        }
         return view('page.blog_list', compact('blog'));
     }
     public function blog_detail(Request $request, $id, $slug)
