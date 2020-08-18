@@ -2187,10 +2187,7 @@ select.form-control {
     .social {
         text-align: center;
     }
-    .my-account,
-    .mid-nav {
-        display: none;
-    }
+
     .top-nav .my-account .dropdown {
         position: absolute;
         padding: 0;
@@ -2209,7 +2206,7 @@ select.form-control {
         font-size: 40px;
     }
     .category-banner .owl-carousel {
-        top: -30px;
+        top: 20px;
     }
     .step-box .first,
     .second,
@@ -2248,6 +2245,9 @@ select.form-control {
 }
 
 @media (max-width: 432px) {
+    .mid-nav .row .btn-circle span {
+        display: none;
+    }
     .mid-nav .row .btn-circle {
         width: 23px;
         height: 23px;
@@ -2648,6 +2648,9 @@ img.img-person {
 .main-address {
     padding-bottom: 80px;
 }
+.main-address p a {
+    color: #fff;
+}
 .box-ct {
     background: url("../images/background-img/bg-bg.png") center top no-repeat;
     display: inline-block;
@@ -2794,4 +2797,38 @@ img.img-person {
     margin: 0;
     line-height: 32px;
     font-weight: 400;
+}
+.wishlist-page {
+    padding: 80px 0;
+}
+.wishlist-page .table > thead > tr > th {
+    border: none;
+    background: #f1f1f1;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #5a4a3b;
+    text-align: left;
+    vertical-align: middle;
+    padding: 0 30px;
+    line-height: 58px;
+}
+.wishlist-page .table > tbody > tr > td {
+    padding: 38px 30px;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 14px;
+    color: #4a4642;
+    font-weight: 500;
+}
+.wishlist-page .table > tbody > tr > td a,
+.table > tbody > tr > td a i:before {
+    color: #4a4642;
+}
+.wishlist-page .table img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+    border: none;
+    display: block;
 }

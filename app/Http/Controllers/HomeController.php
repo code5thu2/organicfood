@@ -8,6 +8,7 @@ use App\Models\Feedback;
 use App\Models\Product;
 use App\Http\Requests\feedbackAddRequest;
 use App\Models\DetailOrder;
+use App\Models\Faq;
 use App\Models\Order;
 use App\Models\Rating;
 use App\Models\Tag;
@@ -35,7 +36,6 @@ class HomeController extends Controller
     {
         $parentCat = Category::where(['status' => 1, 'parent_id' => 0])->get();
         $cat_slide = Category::where(['status' => 1, 'parent_id' => 0, 'prioty' => 2])->limit(4)->get();
-        $cat_menu = Category::where(['status' => 1, 'parent_id' => 0, 'prioty' => 1])->limit(3)->get();
         $banner_top = Banner::where(['status' => 1, 'position' => 0])->where('status', 1)->get();
         $banner_mid_l = Banner::where(['status' => 1, 'position' => 1])->where('status', 1)->first();
         $banner_mid_r = Banner::where(['status' => 1, 'position' => 2])->first();
@@ -43,7 +43,7 @@ class HomeController extends Controller
         $pro_order = DetailOrder::all();
         $pro_array = DetailOrder::pluck('product_id')->toArray();
         $pro_sell = Product::where('status', '>', 0)->whereIn('id', $pro_array)->get();
-        return view('home', compact('parentCat', 'banner_top', 'banner_mid_l', 'banner_mid_r', 'cat_slide', 'cat_menu', 'pro_new', 'pro_sell'));
+        return view('home', compact('parentCat', 'banner_top', 'banner_mid_l', 'banner_mid_r', 'cat_slide', 'pro_new', 'pro_sell'));
     }
 
     public function product_list()
@@ -54,6 +54,15 @@ class HomeController extends Controller
     public function contact()
     {
         return view('page.contact');
+    }
+    public function about()
+    {
+        return view('page.about');
+    }
+    public function faq()
+    {
+        $faq = Faq::where('status', 1)->limit(5)->orderBy('id', 'DESC')->get();
+        return view('page.faq', compact('faq'));
     }
     public function submit_feedback(feedbackAddRequest $request)
     {

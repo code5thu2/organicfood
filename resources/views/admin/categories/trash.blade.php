@@ -40,7 +40,7 @@
                 <tr>
                     <td>{{$model->id}}</td>
                     <td>{{$model->name}}</td>
-                    <td>{{$model->parentCat->name}}</td>
+                    <td>{{$model->parentCat ? $model->parentCat->name : 'Danh mục cha'}}</td>
                     <td>{{date('d-m-Y',strtotime($model->created_at))}}</td>
                     <td>{{date('d-m-Y',strtotime($model->deleted_at))}}</td>
                     <td>

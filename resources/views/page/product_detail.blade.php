@@ -1,4 +1,9 @@
 @extends('layouts.app')
+@section('title',$product_detail->name)
+@section('meta')
+<meta name="description" content="{{$product_detail->name}}">
+<meta name="keywords" content="{{$product_detail->name}}">
+@stop()
 @section('main')
 <section>
     <?php
@@ -68,7 +73,7 @@
                         </form>
                         <div class="extra">
                             <ul class="list-inline">
-                                <li><a href="#"><i class="fas fa-heart"></i></a></li>
+                                <li><a href="{{route('customer.wishlist',$product_detail->id)}}"><i class="fas fa-heart"></i></a></li>
                             </ul>
                         </div>
                     </div>

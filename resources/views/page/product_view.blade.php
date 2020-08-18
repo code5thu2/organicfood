@@ -1,4 +1,9 @@
 @extends('layouts.app')
+@section('title',$category->name)
+@section('meta')
+<meta name="description" content="{{$category->meta_description}}">
+<meta name="keywords" content="{{$category->meta_keyword}}">
+@stop()
 @section('main')
 
 <section>

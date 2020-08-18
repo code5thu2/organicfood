@@ -1,5 +1,9 @@
 @extends('layouts.app')
-
+@section('title','Trang chủ')
+@section('meta')
+<meta name="description" content="Organic food">
+<meta name="keywords" content="Organic">
+@stop()
 @section('main')
 <?php
 

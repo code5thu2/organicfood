@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use App\Http\Requests\contactAddRequest;
+use Illuminate\Support\Facades\Redirect;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ContactController extends Controller
 {
@@ -15,7 +18,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contact = Contact::paginate(5);
+        return view('admin.contacts.index', compact('contact'));
     }
 
     /**
@@ -25,7 +29,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.contacts.create');
     }
 
     /**
@@ -34,9 +38,15 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(contactAddRequest $request)
     {
-        //
+        if (Contact::create($request->all())) {
+            Alert::toast('Tạo địa chỉ mới thành công', 'success');
+            return Redirect()->route('admin.contacts.index');
+        } else {
+            Alert::toast('Có lỗi xảy ra, vui lòng thử lại sau', 'error');
+            return Redirect()->back();
+        }
     }
 
     /**
@@ -45,10 +55,6 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show(Contact $contact)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -58,7 +64,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        return view('admin.contacts.edit', compact('contact'));
     }
 
     /**
@@ -70,9 +76,14 @@ class ContactController extends Controller
      */
     public function update(Request $request, Contact $contact)
     {
-        //
+        if ($contact->update($request->all())) {
+            Alert::toast('Cập nhật thành công', 'success');
+            return Redirect()->route('admin.contacts.index');
+        } else {
+            Alert::toast('Có lỗi xảy ra,vui lòng thử lại sau', 'error');
+            return Redirect()->back();
+        }
     }
-
     /**
      * Remove the specified resource from storage.
      *

@@ -2,9 +2,10 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title>@yield('title')</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
+    @yield('meta')
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="{{url('public')}}/app/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{url('public')}}/app/fontawesome/css/all.css" />
@@ -20,8 +21,8 @@
     <div id="myOverlay" class="overlay">
         <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
         <div class="overlay-content">
-            <form action="">
-                <input type="text" placeholder="Search.." name="search" />
+            <form action="" method="get">
+                <input type="text" placeholder="Tìm kiếm sản phẩm" name="name_pro" />
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
@@ -51,9 +52,9 @@
                             </li>
                             <li id="contact">
                                 <span class="contact-title ml-5">Phone: </span>
-                                <a href="">0969906925</a>
+                                <a href="tel:{{$contact_view->phone}}">{{$contact_view->phone}}</a>
                                 <span class="contact-title ml-2">Email: </span>
-                                <a href="">Levietanhtdvp@gmail.com</a>
+                                <a href="mailto:{{$contact_view->email}}">{{$contact_view->email}}</a>
                             </li>
                         </ul>
                     </div>
@@ -66,7 +67,8 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
                                 <a class="dropdown-item" href="{{route('customer.profile')}}">Profile</a>
-                                <a class="dropdown-item" href="#">Wishlist</a>
+                                <a class="dropdown-item" href="{{route('customer.order')}}">Danh sách đơn hàng</a>
+                                <a class="dropdown-item" href="{{route('customer.wishlist_list')}}">Wishlist</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{route('customer.logout')}}">Logout</a>
                             </div>
@@ -176,26 +178,27 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('home.product_list')}}">sản phẩm</a>
                                 </li>
+                                @if(isset($cat_menu))
+                                @foreach($cat_menu as $cm)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">fruits</a>
+                                    <a class="nav-link" href="{{route('home.view',['id' => $cm -> id,'slug' => $cm -> slug])}}">{{$cm->name}}</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">organic fruits</a>
-                                </li>
+                                @endforeach
+                                @endif
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('blogs.blog_list')}}">blog</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">about us</a>
+                                    <a class="nav-link" href="{{route('home.about')}}">about us</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">contact</a>
+                                    <a class="nav-link" href="{{route('home.contact')}}">contact</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
-                <div class="right-btn">
+                <!-- <div class="right-btn">
                     <button class="btn search-btn reponsive-btn" onclick="openSearch()">
                         <i class="fas fa-search"></i>
                     </button>
@@ -203,7 +206,7 @@
                         <i class="fa fa-shopping-bag"></i>
                         <span class="badge badge-secondary">01</span>
                     </button>
-                </div>
+                </div> -->
             </div>
             <!-- kết thúc nav chính -->
         </header>

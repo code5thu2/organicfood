@@ -54,12 +54,12 @@ return [
             [
                 'name' => 'Phương thức thanh toán',
                 'icon' => 'far fa-money-bill-alt',
-                'route' => ''
+                'route' => 'admin.payments.index'
             ],
             [
                 'name' => 'Phương thức giao hàng',
                 'icon' => 'fas fa-truck',
-                'route' => ''
+                'route' => 'admin.shippings.index'
             ],
         ],
     ],
@@ -78,6 +78,11 @@ return [
                 'name' => 'Email đăng ký',
                 'icon' => 'far fa-envelope',
                 'route' => 'admin.subscribe_list'
+            ],
+            [
+                'name' => 'Feedback',
+                'icon' => 'fas fa-reply-all',
+                'route' => 'admin.feedback_list'
             ],
         ],
     ],
@@ -141,52 +146,15 @@ return [
         ]
     ],
     [
-        'id' => 'product',
-        'name' => 'Product',
-        'icon' => 'fas fa-carrot',
-        'route' => 'admin.products.index',
-        'items' => [
-            [
-                'name' => 'Product list',
-                'icon' => '',
-                'route' => 'admin.products.index'
-            ],
-            [
-                'name' => 'Product add new',
-                'icon' => '',
-                'route' => 'admin.products.create'
-            ]
-        ]
-    ],
-
-    [
-        'id' => 'usermanager',
-        'name' => 'User manager',
-        'icon' => 'fas fa-user-cog',
-        'route' => '',
-        'items' => [
-            [
-                'name' => 'User list',
-                'icon' => '',
-                'route' => 'admin.users.index'
-            ],
-            [
-                'name' => 'Role manager',
-                'icon' => '',
-                'route' => 'admin.roles.index'
-            ],
-        ]
-    ],
-    [
         'id' => 'config',
         'name' => 'Config',
         'icon' => 'fas fa-cogs',
         'route' => '',
         'items' => [
             [
-                'name' => 'Unit',
-                'icon' => 'fas fa-weight-hanging',
-                'route' => 'admin.units.index'
+                'name' => 'Liên hệ',
+                'icon' => 'far fa-address-book',
+                'route' => 'admin.contacts.index'
             ],
         ]
     ],

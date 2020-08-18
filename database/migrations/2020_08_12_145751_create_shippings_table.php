@@ -17,6 +17,7 @@ class CreateShippingsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->float('cost');
+            $table->datetime('deleted_at')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

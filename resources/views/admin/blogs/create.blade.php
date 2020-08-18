@@ -24,10 +24,7 @@
             </div>
             <div class="form-group">
                 <label for="">Blog image</label>
-                <input type="file" class="form-control-file  @error('upload') is-invalid @enderror" name="upload" placeholder="" value="{{old('upload')}}">
-                @error('upload')
-                <small class="text-danger">{{$message}}</small>
-                @enderror
+                @include('image_box')
             </div>
         </div>
         <div class="col-md-6">

@@ -157,6 +157,10 @@ class Product extends Model
             $status  = request()->status;
             $query->where('status', $status - 1);
         }
+        if (request()->name_pro != null) {
+            $name_pro = request()->name_pro;
+            $query->where('name', 'LIKE', '%' . $name_pro  . '%');
+        }
         if (request()->orderBy) {
             switch (request()->orderBy) {
                 case 'ASC':

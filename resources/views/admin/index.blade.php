@@ -8,10 +8,10 @@
             <div class="card-body">
                 <h5 class="text-muted">Khách hàng</h5>
                 <div class="metric-value d-inline-block">
-                    <h1 class="mb-1 text-primary">32,100</h1>
+                    <h1 class="mb-1 text-primary">{{$cus_total}} <i class="fas fa-user"></i></h1>
                 </div>
                 <div class="metric-label d-inline-block float-right text-success">
-                    <a href=""><strong>Detail</strong></a>
+                    <a href="{{route('admin.customers.customer_list')}}"><strong>Detail</strong></a>
                 </div>
             </div>
         </div>
@@ -23,10 +23,10 @@
             <div class="card-body">
                 <h5 class="text-muted">Tổng đơn hàng</h5>
                 <div class="metric-value d-inline-block">
-                    <h1 class="mb-1 text-primary">4,200</h1>
+                    <h1 class="mb-1 text-primary">{{ $ord_total}} <i class="fas fa-shopping-bag"></i></h1>
                 </div>
                 <div class="metric-label d-inline-block float-right text-danger">
-                    <a href=""><strong>Detail</strong></a>
+                    <a href="{{route('admin.orders.index')}}"><strong>Detail</strong></a>
                 </div>
             </div>
         </div>
@@ -38,10 +38,10 @@
             <div class="card-body">
                 <h5 class="text-muted">Doanh thu</h5>
                 <div class="metric-value d-inline-block">
-                    <h1 class="mb-1 text-primary">$5,656</h1>
+                    <h1 class="mb-1 text-primary">{{round($revenue/1000000,2)}} trđ</h1>
                 </div>
                 <div class="metric-label d-inline-block float-right text-danger">
-                    <a href=""><strong>Detail</strong></a>
+                    <a href="{{route('admin.orders.index')}}"><strong>Detail</strong></a>
                 </div>
             </div>
         </div>
@@ -51,12 +51,12 @@
     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="text-muted">Đánh giá</h5>
+                <h5 class="text-muted">Sản phẩm</h5>
                 <div class="metric-value d-inline-block">
-                    <h1 class="mb-1 text-primary">24</h1>
+                    <h1 class="mb-1 text-primary">{{$pro_total}} sp</h1>
                 </div>
                 <div class="metric-label d-inline-block float-right text-success">
-                    <a href=""><strong>Detail</strong></a>
+                    <a href="{{route('admin.products.index')}}"><strong>Detail</strong></a>
                 </div>
             </div>
         </div>

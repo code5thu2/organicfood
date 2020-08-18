@@ -59,7 +59,7 @@
                 <option {{$category->prioty == 2 ? 'selected' : ''}} value="2">Slide trang home</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Add</button>
+        <button type="submit" class="btn btn-primary btn-block">Update</button>
         </form>
     </div>
 </div>

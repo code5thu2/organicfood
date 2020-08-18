@@ -1,4 +1,9 @@
 @extends('layouts.app')
+@section('title',$blog->meta_title)
+@section('meta')
+<meta name="description" content="{{$blog->meta_descript}}">
+<meta name="keywords" content="{{$blog->meta_key}}">
+@stop()
 @section('main')
 <?php
 
@@ -29,7 +34,7 @@ use Carbon\Carbon;
                     <?php
                     $comment_total = $blog->commentsTotal->count();
                     ?>
-                    <h3 class="sub-blog-title mb-5">{{$comment_total < 10 ? '0'.$comment_total : $comment_total}} comment</h3>
+                    <h3 class="sub-blog-title mb-5">{{$comment_total < 10 && $comment_total > 0 ? '0'.$comment_total : $comment_total}} comment</h3>
                     @include('page.comments_show', ['comments' => $blog->comments, 'blog_id' => $blog->id])
                     <div class="comment-write">
                         <h3 class="sub-blog-title mb-2 mt-5">leave a comment</h3>

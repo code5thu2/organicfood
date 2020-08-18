@@ -1,4 +1,9 @@
 @extends('layouts.app')
+@section('title','Liên hệ với chúng tôi')
+@section('meta')
+<meta name="description" content="contact us">
+<meta name="keywords" content="contact">
+@stop()
 @section('main')
 <?php
 
@@ -25,8 +30,7 @@ use Carbon\Carbon;
                                 </div>
                                 <div class="tit-ct text-center">
                                     <h3>address</h3>
-                                    <p>63739 Street, Lorem Ipsum<br>Dolor132/B. City, Country</p>
-
+                                    <p>{{$contact_view->address}}</p>
                                 </div>
                             </div>
                         </div>
@@ -37,8 +41,9 @@ use Carbon\Carbon;
                                 </div>
                                 <div class="tit-ct text-center">
                                     <h3>Phone</h3>
-                                    <p>+84 0399817137</p>
-
+                                    <p>
+                                        <a href="tel:{{$contact_view->phone}}">{{$contact_view->phone}}</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -49,8 +54,9 @@ use Carbon\Carbon;
                                 </div>
                                 <div class="tit-ct text-center">
                                     <h3>Email</h3>
-                                    <p>levietanhtdvp@gmail.com</p>
-
+                                    <p>
+                                        <a href="mailto:{{$contact_view->email}}">{{$contact_view->email}}</a>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -58,46 +64,49 @@ use Carbon\Carbon;
                 </div>
             </div>
         </div> <!-- end-address -->
-        <div class="map-form">
-            <div class="col-md-6 form-sub-ct">
-                <div class="main-form">
-                    <div class="tit-sb-ct text-center">
-                        <h3><span>get in touch</span> with us</h3>
+        <div class="container map-form">
+            <div class="row">
+                <div class="col-md-6 form-sub-ct">
+                    <div class="main-form">
+                        <div class="tit-sb-ct text-center">
+                            <h3><span>get in touch</span> with us</h3>
+                        </div>
+                        <form action="{{route('home.submit_feedback')}}" method="POST">
+                            @csrf
+                            <div class="form-group col-sm-12 col-xs-12">
+                                <input type="text" class="form-control @error('name') border-danger @enderror" name="name" value="{{old('name')}}" placeholder="Name">
+                                @error('name')
+                                <small class="text-danger bg-white">{{$message}}</small>
+                                @enderror
+                            </div>
+                            <div class="form-group col-sm-12 col-xs-12">
+                                <input type="text" class="form-control @error('email') border-danger @enderror" name="email" value="{{old('email')}}" placeholder="Email">
+                                @error('email')
+                                <small class="text-danger bg-white">{{$message}}</small>
+                                @enderror
+                            </div>
+                            <div class="form-group col-sm-12 col-xs-12">
+                                <input type="text" class="form-control @error('phone') border-danger @enderror" name="phone" value="{{old('phone')}}" placeholder="Phone">
+                                @error('phone')
+                                <small class="text-danger bg-white">{{$message}}</small>
+                                @enderror
+                            </div>
+                            <div class="form-group col-sm-12 col-xs-12">
+                                <textarea class="form-control @error('content') border-danger @enderror" name="content" value="{{old('content')}}" placeholder="Feedback..."></textarea>
+                                @error('content')
+                                <small class="text-danger bg-white">{{$message}}</small>
+                                @enderror
+                            </div>
+                            <div class="form-group col-sm-12 col-xs-12">
+                                <button class="submit">Submit</button>
+                            </div>
+                        </form>
+                    </div> <!-- end-main-form -->
+                </div> <!-- end-col -->
+                <div class="col-md-6">
+                    <div class="google-site">
+                        {!!$contact_view->map!!}
                     </div>
-                    <form action="{{route('home.submit_feedback')}}" method="POST">
-                        @csrf
-                        <div class="form-group col-sm-12 col-xs-12">
-                            <input type="text" class="form-control @error('name') border-danger @enderror" name="name" value="{{old('name')}}" placeholder="Name">
-                            @error('name')
-                            <small class="text-danger">{{$message}}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group col-sm-12 col-xs-12">
-                            <input type="text" class="form-control @error('email') border-danger @enderror" name="email" value="{{old('email')}}" placeholder="Email">
-                            @error('email')
-                            <small class="text-danger">{{$message}}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group col-sm-12 col-xs-12">
-                            <input type="text" class="form-control @error('phone') border-danger @enderror" name="phone" value="{{old('phone')}}" placeholder="Phone">
-                            @error('phone')
-                            <small class="text-danger">{{$message}}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group col-sm-12 col-xs-12">
-                            <textarea class="form-control @error('content') border-danger @enderror" name="content" value="{{old('content')}}" placeholder="Feedback..."></textarea>
-                            @error('content')
-                            <small class="text-danger">{{$message}}</small>
-                            @enderror
-                        </div>
-                        <div class="form-group col-sm-12 col-xs-12">
-                            <button class="submit">Submit</button>
-                        </div>
-                    </form>
-                </div> <!-- end-main-form -->
-            </div> <!-- end-col -->
-            <div class="col-md-6">
-                <div class="google-site">
                 </div>
             </div>
         </div> <!-- end-map-form  -->

@@ -25,23 +25,19 @@ class blogAddRequest extends FormRequest
     {
         return [
             'name' => 'required|max:100|unique:blogs|',
-            'upload' => 'required|mimes:jpg,jpeg,png|max:1024',
             'summary' => 'required',
             'content' => 'required',
-
         ];
     }
-      public function messages()
+    public function messages()
     {
         return [
             'name.required' => 'Tên blog không được để trống',
             'name.max' => 'Tên blog không quá 100 kí tự',
             'name.unique' => 'Tên blog đã tồn tại',
-            'upload.mimes' => 'Định dạnh ảnh phải là jpg, jpeg, png',
-            'upload.max' => 'Kích thước ảnh không được quá 1024kb',
-             'summary.required' => 'Tóm tắt không được để trống',
-             'content.required' => 'Nội dung không được để trống',
-              'upload.required' => 'Ảnh không được để trống',
+            'summary.required' => 'Tóm tắt không được để trống',
+            'content.required' => 'Nội dung không được để trống',
+            'upload.required' => 'Ảnh không được để trống',
         ];
     }
 }

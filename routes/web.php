@@ -25,6 +25,10 @@ Route::get('product-list/{id}-{slug}', 'HomeController@view')->name('home.view')
 //Trang contact
 Route::get('contact', 'HomeController@contact')->name('home.contact');
 Route::post('contact', 'HomeController@submit_feedback')->name('home.submit_feedback');
+//Trang about us
+Route::get('about-us', 'HomeController@about')->name('home.about');
+//Trang faq
+Route::get('faq', 'HomeController@faq')->name('home.faq');
 //Đăng ký subscribe
 Route::get('/subscribe', 'SubscribeController@sign')->name('subscribe.sign');
 //Order
@@ -60,7 +64,9 @@ route::group(['prefix' => 'admin', 'namespace' => 'admin', 'middleware' => 'auth
         'users' => 'UserController',
         'blogs' => 'BlogController',
         'tags' => 'TagController',
-        'contact' => 'ContactController',
+        'contacts' => 'ContactController',
+        'shippings' => 'ShippingController',
+        'payments' => 'PaymentController',
     ]);
 
     //Route thùng rác và khôi phục
@@ -117,8 +123,10 @@ Route::group(['prefix' => 'customer', 'middleware' => 'cus'], function () {
     Route::get('logout', 'CustomerController@logout')->name('customer.logout');
     Route::get('profile', 'CustomerController@profile')->name('customer.profile');
     Route::get('wishlist/{pro_id}', 'CustomerController@wishlist')->name('customer.wishlist');
+    Route::delete('wishlist/{id}', 'CustomerController@wishlist_del')->name('customer.wishlist_del');
     Route::get('wishlist-list', 'CustomerController@wishlist_list')->name('customer.wishlist_list');
     Route::get('order', 'CustomerController@order')->name('customer.order');
+    Route::get('order-cancle/{id}', 'CustomerController@order_cancle')->name('customer.order_cancle');
     Route::get('change_password', 'CustomerController@change_password')->name('customer.change_password');
     Route::post('comment/store', 'CommentController@store')->name('comment.store');
 });

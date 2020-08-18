@@ -23,7 +23,7 @@ class BlogController extends Controller
     }
     public function blog_list()
     {
-        $blog = Blog::orderBy('created_at', 'DESC')->paginate(3);
+        $blog = Blog::where('status', 1)->orderBy('created_at', 'DESC')->paginate(3);
         return view('page.blog_list', compact('blog'));
     }
     public function blog_detail(Request $request, $id, $slug)
@@ -60,13 +60,9 @@ class BlogController extends Controller
     public function store(blogAddRequest $request)
     {
 
-        if ($request->hasFile('upload')) {
-            $file_name = uploadImg('upload');
-            $request->merge(['image' => $file_name]);
-        }
-        $slug =  slugName('name');
-        $request->merge(['slug' => $slug]);
-        if (Blog::create($request->all())) {
+        $blog = new Blog;
+        $add_blog = $blog->createBlog($request);
+        if ($add_blog) {
             Alert::toast('Tạo mới thành công', 'success');
             return redirect()->route('admin.blogs.index');
         }
@@ -104,18 +100,15 @@ class BlogController extends Controller
      */
     public function update(blogEditRequest $request, Blog $blog)
     {
-        if ($request->hasFile('upload')) {
-            $file_name = uploadImg('upload');
-            $request->merge(['image' => $file_name]);
-        }
-        $slug =  slugName('name');
-        $request->merge(['slug' => $slug]);
-        if ($blog->update($request->all())) {
+        $blogs = new Blog;
+        $up_blog = $blogs->updateBlog($blog);
+        if ($up_blog) {
             Alert::toast('Cập nhật thành công', 'success');
             return Redirect()->route('admin.blogs.index');
+        } else {
+            Alert::toast('Có lỗi xảy ra', 'error');
+            return  redirect()->back();
         }
-        Alert::toast('Có lỗi xảy ra', 'error');
-        return  redirect()->back();
     }
 
     /**

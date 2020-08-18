@@ -1,4 +1,9 @@
 @extends('layouts.app')
+@section('title','Danh sách sản phẩm')
+@section('meta')
+<meta name="description" content="Danh sách sản phẩm">
+<meta name="keywords" content="Hoa quả sạch">
+@stop()
 @section('main')
 <section>
     <?php

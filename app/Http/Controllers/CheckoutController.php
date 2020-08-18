@@ -29,7 +29,7 @@ class CheckoutController extends Controller
         $createOrder = new Order;
         if ($createOrder->createOrder($cart)) {
             Alert::success('Đặt hàng thành công', 'Success');
-            return redirect()->route('cart.view');
+            return redirect()->route('customer.order');
         } else {
             alert()->warning('Warning', 'Tài khoản của bạn không được đặt hàng');
             // Alert::toast('', 'error', 'center-center');

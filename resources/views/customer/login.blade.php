@@ -1,20 +1,14 @@
 @extends('layouts.app')
+@section('title','Đăng nhập - Đăng ký')
+@section('meta')
+<meta name="description" content="Đăng nhập - Đăng ký">
+<meta name="keywords" content="Login-Register">
+@stop()
 @section('main')
-<div class="container-fluid sub-banner">
-    <img src="{{url('public')}}/app/images/banner/adli-wahid-nmF_6DxByAw-unsplash.jpg" class="img-fluid" alt="" />
-</div>
-<div class="container">
-    <div class="row">
-        <div class="breadcrumb-main">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">home</a></li>
-                <li class="breadcrumb-item active">my account</li>
-            </ol>
-            <h1>my account</h1>
-        </div>
-    </div>
-</div>
-
+<?php
+$br_item = 'Danh sách yêu thích';
+?>
+@include('page.breadcrumb',['br_item' => $br_item,'data' =>''])
 <!-- bắt đầu phần my account -->
 <div class="container my-account-page">
     <div class="row">

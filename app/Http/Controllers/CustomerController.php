@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\customerAddRequest;
 use App\Http\Requests\checkMailRequest;
 use App\Http\Requests\checkPassRequest;
+use App\Models\Order;
 use App\Models\Wishlist;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -68,6 +69,18 @@ class CustomerController extends Controller
     {
         return view('customer.wishlist_list');
     }
+    public function wishlist_del($id)
+    {
+        $wishlist_del = Wishlist::find($id)->first();
+        if ($wishlist_del->delete()) {
+            Alert::toast('Xóa sản phẩm yêu thích thành công');
+            return redirect()->back();
+        } else {
+            Alert::toast('Có lỗi, vui lòng thử lại sau');
+            return redirect()->back();
+        };
+        return view('customer.wishlist_list');
+    }
     public function verify_account(Request $request)
     {
         $cus = new Customer;
@@ -84,6 +97,22 @@ class CustomerController extends Controller
     public function order()
     {
         return view('customer.order');
+    }
+    public function order_cancle($id)
+    {
+        $or = Order::find($id)->first();
+        if ($or->status == 0) {
+            if ($or->update(['status' => 4])) {
+                alert()->success('success', 'Đã hủy đơn hàng #' . $or->id);
+                return redirect()->back();
+            } else {
+                alert()->error('error', 'Có lỗi xảy ra, không thể hủy đơn hàng' . $or->id);
+                return redirect()->back();
+            }
+        } else {
+            alert()->error('error', 'Có lỗi xảy ra, không thể hủy đơn hàng' . $or->id);
+            return redirect()->back();
+        }
     }
     public function forgot_password()
     {
