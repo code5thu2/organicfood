@@ -34,6 +34,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+
         $parentCat = Category::where(['status' => 1, 'parent_id' => 0])->get();
         $cat_slide = Category::where(['status' => 1, 'parent_id' => 0, 'prioty' => 2])->limit(4)->get();
         $banner_top = Banner::where(['status' => 1, 'position' => 0])->where('status', 1)->get();
@@ -43,6 +45,11 @@ class HomeController extends Controller
         $pro_order = DetailOrder::all();
         $pro_array = DetailOrder::pluck('product_id')->toArray();
         $pro_sell = Product::where('status', '>', 0)->whereIn('id', $pro_array)->get();
+
+        if (request()->name_pro != null) {
+            $product = Product::Search()->where('status', '>', 0)->paginate(10);
+            return view('page.product_list', compact('product'));
+        }
         return view('home', compact('parentCat', 'banner_top', 'banner_mid_l', 'banner_mid_r', 'cat_slide', 'pro_new', 'pro_sell'));
     }
 
@@ -53,14 +60,26 @@ class HomeController extends Controller
     }
     public function contact()
     {
+        if (request()->name_pro != null) {
+            $product = Product::Search()->where('status', '>', 0)->paginate(10);
+            return view('page.product_list', compact('product'));
+        }
         return view('page.contact');
     }
     public function about()
     {
+        if (request()->name_pro != null) {
+            $product = Product::Search()->where('status', '>', 0)->paginate(10);
+            return view('page.product_list', compact('product'));
+        }
         return view('page.about');
     }
     public function faq()
     {
+        if (request()->name_pro != null) {
+            $product = Product::Search()->where('status', '>', 0)->paginate(10);
+            return view('page.product_list', compact('product'));
+        }
         $faq = Faq::where('status', 1)->limit(5)->orderBy('id', 'DESC')->get();
         return view('page.faq', compact('faq'));
     }
