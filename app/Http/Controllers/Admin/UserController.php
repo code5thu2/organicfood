@@ -9,6 +9,7 @@ use App\Models\UserRole;
 use Illuminate\Http\Request;
 use App\Http\Requests\userAddRequest;
 use App\Http\Requests\userEditRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -80,7 +81,6 @@ class UserController extends Controller
      */
     public function update(userEditRequest $request, User $user)
     {
-        // dd($request->all());
         $data = [
             'name' => $request->name,
             'email' => $request->email,
@@ -110,6 +110,18 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        if (Auth::user()->id == $user->id) {
+            toast('Không thể xóa tài khoản đang đăng nhập', 'error');
+            return redirect()->back();
+        }
+        if ($user->getRoles->count()) {
+            UserRole::where('user_id', $user->id)->delete();
+        }
+        if ($user->delete()) {
+            toast('Xóa user thành công', 'success');
+            return redirect()->back();
+        }
+        toast('Có lỗi xảy ra, không thể xóa user', 'error');
+        return redirect()->back();
     }
 }

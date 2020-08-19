@@ -49,5 +49,4 @@
         </div>
     </div>
 </div>
-<input type="checkbox" checked data-toggle="toggle" data-size="xs" data-onstyle="success">
 @stop()

@@ -19,9 +19,9 @@ class AdminController extends Controller
 {
     public function index()
     {
-        $cus_total = Customer::sum('id');
-        $ord_total = Order::sum('id');
-        $pro_total = Product::where('status', '>', 0)->sum('id');
+        $cus_total = Customer::count();
+        $ord_total = Order::count();
+        $pro_total = Product::where('status', '>', 0)->count();
         $revenue = Order::where('status', 3)->sum('total');
         return view('admin.index', compact('cus_total', 'ord_total', 'revenue', 'pro_total'));
     }

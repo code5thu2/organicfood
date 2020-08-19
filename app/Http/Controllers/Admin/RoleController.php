@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use RealRashid\SweetAlert\Facades\Alert;
 
 use function GuzzleHttp\json_decode;
 
@@ -113,6 +115,15 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        if ($role->users->count()) {
+            UserRole::where('role_id', $role->id)->delete();
+        }
+        if ($role->delete()) {
+            Alert::toast('Xóa quyền thành công', 'success');
+            return redirect()->back();
+        } else {
+            Alert::toast('Không thể xóa quyền này', 'error');
+            return redirect()->back();
+        }
     }
 }

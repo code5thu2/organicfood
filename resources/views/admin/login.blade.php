@@ -12,43 +12,6 @@
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/libs/css/style.css">
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/fonts/fontawesome/css/all.css">
     <link rel="stylesheet" href="{{url('public/backend/assets')}}/vendor/bootstrap4-toggle/css/bootstrap4-toggle.min.css">
-    <style>
-        body {
-            font-family: "montserratRegular";
-            font-weight: 700;
-            display: -ms-flexbox;
-            display: flex;
-            -ms-flex-align: center;
-            align-items: center;
-            padding-top: 40px;
-            padding-bottom: 40px;
-            height: 100%;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: "montserratMedium";
-            font-weight: 600;
-        }
-
-        .table thead th,
-        .table th {
-            font-family: "montserratMedium";
-            font-weight: 700;
-        }
-
-        tr.group:hover {
-            font-family: "montserratMedium";
-        }
-
-        .ribbons {
-            font-family: "montserratMedium";
-        }
-    </style>
 </head>
 
 <body>

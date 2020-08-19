@@ -21,6 +21,8 @@ class CreateRatingsTable extends Migration
             $table->tinyInteger('status')->default(1);
             $table->text('content');
             $table->timestamps();
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('customer_id')->references('id')->on('customers');
         });
     }
 

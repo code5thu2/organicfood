@@ -11,6 +11,7 @@ use App\Models\DetailOrder;
 use App\Models\Faq;
 use App\Models\Order;
 use App\Models\Rating;
+use App\Models\Supplier;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\ViewErrorBag;
@@ -45,6 +46,7 @@ class HomeController extends Controller
         $pro_order = DetailOrder::all();
         $pro_array = DetailOrder::pluck('product_id')->toArray();
         $pro_sell = Product::where('status', '>', 0)->whereIn('id', $pro_array)->get();
+        $sup_slider = Supplier::where('status', 1)->get();
 
         if (request()->name_pro != null) {
             $product = Product::Search()->where('status', '>', 0)->paginate(10);

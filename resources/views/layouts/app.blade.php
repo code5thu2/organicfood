@@ -50,12 +50,14 @@
                             <li>
                                 <a id="social" href=""><i class="fab fa-youtube"></i></a>
                             </li>
+                            @if(isset($contact_view))
                             <li id="contact">
                                 <span class="contact-title ml-5">Phone: </span>
                                 <a href="tel:{{$contact_view->phone}}">{{$contact_view->phone}}</a>
                                 <span class="contact-title ml-2">Email: </span>
                                 <a href="mailto:{{$contact_view->email}}">{{$contact_view->email}}</a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                     <div class="my-account col-md-2">
@@ -198,15 +200,6 @@
                         </div>
                     </div>
                 </nav>
-                <!-- <div class="right-btn">
-                    <button class="btn search-btn reponsive-btn" onclick="openSearch()">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <button class="btn btn-circle reponsive-btn" onclick="showCartBox()">
-                        <i class="fa fa-shopping-bag"></i>
-                        <span class="badge badge-secondary">01</span>
-                    </button>
-                </div> -->
             </div>
             <!-- kết thúc nav chính -->
         </header>
@@ -219,18 +212,20 @@
                             <img src="{{url('public')}}/app/images/logo/large-logo.png" class="img-fluid" alt="">
                         </div>
                         <div class="footer-contact">
+                        @if(isset($contact_view))
                             <div class="address">
                                 <i class="fas fa-map-marker-alt"></i>
-                                <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
+                                <span>{{$contact_view->address}}</span>
                             </div>
                             <div class="phone">
                                 <i class="fas fa-phone-alt"></i>
-                                <a href="">0969906925</a>
+                                <a href="tel:{{$contact_view->phone}}">0969906925</a>
                             </div>
                             <div class="email">
                                 <i class="far fa-envelope"></i>
-                                <a href="">levietanhtdvp@gmail.com</a>
+                                <a href="mailto:{{$contact_view->email}}">levietanhtdvp@gmail.com</a>
                             </div>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-7">
@@ -238,34 +233,30 @@
                             <div class="col-sm-4">
                                 <div class="title">information</div>
                                 <ul>
-                                    <li><a href="">site map</a></li>
+                                    <li><a href="{{route('home.contact')}}">site map</a></li>
                                     <li><a href="">search terms</a></li>
                                     <li><a href="">advanced search</a></li>
-                                    <li><a href="">about us</a></li>
-                                    <li><a href="">contact us</a></li>
-                                    <li><a href="">supplier</a></li>
+                                    <li><a href="{{route('home.about')}}">about us</a></li>
+                                    <li><a href="{{route('home.contact')}}">contact us</a></li>
+                                    <li><a href="{{route('home.about')}}">supplier</a></li>
                                 </ul>
                             </div>
                             <div class="col-sm-4">
                                 <div class="title">style advisor</div>
                                 <ul>
-                                    <li><a href="">your account</a></li>
-                                    <li><a href="">information</a></li>
-                                    <li><a href="">address</a></li>
-                                    <li><a href="">discount</a></li>
-                                    <li><a href="">orders history</a></li>
-                                    <li><a href="">additional information</a></li>
+                                    <li><a href="{{route('customer.login')}}">your account</a></li>
+                                    <li><a href="{{route('home.contact')}}">information</a></li>
+                                    <li><a href="{{route('home.contact')}}">address</a></li>
                                 </ul>
                             </div>
                             <div class="col-sm-4">
                                 <div class="title">quick links</div>
                                 <ul>
-                                    <li><a href="">blogs</a></li>
-                                    <li><a href="">FAQs</a></li>
-                                    <li><a href="">payment</a></li>
+                                    <li><a href="{{route('blogs.blog_list')}}">blogs</a></li>
+                                    <li><a href="{{route('home.faq')}}">FAQs</a></li>
+                                    <li><a href="{{route('checkout')}}">payment</a></li>
                                     <li><a href="">shipment</a></li>
-                                    <li><a href="">where is my order?</a></li>
-                                    <li><a href="">return policy</a></li>
+                                    <li><a href="{{route('customer.order')}}">where is my order?</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -273,8 +264,6 @@
                     <div class="col-md-2">
                         <div class="title">instagram</div>
                         <div class="instagram-img-box">
-                            <img src="{{url('public')}}/app/images/social/insta-img.jpg" class="img-fluid" alt="">
-                            <img src="{{url('public')}}/app/images/social/insta-img.jpg" class="img-fluid" alt="">
                             <img src="{{url('public')}}/app/images/social/insta-img.jpg" class="img-fluid" alt="">
                             <img src="{{url('public')}}/app/images/social/insta-img.jpg" class="img-fluid" alt="">
                             <img src="{{url('public')}}/app/images/social/insta-img.jpg" class="img-fluid" alt="">

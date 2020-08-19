@@ -11,6 +11,7 @@ use Carbon\Carbon;
 ?>
 <section>
     <!-- bắt đầu top banner -->
+    @if(isset($banner_top))
     <div class="container-fluid banner-top">
         <div id="carouselId" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner" role="listbox">
@@ -35,6 +36,7 @@ use Carbon\Carbon;
             </a>
         </div>
     </div>
+    @endif
     <!-- kết thúc top banner -->
     <!-- bắt đầu danh sách danh mục theo dạng carousel -->
     <div class="container category-banner">
@@ -107,10 +109,10 @@ use Carbon\Carbon;
         </div>
         <nav>
             <ol class="breadcrumb w-75 justify-content-center">
-                <li class="breadcrumb-item"><a href="#">all</a></li>
+                <!-- <li class="breadcrumb-item"><a href="#">all</a></li>
                 <li class="breadcrumb-item"><a href="#">fruit</a></li>
                 <li class="breadcrumb-item"><a href="#">meet</a></li>
-                <li class="breadcrumb-item"><a href="#">vegetable</a></li>
+                <li class="breadcrumb-item"><a href="#">vegetable</a></li> -->
             </ol>
         </nav>
         <div class="product-show container">
@@ -287,13 +289,13 @@ use Carbon\Carbon;
     <!-- kết thúc new letter -->
     <!-- bắt đầu phần brand -->
     <div class="container">
+        @if(isset($sup_slider))
         <div class="brand-carousel owl-carousel owl-theme">
-            <div class="item"><img src="{{url('public')}}/app/images/partner/partner-1.jpg" alt="" class="img-fluid"></div>
-            <div class="item"><img src="{{url('public')}}/app/images/partner/partner-2.jpg" alt="" class="img-fluid"></div>
-            <div class="item"><img src="{{url('public')}}/app/images/partner/partner-3.jpg" alt="" class="img-fluid"></div>
-            <div class="item"><img src="{{url('public')}}/app/images/partner/partner-4.jpg" alt="" class="img-fluid"></div>
-            <div class="item"><img src="{{url('public')}}/app/images/partner/partner-5.jpg" alt="" class="img-fluid"></div>
+            @foreach($sup_slider as $ss)
+            <div class="item"><img src="{{url('uploads')}}/{{$ss->image}}" alt="" class="img-fluid"></div>
+            @endforeach
         </div>
+        @endif
     </div>
     <!-- kết thúc phầnphần brand -->
     @include('page.help_box')

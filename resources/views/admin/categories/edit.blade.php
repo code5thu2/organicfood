@@ -41,7 +41,7 @@
     <div class="col-md-6 bg-white p-4">
         <div class="form-group">
             <label for="">Category meta_title</label>
-            <input type="text" name="meta_title" value="{{$category->title}}" class="form-control">
+            <input type="text" name="meta_title" value="{{$category->meta_title}}" class="form-control">
         </div>
         <div class="form-group">
             <label for="">Category meta_description</label>

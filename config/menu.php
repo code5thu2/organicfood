@@ -29,7 +29,7 @@ return [
                 'route' => 'admin.suppliers.index'
             ],
             [
-                'name' => 'Tab thịnh hành',
+                'name' => 'Tag thịnh hành',
                 'icon' => 'fas fa-fire',
                 'route' => 'admin.tags.index'
             ],
@@ -83,6 +83,11 @@ return [
                 'name' => 'Feedback',
                 'icon' => 'fas fa-reply-all',
                 'route' => 'admin.feedback_list'
+            ],
+            [
+                'name' => 'Review sản phẩm',
+                'icon' => 'fas fa-star',
+                'route' => 'admin.rating_list'
             ],
         ],
     ],

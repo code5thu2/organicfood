@@ -19,7 +19,7 @@
                 <small class="text-danger">{{$message}}</small>
                 @enderror
             </div>
-             <div class="form-group">
+            <div class="form-group">
                 <label for="">Faq prioty</label>
                 <input type="text" name="prioty" value="{{old('prioty')}}" class="form-control">
             </div>
@@ -32,15 +32,15 @@
                     <input type="radio" name="status" class="custom-control-input" value="0"><span class="custom-control-label">Disable</span>
                 </label>
             </div>
-                <div class="col-md-12">
-        <div class="form-group">
-            <label for="">Content</label>
-            <textarea name="content" id="content" class="form-control @error('content') is-invalid @enderror" cols="30" rows="30" value="{{old('content')}}"></textarea>
-            @error('content')
-            <small class="text-danger">{{$message}}</small>
-            @enderror
-        </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="">Content</label>
+                    <textarea name="content" id="content" class="form-control @error('content') is-invalid @enderror" cols="30" rows="30" value="{{old('content')}}"></textarea>
+                    @error('content')
+                    <small class="text-danger">{{$message}}</small>
+                    @enderror
                 </div>
+            </div>
             <button type="submit" class="btn btn-primary btn-block">Add</button>
         </form>
     </div>

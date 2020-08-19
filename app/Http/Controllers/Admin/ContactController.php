@@ -92,6 +92,11 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        if($contact->delete()){
+            Alert::toast('Xóa contact thành công','success');
+            return Redirect()->back();
+        }
+        Alert::toast('Không thể xóa liên hệ này','error');
+        return Redirect()->back();
     }
 }

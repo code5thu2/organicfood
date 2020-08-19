@@ -27,7 +27,7 @@ $br_item = 'Danh sách yêu thích';
                     @foreach(Auth::guard('cus')->user()->wishlist as $model)
                     <tr>
                         <td class="cart-image-wrapper" style="width: 100px;">
-                            <a href="#"><img class="cart-image" src="{{url('uploads')}}/{{$model->product->image}}" alt=""></a>
+                            <a href="{{route('home.view',['id'=> $model->product->id,'slug' => $model->product->slug])}}"><img class="cart-image" src="{{url('uploads')}}/{{$model->product->image}}" alt=""></a>
                         </td>
                         <td class="product-tit"><a href="{{route('home.view',['id'=> $model->product->id,'slug' => $model->product->slug])}}">{{$model->product->name}}</a></td>
                         <td class="price"><span class="money">{{$model->product->sale >0 ? number_format($model->product->sale) : number_format($model->product->price)}} đ</span></td>
@@ -36,7 +36,7 @@ $br_item = 'Danh sách yêu thích';
                             <form action="{{route('customer.wishlist_del',$model->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <button><i class="fas fa-trash-alt"></i></button>
+                                <button><i class="fas fa-trash-alt text-danger"></i></button>
                             </form>
                         </td>
                     </tr>

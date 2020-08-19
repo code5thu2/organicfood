@@ -92,11 +92,10 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        if (!$supplier->products->count()) {
-            if ($supplier->delete()) {
-                Alert::toast('Xóa nhà cung cấp thành công', 'success');
-                return redirect()->back();
-            }
+
+        if ($supplier->delete()) {
+            Alert::toast('Xóa nhà cung cấp thành công', 'success');
+            return redirect()->back();
         }
         Alert::toast('Không thể xóa nhà cung cấp', 'error');
         return redirect()->back();

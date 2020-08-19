@@ -20,7 +20,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::orderBy('id')->where('parent_id', 0)->paginate(5);
+        $category = Category::Search()->orderBy('id')->where('parent_id', 0)->paginate(5);
         return view('admin.categories.index', compact('category'));
     }
 
@@ -114,7 +114,7 @@ class CategoryController extends Controller
 
     public function trash(Request $request)
     {
-        $category = Category::onlyTrashed()->paginate(5);
+        $category = Category::onlyTrashed()->Search()->paginate(5);
         return view('admin.categories.trash', compact('category'));
     }
     public function restore($id)

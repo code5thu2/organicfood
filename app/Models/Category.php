@@ -42,4 +42,20 @@ class Category extends Model
     {
         return $this->hasMany(Product::class)->where('status', '>', 0);
     }
+    public function scopeSearch($query)
+    {
+        $filter  = request()->key;
+        if (request()->key != null) {
+            if (request()->filter == 'id_f') {
+                $query->where('id', $filter);
+            }
+            if (request()->filter == 'name_f') {
+                $query->where('name', 'LIKE', '%' . $filter . '%');
+            }
+        }
+        if (request()->status != null) {
+            $status  = request()->status;
+            $query->where('status', $status - 1);
+        }
+    }
 }

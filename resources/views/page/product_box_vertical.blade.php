@@ -19,7 +19,7 @@
         <span class="card-title title-pro">{{$model->name}}</span>
         <div class="price-pro">
             <span>đ {{$model->sale >0 ? number_format($model->sale) : number_format($model->price)}}</span>
-            <span><del>đ {{$model->sale > 0 ? number_format($model->price) : '0.00'}}</del></span>
+            <span><del>{{$model->sale > 0 ? 'đ'.number_format($model->price) : ''}}</del></span>
         </div>
         <div class="buy-now">
             <a href="#" class="btn btn-outline-primary stretched-link"><i class="fas fa-shopping-basket"></i> buy now</a>

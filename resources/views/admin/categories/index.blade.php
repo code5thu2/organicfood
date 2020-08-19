@@ -4,19 +4,25 @@
 <div class="row">
     <div class="col-12 table-responsive p-3 bg-white text-center">
         <div class="row pb-2">
-            <div class="col-8">
+            <div class="col-4">
                 <a href="{{route('admin.categories.create')}}" class="btn btn-outline-primary float-left"><i class="fas fa-plus"></i> ADD NEW</a>
                 <a href="{{route('admin.categories.trash')}}" class="btn btn-warning float-left ml-2"><i class="fas fa-trash"></i> Thùng rác</a>
             </div>
-            <div class="col-4">
-                <div class="form-group">
-                    <div class="input-group">
-                        <input type="text" class="form-control">
-                        <div class="input-group-append">
-                            <button type="button" class="btn btn-primary">Go!</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-8">
+            <?php
+                $filter = [
+                    0 => [
+                        'value' => 'id_f',
+                        'name' => 'Mã danh mục'
+                    ],
+                    1 => [
+                        'value' => 'name_f',
+                        'name' => 'Tên danh mục'
+                    ],
+                ];
+                $status_query = [];
+                ?>
+                @include('filter_box',['filter' => $filter,'status_query' => $status_query])
             </div>
         </div>
         <table class="table table-bordered table-hover">
@@ -38,7 +44,7 @@
         </table>
         <div class="row justify-content-end">
             <div class="mt-3 col-12">
-                {{$category->links()}}
+                {{$category->withQueryString()->links()}}
             </div>
         </div>
     </div>

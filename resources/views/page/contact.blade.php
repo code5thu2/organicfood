@@ -21,6 +21,7 @@ use Carbon\Carbon;
                 <div class="logo-ct">
                     <img src="{{url('public')}}/app/images/logo/main-logo-2.png" class="img-ct">
                 </div>
+                @if(isset($contact_view))
                 <div class="main-address text-center">
                     <div class="row">
                         <div class="col-lg-4 col-md-12">
@@ -62,6 +63,7 @@ use Carbon\Carbon;
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div> <!-- end-address -->
         <div class="container map-form">
@@ -104,9 +106,11 @@ use Carbon\Carbon;
                     </div> <!-- end-main-form -->
                 </div> <!-- end-col -->
                 <div class="col-md-6">
+                    @if(isset($contact_view))
                     <div class="google-site">
                         {!!$contact_view->map!!}
                     </div>
+                    @endif
                 </div>
             </div>
         </div> <!-- end-map-form  -->
