@@ -142,8 +142,7 @@
 @stop()
 
 @section('js')
-<script src="{{url('public')}}/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
-<script src="{{url('public')}}/tinymce/config.js" referrerpolicy="origin"></script>
+
 
 <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 1000px;">
