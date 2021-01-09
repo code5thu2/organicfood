@@ -14,6 +14,10 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\Rating;
 use App\Models\Subscribe;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL as FacadesURL;
+use PharIo\Manifest\Url;
 
 class AdminController extends Controller
 {
@@ -33,12 +37,13 @@ class AdminController extends Controller
     }
     public function login()
     {
+        Session::put('url.intended', FacadesURL::previous()); //Lấy url trang trước khi login
         return view('admin.login');
     }
     public function post_login(loginRequest $request)
     {
         if (Auth::attempt($request->only('email', 'password'), $request->has('remember'))) {
-            return redirect()->route('admin.index');
+            return Session::get('url.intended') ? Redirect::to(Session::get('url.intended')) : redirect()->route('admin.index'); // chuyển đến url trước khi login
         }
         Alert::toast('Email hoặc mật khẩu không chính xác', 'error')->position('top');
         return redirect()->back();

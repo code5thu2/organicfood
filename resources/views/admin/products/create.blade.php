@@ -124,7 +124,7 @@
             <div class="input-group mb-3">
                 <input type="hidden" name="other_image" class="form-control" id="other_image">
                 <div class="input-group-append">
-                    <button type="button" data-toggle="modal" data-target="#modelId" class="btn btn-outline-primary"><i class="fas fa-plus"></i></button>
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#modelId"><i class="fas fa-plus"></i></button>
                 </div>
             </div>
             @error('other_upload')
@@ -139,16 +139,11 @@
     <button type="submit" class="btn btn-primary btn-block">Add</button>
     </form>
 </div>
-@stop()
-
-@section('js')
-
-
 <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" style="max-width: 1000px;">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title">Ảnh khác</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -159,7 +154,9 @@
         </div>
     </div>
 </div>
+@stop()
 
+@section('js')
 <script>
     $('#modelId').on('hide.bs.modal', function() {
         var _img = $('input#other_image').val();
